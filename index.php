@@ -4,7 +4,7 @@ use AltoRouter as Router;
 
 require_once  __DIR__ . '/vendor/autoload.php';
 $router = new Router();
-$router->setBasePath('/officer');
+$router->setBasePath('/officer/hr_officer');
 session_start();
 
 // กำหนด route ในเว็บหน้าปกติ
