@@ -28,6 +28,11 @@ $router->map("GET", "/detail", function () {
     require __DIR__ . "./public/page/detail.php";
 });
 
+$router->map("GET", "/form", function () {
+    require __DIR__ . "./public/page/listform.php";
+});
+
+
 // Delete
 $router->map("GET|post", "/delete/[a:page]/[i:id]", function ($page, $id) {
     require __DIR__ . "./public/page/delete.php";

@@ -1,5 +1,5 @@
 <?php session_start(); ?>
-<nav class="navbar navbar-expand-lg navbar-dark " style="background-color: #16a085">
+<nav class="navbar navbar-expand-lg navbar-dark " style="background-color: #6c757d">
   <div class="container-fluid">
     <span class="navbar-brand">CPA HR Managements</span>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -16,6 +16,10 @@
         <li class="nav-item">
           <a class="nav-link <?php if ($page == 'about') echo 'active'; if ($page == 'edit') echo 'disabled'; ?>" href="./about">เกี่ยวกับ</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link <?php if ($page == 'form') echo 'active'; if ($page == 'edit') echo 'disabled'; ?>" href="./form">แบบฟอร์มต่างๆ</a>
+        </li>
+
 
 
         <?php if ($_SESSION['role'] === '1' || $_SESSION['role'] === '2' || $_SESSION['role'] === '3') { ?>
@@ -55,9 +59,9 @@
         <!-- <form class="d-flex" >
         </form> -->
         <hi class="text-white"> User : guest &nbsp;</hi><?php echo $_SESSION['fullname'] ?>
-        <button class="btn btn-primary" style="float: right;" onclick="login()"><i class="fas fa-sign-in-alt f-16"> LOGIN</i></button>
+        <button class="btn btn-success" style="float: right;" onclick="login()"><i class="fas fa-sign-in-alt f-16"> LOGIN</i></button>
         <form action="logout" method="GET" autocomplete="off">
-        <?php } else if ($_SESSION['username'] != '') {  ?> <hi class="text-white"><?php echo 'User : '.$_SESSION['fullname'] ?> &nbsp; </hi><a href="logout"><button style="float: right;" class="btn btn-secondary" name="logout" type="submit">LOGOUT</button></a><?php }  ?>
+        <?php } else if ($_SESSION['username'] != '') {  ?> <hi class="text-white"><?php echo 'User : '.$_SESSION['fullname'] ?> &nbsp; </hi><a href="logout"><button style="float: right;" class="btn btn-light" name="logout" type="submit">LOGOUT</button></a><?php }  ?>
         </form>
 
     </div>
