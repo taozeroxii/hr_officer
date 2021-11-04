@@ -14,9 +14,11 @@
         $pname = $obj->escape($_POST['pname']);
         $fname = $obj->escape($_POST['fname']);
         $lname = $obj->escape($_POST['lname']);
+        $cid = $obj->escape($_POST['cid']);
         $username = $obj->escape($_POST['username']);
         $InputPassword1 = $obj->escape($_POST['InputPassword1']);
         $InputPassword2 = $obj->escape($_POST['InputPassword2']);
+
         if (empty($pname)) $errors[0] =  "กรุณากรอกคำนำหน้า";
         if (empty($fname)) $errors[1] =  "กรุณากรอกชื่อ";
         if (empty($lname)) $errors[2] =  "กรุณากรอกนามสกุล";
@@ -25,11 +27,16 @@
         if (empty($InputPassword2)) $errors[5] =  "กรุณากรอกคอนเฟิร์มพาสเวิร์ด";
         if ($InputPassword1 != $InputPassword2 and !empty($InputPassword1) and !empty($InputPassword2)) $errors[6] =  "กรุณากรอกพาสเวิร์ดให้ตรงกัน";
         $user_check = $obj->check_username($username);
+        $user_checkcid = $obj->check_cid($cid);
+
         if ($user_check) $errors[7] =  "ชื่อนี้มีอยู่ในระบบแล้ว";
+        if ($user_checkcid) $errors[8] =  "cidนี้มีอยู่ในระบบแล้ว";
+        if (empty( $cid)) $errors[9] =  "กรุณากรอก หมายเลขบัตรประชาชน";
+
         if (count($errors) == 0) {
             $pass = md5($InputPassword1);
             $pass = password_hash($pass, PASSWORD_DEFAULT);
-            $queryInsert = $obj->insert_user($username, $pass, $pname, $fname, $lname);
+            $queryInsert = $obj->insert_user($username, $pass, $pname, $fname, $lname,$cid);
             if ($queryInsert) {
                 echo "<script>window.location.href = './login'</script>";
             }
@@ -75,9 +82,19 @@
                     </div>
 
 
+
                     <div class="mb-3">
-                        <label for="InputEmail1" class="form-label">รหัสบัตรประชาชน</label>
-                        <input type="text" class="form-control" name="username" id="username" value="<?php echo empty($_POST['username']) ? "" : $_POST['username'] ?>" placeholder="เลขบัตร ปปช 13 หลัก" require>
+                        <label  class="form-label">เลขบัตรประชาชน</label>
+                        <input type="text" class="form-control" name="cid" id="cid" maxlength="13" value="<?php echo empty($_POST['cid']) ? "" : $_POST['cid'] ?>" placeholder="เลขบัตรประชาชน" require>
+                        <?php if (!empty($errors[9])) echo "<p>" . $errors[9] . "</p>";
+                        elseif (!empty( $errors[8])) echo "<p>" .  $errors[8] . "</p>";
+                        ?>
+                    </div>
+
+
+                    <div class="mb-3">
+                        <label for="InputEmail1" class="form-label">Username</label>
+                        <input type="text" class="form-control" name="username" id="username" value="<?php echo empty($_POST['username']) ? "" : $_POST['username'] ?>" placeholder="username" require>
                         <?php if (!empty($errors[3])) echo "<p>" . $errors[3] . "</p>";
                         elseif (!empty($errors[7])) echo "<p>" . $errors[7] . "</p>";
                         ?>

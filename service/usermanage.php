@@ -48,9 +48,14 @@ class manage_user extends Dbcon
         $result = mysqli_fetch_assoc(mysqli_query($this->mycon, "SELECT username FROM hr_user WHERE username = '$v'"));
         return $result;
     }
-    public function insert_user($username, $pass, $pname, $fname, $lname)
+    public function check_cid($v)
     {
-        $result = mysqli_query($this->mycon, "INSERT INTO hr_user (username ,password ,pname ,fname ,lname ,user_role_id ) VALUES ('$username', '$pass', '$pname', '$fname', '$lname' ,0)");
+        $result = mysqli_fetch_assoc(mysqli_query($this->mycon, "SELECT cid FROM hr_user WHERE cid = '$v'"));
+        return $result;
+    }
+    public function insert_user($username, $pass, $pname, $fname, $lname,$cid)
+    {
+        $result = mysqli_query($this->mycon, "INSERT INTO hr_user (username ,password ,pname ,fname ,lname ,user_role_id ,cid) VALUES ('$username', '$pass', '$pname', '$fname', '$lname' ,0,'$cid')");
         return $result;
     }
 
