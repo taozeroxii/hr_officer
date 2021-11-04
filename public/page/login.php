@@ -21,7 +21,15 @@
                 $_SESSION['fullname'] =  $querylogin['pname'] .'  '. $querylogin['fname'] . ' ' . $querylogin['lname'];
                 $_SESSION['role'] = $querylogin['user_role_id'];
                 echo "<script>window.location.href = './'</script>";
-            } else echo "<script>window.location.href = './login'</script>";
+            } else echo '<script>
+            Swal.fire({
+                title: "Login ผิดพลาด!",
+                text: "Username Or Password is not Defind !!!",
+                type: "Error"
+            }).then(function() {
+                window.location = "./login";
+            });
+            </script>';
         }
     }
 
@@ -37,13 +45,13 @@
                     </style>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Username</label>
-                        <input type="text" class="form-control" name="username" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="เลขบัตร ปปช 13 หลัก">
+                        <input type="text" class="form-control" name="username" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ค่าตั้งต้น เลขบัตร ปปช 13 หลัก">
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Password</label>
                         <input type="password" class="form-control" name="InputPassword" id="exampleInputPassword1" placeholder="หากเข้าใช้งานครั้งแรกไม่ต้องกรอกรหัส">
-                        <?php if (isset($_POST['submit'])) echo "<p>กรอก Username หรือ Password ผิดพลาด</p>" ?>
                     </div>
+                    
                     <button type="submit" name="submit" class="btn btn-primary">Login</button>
                     <!-- <a href="./register" style="color:black;" class="btn btn-warning">Register</a> -->
                 </form>
