@@ -9,7 +9,25 @@
     include "service/officermanage.php";
     ?>
 
+    <style>
+        #overlay {
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            background: #ccc;
+            width: 100%;
+            height: 100%;
+            opacity: .75;
+            filter: alpha(opacity=75);
+            -moz-opacity: .75;
+            z-index: 999;
+            background: #fff url(http://i.imgur.com/KUJoe.gif) 50% 50% no-repeat;
+        }
+    </style>
     <div class="container">
+        <!-- id ใช้แสดงตัวโหลดหมุนๆบนหน้าจอ -->
+        <div id="overlay"></div>
+        <!-- --------------------------- -->
         <hr>
         <div class="row">
             <div class="col-2">
@@ -80,6 +98,12 @@
 
 
         <?php include 'components/footer.php' ?>
+        <script type="text/javascript">
+            $(function() {
+                $("#overlay").fadeOut();
+                $(".main-contain").removeClass("main-contain");
+            });
+        </script>
 </body>
 
 </html>
