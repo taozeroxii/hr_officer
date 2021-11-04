@@ -39,6 +39,7 @@
         </div>
 
         <hr>
+        *ปุ่ม +user นำข้อมูลพื้นฐานมาทำเป็นรหัสเข้าใช้งานระบบ*
         <div class="row">
             <div class="col-12">
                 <div class="card">
@@ -53,6 +54,7 @@
                                 <th>สิทธิเข้าถึง</th>
                                 <th>edit</th>
                                 <th>delete</th>
+                                <th>add user</th>
                             </thead>
 
                             <tbody>
@@ -67,8 +69,9 @@
                                         <td><?php echo $row['fname'] ?></td>
                                         <td><?php echo $row['lname'] ?></td>
                                         <td><?php echo $row['user_role_id'] ?></td>
-                                        <td><a href="manageperson/<?php echo $row['mission_id'] ?>" class="btn btn-primary d-grid gap-2"><i class="fas fa-pencil-alt f-16"> แก้ไข</i> </a></td>
+                                        <td><a href="manageperson/<?php echo $row['id'] ?>" class="btn btn-primary d-grid gap-2"><i class="fas fa-pencil-alt f-16"> แก้ไข</i> </a></td>
                                         <td><a class="btn btn-danger d-grid gap-2 text-white" onclick="test(<?php echo $row['mission_id'] ?>)"><i class="fas fa-trash f-16"> ลบ</i></a></td>
+                                        <td><button class="btn btn-success d-grid gap-2 text-white" onclick="" <?php if(isset($row['haveuser_yet'])) {echo 'disabled';}?>><i class="fas fa-plus   f-16"> user</i></button></td>
                                     </tr>
                                 <?php } ?>
                             </tbody>

@@ -148,7 +148,7 @@ class manage_officer extends Dbcon
     }
     public function fetchdata_all_person(){
         $result = mysqli_query($this->mycon, 
-        "SELECT hrm.*,hru.user_role_id
+        "SELECT hrm.*,hru.user_role_id,hru.cid as haveuser_yet
         FROM hr_cpa_person_main hrm 
         LEFT JOIN hr_user hru on hru.cid = hrm.cid ");
         return $result;

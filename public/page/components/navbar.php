@@ -33,7 +33,7 @@
               <li><a class="dropdown-item" href="./tabledepartment">ข้อมูลหน่วยงาน(workgroup)</a></li>
               <li><a class="dropdown-item" href="./tableposition">ตำแหน่ง(position)</a></li>
               <li><a class="dropdown-item" href="./tablepersontype">ประเภทการจ้าง(persontype)</a></li>
-              <li><a class="dropdown-item" href="./tableperson">บุคคล(person)</a></li>
+              <li><a class="dropdown-item" href="./tableperson">บุคลากร(person)</a></li>
               <!-- <li><hr class="dropdown-divider"></li> -->
               <!-- <li><a class="dropdown-item" href="#">Something else here</a></li> -->
             </ul>

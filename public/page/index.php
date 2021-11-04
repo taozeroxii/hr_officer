@@ -45,7 +45,7 @@ $ps     = $ressum['person_sum'];
                         </div>
                     <?php } ?>
                 </div>
-                <!-- <div class="row">
+                <div class="row">
                     <div class="col-sm-3 col-6">
                         <div class="description-block border-right">
                             <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 17%</span>
@@ -75,55 +75,7 @@ $ps     = $ressum['person_sum'];
                         </div>
                     </div>
                 </div>
- -->
 
-                <!--  -->
-
-
-                <div class="row">
-                    <div class="col-md-4">
-
-                    </div>
-
-                    <div class="col-md-4">
-
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="card card-widget widget-user shadow">
-                            <div class="widget-user-header bg-info">
-                                <h3 class="widget-user-username">ข้อมูลการลา</h3>
-                                <h5 class="widget-user-desc"> Information &amp; Leave</h5>
-                            </div>
-                            <div class="widget-user-image" onclick='location.href="calendar_leave"'>
-                                <img class="img-circle elevation-2" src="uploads/img_icon/la.jpg" alt="User Avatar">
-                            </div>
-                            <div class="card-footer">
-                                <div class="row">
-                                    <div class="col-sm-4 border-right">
-                                        <div class="description-block">
-                                            <h5 class="description-header">30</h5>
-                                            <span class="description-text">เมื่อวาน</span>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4 border-right">
-                                        <div class="description-block">
-                                            <h5 class="description-header">20</h5>
-                                            <span class="description-text">วันนี้</span>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="description-block">
-                                            <h5 class="description-header">35</h5>
-                                            <span class="description-text">พรุ่งนี้</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
 
 
 
@@ -246,7 +198,7 @@ $ps     = $ressum['person_sum'];
         </section>
     </div>
 
-    <?php require_once "components/footer.php";?>
+    <?php require_once "components/footer.php"; ?>
 
 
 
