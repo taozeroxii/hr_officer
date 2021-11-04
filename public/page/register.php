@@ -24,7 +24,7 @@
         if (empty($lname)) $errors[2] =  "กรุณากรอกนามสกุล";
         if (empty($username)) $errors[3] =  "กรุณากรอก Username";
         if (empty($InputPassword1)) $errors[4] =  "กรุณากรอกพาสเวิร์ด";
-        if (empty($InputPassword2)) $errors[5] =  "กรุณากรอกคอนเฟิร์มพาสเวิร์ด";
+        if (empty($InputPassword2)) $errors[5] =  "กรุณากรอกพาสเวิร์ดตามด้านบน";
         if ($InputPassword1 != $InputPassword2 and !empty($InputPassword1) and !empty($InputPassword2)) $errors[6] =  "กรุณากรอกพาสเวิร์ดให้ตรงกัน";
         $user_check = $obj->check_username($username);
         $user_checkcid = $obj->check_cid($cid);
