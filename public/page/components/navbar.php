@@ -1,5 +1,5 @@
 <?php session_start(); ?>
-<nav class="navbar navbar-expand-lg navbar-dark " style="background-color: #6c757d">
+<nav class="navbar navbar-expand-lg navbar-dark " style="background-color: #6c757d;">
   <div class="container-fluid">
     <span class="navbar-brand">CPA HR Managements</span>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
