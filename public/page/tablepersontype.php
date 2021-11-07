@@ -2,14 +2,14 @@
 <html lang="th">
 
 <head>
-    <?php require_once "./public/page/components/head.php"; ?>
+    <?php require_once "./public/components/head.php"; ?>
 </head>
 
 <body class="hold-transition sidebar-mini">
 
     <?php
     $page = 'tabledetail';
-    require_once "./public/page/components/navbar.php";
+    require_once "./public/components/navbar.php";
     include "service/officermanage.php";
     ?>
     <section class="content">
@@ -71,7 +71,7 @@
     <!-- /.content -->
 
 
-    <?php require_once "./public/page/components/footer.php" ?>
+    <?php require_once "./public/components/footer.php" ?>
 </body>
 
 </html>
