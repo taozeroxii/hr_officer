@@ -16,10 +16,11 @@
         <li class="nav-item">
           <a class="nav-link <?php if ($page == 'about') echo 'active'; if ($page == 'edit') echo 'disabled'; ?>" href="./about">เกี่ยวกับ</a>
         </li>
+        <?php if (isset($_SESSION['role'])) { ?>
         <li class="nav-item">
           <a class="nav-link <?php if ($page == 'form') echo 'active'; if ($page == 'edit') echo 'disabled'; ?>" href="./form">แบบฟอร์มต่างๆ</a>
         </li>
-
+        <?php  } ?>
 
 
         <?php if ($_SESSION['role'] === '1' || $_SESSION['role'] === '2' || $_SESSION['role'] === '3') { ?>
@@ -58,10 +59,10 @@
       if ($_SESSION['username'] == '' and $page != 'login') { ?>
         <!-- <form class="d-flex" >
         </form> -->
-        <hi class="text-white"> User : guest &nbsp;</hi><?php echo $_SESSION['fullname'] ?>
+        <hi class="text-white"> ผู้ใช้งาน : guest &nbsp;</hi><?php echo $_SESSION['fullname'] ?>
         <button class="btn btn-success" style="float: right;" onclick="login()"><i class="fas fa-sign-in-alt f-16"> LOGIN</i></button>
         <form action="logout" method="GET" autocomplete="off">
-        <?php } else if ($_SESSION['username'] != '') {  ?> <hi class="text-white"><?php echo 'User : '.$_SESSION['fullname'] ?> &nbsp; </hi><a href="logout"><button style="float: right;" class="btn btn-light" name="logout" type="submit">LOGOUT</button></a><?php }  ?>
+        <?php } else if ($_SESSION['username'] != '') {  ?> <hi class="text-white"><?php echo 'ผู้ใช้งาน : '.$_SESSION['fullname'] ?> &nbsp; </hi><a href="logout"><button style="float: right;" class="btn btn-light" name="logout" type="submit">LOGOUT</button></a><?php }  ?>
         </form>
 
     </div>

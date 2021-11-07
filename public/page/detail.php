@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
-<?php require_once "components/head.php" ?>
+<html lang="th">
+<?php require_once "./public/components/head.php"; ?>
 
 
 <body>
     <?php
     $page = 'detail';
-    include "components/navbar.php";
+    require_once "./public/components/navbar.php";
     include_once "service/officermanage.php";
     ?>
 

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
-<?php require_once "components/head.php"?>
+<html lang="th">
+<?php require_once "./public/components/head.php";?>
 <body>
     <?php
     $page = 'tabledetail';
-    include "components/navbar.php";
+    require_once "./public/components/navbar.php";
     include "service/officermanage.php";
     ?>
 
@@ -62,7 +62,7 @@
     </script>
 
 
-    <?php include 'components/footer.php' ?>
+    <?php include './public/components/footer.php'; ?>
 </body>
 
 </html>

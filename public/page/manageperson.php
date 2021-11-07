@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
-<?php require_once "components/head.php" ?>
+<html lang="th">
+<?php require_once "./public/components/head.php"; ?>
 <style type="text/css">
     #thumbnail img {
         border-radius: 25px;
@@ -36,7 +36,7 @@
 
     <?php
     $page = 'edit';
-    include "components/navbar.php";
+    require_once "./public/components/navbar.php";
     require_once "service/officermanage.php";
     $mission_name = '';
     $mission_id = '';

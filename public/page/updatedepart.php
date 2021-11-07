@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 
-<?php include "components/head.php" ?>
+<?php require_once "./public/components/head.php";?>
 
 <body>
     <?php
     $page = 'edit';
-    include "components/navbar.php";
+    require_once "./public/components/navbar.php";
     include "service/usermanage.php";
     ?>
     <br>
@@ -32,12 +32,12 @@
         <a href="../tabledepartment"> <button class="btn btn-secondary mt-3">ย้อนกลับ</button></a>
     </div>
 </body>
-<?php require_once "components/footer.php" ?>
+<?php require_once "./public/components/footer.php" ?>
 
 </html>
 
 
 
 <!DOCTYPE html>
-<html lang="en">
-<?php include "components/head.php" ?>
+<html lang="th">
+<?php require_once "./public/components/head.php";?>

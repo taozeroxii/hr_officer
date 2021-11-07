@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
-<?php require_once "components/head.php" ?>
+<html lang="th">
+<?php require_once "./public/components/head.php"; ?>
 
 <body>
     <?php
 
     $page = 'login';
-    include "components/navbar.php";
+    require_once "./public/components/navbar.php";
     include "service/usermanage.php";
 
     if (isset($_POST['submit'])) {
@@ -71,7 +71,7 @@
         </div>
     </div>
 
-    <?php require_once "components/footer.php" ?>
+    <?php require_once "./public/components/footer.php" ?>
 </body>
 
 </html>

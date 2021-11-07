@@ -1,3 +1,4 @@
+@@ -1,6 +0,0 @@
 # deny access to all .php files
 <Files ~ "^.*\.([Pp][Hh][Pp])">
  Order allow,deny

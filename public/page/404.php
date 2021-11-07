@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
-<?php include "components/head.php" ?>
+<html lang="th">
+<?php require_once "./public/components/head.php";?>
 
 <body>
     <?php
-    include "components/navbar.php";
+    require_once "./public/components/navbar.php";
     include "service/usermanage.php";
     ?>
     <section class="page_404">
@@ -34,7 +34,7 @@
     </section>
 
 
-    <?php require_once "components/footer.php" ?>
+    <?php require_once "./public/components/footer.php" ?>
 </body>
 
 

@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="th">
 <?php
-require_once "components/head.php";
+require_once "./public/components/head.php";
 //require_once "components/func_datethai.php";
 //require_once "components/modal_holiday.php";
 date_default_timezone_set("Asia/Bangkok");
 
 $todate = date('Y-m-d');
 $page = 'home';
-include "components/navbar.php";
+include "./public/components/navbar.php";
 include_once "service/officermanage.php";
 
 $obj = new manage_officer();
@@ -198,7 +198,7 @@ $ps     = $ressum['person_sum'];
         </section>
     </div>
 
-    <?php require_once "components/footer.php"; ?>
+    <?php require_once "./public/components/footer.php"; ?>
 
 
 

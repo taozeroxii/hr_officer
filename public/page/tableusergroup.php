@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 
-<?php require_once "components/head.php" ?>
+<?php require_once "./public/components/head.php"; ?>
 
 <body>
     <?php
     $page = 'tabledetailuser';
-    include "components/navbar.php";
+    require_once "./public/components/navbar.php";
     include "service/usermanage.php";
     ?>
 
@@ -61,7 +61,7 @@
     <!-- /.content -->
 
 
-    <?php include 'components/footer.php' ?>
+    <?php include './public/components/footer.php'; ?>
 </body>
 
 </html>

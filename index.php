@@ -28,20 +28,10 @@ $router->map("GET", "/detail", function () {
     require __DIR__ . "./public/page/detail.php";
 });
 
-$router->map("GET", "/form", function () {
-    require __DIR__ . "./public/page/listform.php";
-});
-
-
 // Delete
 $router->map("GET|post", "/delete/[a:page]/[i:id]", function ($page, $id) {
     require __DIR__ . "./public/page/delete.php";
 });
-
-
-
-
-
 
 
 
@@ -109,14 +99,14 @@ if(isset($_SESSION['fullname']) && ( $_SESSION['role'] == 1 ||  $_SESSION['role'
 
 
 
+
+
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  ส่วน admin (USER ROLE)<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 if(isset($_SESSION['fullname']) && ( $_SESSION['role'] == 1 ||  $_SESSION['role'] == 2 || $_SESSION['role'] == 3 ) ){
     $router->map("GET", "/tableusergroup", function () {
-        // return 'homepage';
         require __DIR__ . "./public/page/tableusergroup.php";
     });
     $router->map("GET|POST", "/register", function () {
-        // return 'homepage';
         require __DIR__ . "./public/page/register.php";
     });
 }
@@ -129,8 +119,30 @@ if(isset($_SESSION['fullname']) && ( $_SESSION['role'] == 1 ||  $_SESSION['role'
 
 
 
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  ส่วน User ทั่วไป หรือต้องมีการเข้าสู่ระบบ<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+if(isset($_SESSION['fullname']) && (isset($_SESSION['role'] )) ){
+    $router->map("GET", "/form", function () {
+        require __DIR__ . "./public/page/listform.php";
+    });
+    $router->map("GET", "/form_request_salary", function () {
+        require __DIR__ . "./public/page/form/01from_request_salary.php";
+    });
+}
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  ส่วน User ทั่วไป หรือต้องมีการเข้าสู่ระบบ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-// Delete
+
+
+
+
+
+
+
+
+
+
+
+
+
 $router->map("GET", "/logout", function () {
     require __DIR__ . "./public/page/logout.php";
 });
@@ -141,13 +153,12 @@ $router->map("GET|POST", "/login", function () {
 });
 
 
-
-
 function check_userrole( ){
     // $user_role_id = $_SESSION['role'];
     $user_fullname = $_SESSION['fullname'];
     return $user_fullname ;
 }
+
 
 
 

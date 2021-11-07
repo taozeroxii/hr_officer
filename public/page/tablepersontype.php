@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 
 <head>
     <?php require_once "./public/page/components/head.php"; ?>
