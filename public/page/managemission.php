@@ -26,17 +26,17 @@
     <div class="container">
         <div class="card mt-3">
             <div class="card-body">
-                <?php if ($id != '') { ?>
+                <?php if (isset($id)) { ?>
                     <h2 class="card-title"> แก้ไข กลุ่มภารกิจ <?php echo 'id : ' . $id; ?></h2>
                 <?php } else { ?>
                     <h2 class="card-title"> เพิ่ม กลุ่มภารกิจ </h2>
                 <?php } ?>
-                <form method="post" action="<?php echo $id == '' ? "./managemission" : "../managemission" ?>">
+                <form method="post" action="<?php echo !isset($id) ? "./managemission" : "../managemission" ?>">
                     <div class="mb-3">
                         <label for="mission_name" class="form-label mt-2">Mission</label>
                         <input type="text" class="form-control" name="mission_name" value="<?= $mission_name !='' ? $mission_name : ""; ?>" id="mission_name" required>
                     </div>
-                    <?php if ($id == '') { ?>
+                    <?php if (!isset($id)) { ?>
                         <button type="submit" class="btn btn-primary">บันทึก</button>
                         <a href="./tabledetailmission" class="btn btn-secondary"> ย้อนกลับ</a>
                         <input type="hidden" name="status" value="insert">

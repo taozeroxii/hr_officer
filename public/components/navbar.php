@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+
 <nav class="navbar navbar-expand-lg navbar-dark " style="background-color: #6c757d;">
   <div class="container-fluid">
     <span class="navbar-brand">CPA HR Managements</span>
@@ -23,7 +23,8 @@
         <?php  } ?>
 
 
-        <?php if ($_SESSION['role'] === '1' || $_SESSION['role'] === '2' || $_SESSION['role'] === '3') { ?>
+        <?php if (isset($_SESSION['role'])) { 
+          if ($_SESSION['role'] === '1' || $_SESSION['role'] === '2' || $_SESSION['role'] === '3') { ?>
           <li class="nav-item dropdown ">
             <a class="nav-link dropdown-toggle
             <?php if ($page == 'tabledetail') echo 'active';if ($page == 'edit') echo 'disabled'; ?>" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -39,9 +40,12 @@
               <!-- <li><a class="dropdown-item" href="#">Something else here</a></li> -->
             </ul>
           </li>
-        <?php  } ?>
+        <?php  } 
+      } ?>
 
-        <?php if ($_SESSION['role'] === '1' || $_SESSION['role'] === '2') { ?>
+        <?php 
+        if (isset($_SESSION['role'])) { 
+        if ($_SESSION['role'] === '1' || $_SESSION['role'] === '2') { ?>
           <li class="nav-item dropdown ">
             <a class="nav-link dropdown-toggle <?php if ($page == 'tabledetailuser') echo 'active';if ($page == 'edit') echo 'disabled'; ?>" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               admin (จัดการ user)
@@ -52,19 +56,19 @@
               <li><a class="dropdown-item" href="./table-userrole">สิทธิการเข้าถึง </a></li>
             </ul>
           </li>
-        <?php  } ?>
+        <?php  } 
+      } ?>
 
       </ul>
       <?php
-      if ($_SESSION['username'] == '' and $page != 'login') { ?>
-        <!-- <form class="d-flex" >
-        </form> -->
-        <hi class="text-white"> ผู้ใช้งาน : guest &nbsp;</hi><?php echo $_SESSION['fullname'] ?>
+      if(isset($page)){
+      if (!isset($_SESSION['username']) && $page != 'login') { ?>
+        <hi class="text-white"> ผู้ใช้งาน : guest &nbsp;</hi>
         <button class="btn btn-success" style="float: right;" onclick="login()"><i class="fas fa-sign-in-alt f-16"> LOGIN</i></button>
         <form action="logout" method="GET" autocomplete="off">
-        <?php } else if ($_SESSION['username'] != '') {  ?> <hi class="text-white"><?php echo 'ผู้ใช้งาน : '.$_SESSION['fullname'] ?> &nbsp; </hi><a href="logout"><button style="float: right;" class="btn btn-light" name="logout" type="submit">LOGOUT</button></a><?php }  ?>
+        <?php } else if (isset($_SESSION['username'])) {  ?> <hi class="text-white"><?php echo 'ผู้ใช้งาน : '.$_SESSION['fullname'] ?> &nbsp; </hi><a href="logout"><button style="float: right;" class="btn btn-light" name="logout" type="submit">LOGOUT</button></a><?php } ?>
         </form>
-
+        <?php } ?>
     </div>
   </div>
 </nav>

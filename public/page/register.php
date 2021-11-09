@@ -5,7 +5,7 @@
 <body>
     <?php
     $page = 'register';
-    require_once "./public/components/navbar.php";
+    include "./public/components/navbar.php";
     include "service/usermanage.php";
 
     if (isset($_POST['submit'])) {

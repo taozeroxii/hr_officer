@@ -26,7 +26,7 @@
     <div class="container">
         <div class="card mt-3">
             <div class="card-body">
-                <?php if ($id != '') { ?>
+                <?php if (isset($id)) { ?>
                     <h2 class="card-title"> แก้ไข ตำแหน่ง <?php echo 'id : ' . $id; ?></h2>
                 <?php } else { ?>
                     <h2 class="card-title"> เพิ่ม ตำแหน่ง </h2>
@@ -34,9 +34,9 @@
                 <form method="post" action="<?php echo $id == '' ? "./manageposition" : "../manageposition" ?>">
                     <div class="mb-3">
                         <label for="position" class="form-label mt-2">position</label>
-                        <input type="text" class="form-control" name="position_name" value="<?= $position != '' ? $position : ""; ?>" id="position" required>
+                        <input type="text" class="form-control" name="position_name" value="<?=  isset($position) ? $position : ""; ?>" id="position" required>
                     </div>
-                    <?php if ($id == '') { ?>
+                    <?php if (!isset($id)) { ?>
                         <button type="submit" class="btn btn-primary">บันทึก</button>
                         <a href="./tableposition" class="btn btn-secondary"> ย้อนกลับ</a>
                         <input type="hidden" name="status" value="insert">

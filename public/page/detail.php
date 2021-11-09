@@ -8,6 +8,7 @@
     $page = 'detail';
     require_once "./public/components/navbar.php";
     include_once "service/officermanage.php";
+    
     ?>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -71,7 +72,8 @@
         <section id="team" class="pb-5">
             <div class="container">
                 <?php
-                if ($_GET['mission_id'] != '' && $_GET['workgroupid'] != '' || ($_GET['fname'] != '' || $_GET['lname'] != '')) {
+
+                if ((isset($_GET['mission_id']) || isset($_GET['mission_id'] )) && isset($_GET['workgroupid']) || (isset($_GET['fname'])  || isset($_GET['lname']) )) {
                     $mission_id  =  preg_replace('/[^a-z0-9\_\- ]/i', '', ($_GET['mission_id']));
                     $workgroupid =  preg_replace('/[^a-z0-9\_\- ]/i', '', ($_GET['workgroupid']));
                     $fname =  ($_GET['fname']);
@@ -117,6 +119,7 @@
                     <?php
                         }
                     }
+                    
                     ?>
 
 
