@@ -3,14 +3,39 @@
 <?php require_once "./public/components/head.php" ?>
 
 <body>
-    <?php $page = 'form'; include "./public/components/navbar.php" ?>
+    <?php 
+        $page = 'form';
+        include "./public/components/navbar.php";
+        $formname = 'หนังสือรับรองเงินเดือน';
+        $form_id = '001';
+        require_once ("./service/formmanage.php");
+        $obj  = new manage_form();
+
+        if(isset($_POST['submit'])){
+            $note =   $_POST['note'];
+            echo $insert =  $obj ->insert( $form_id,$_SESSION['user_id'],$_SESSION['person_id'],$formname,$_SESSION['fullname'],$note) ;
+            if ($insert) {
+                echo '<script>
+                    Swal.fire({
+                        title: "เพิ่มข้อมูลสำเร็จ!",
+                        text: "Insert data successfuly!",
+                        type: "success"
+                    }).then(function() {
+                        window.location = "./form_request_salary";
+                    });
+                    </script>';
+            } else {
+                echo "<script>alert failer to insert !<script>";
+            }
+        }
+    ?>
 
     <div class="container">
         <h5 class="mt-5">แบบฟอร์มขอใบรับรองเงินเดือน</h5>
         <form action="#" method="post">
             <p>โปรดกรอกหมายเหตุที่ต้องการขอใบรับรอง</p>
             <input class="form-control" type="text" name="note" placeholder="ระบุเหตุผลที่ต้องการขอใบรับรอง" value="" required>
-            <button type="submit" class="btn btn-success btn-lg mt-3">บันทึก</button>
+            <button type="submit" name="submit" value="submit" class="btn btn-success btn-lg mt-3">บันทึก</button>
             <a href="./form" class="btn btn-secondary btn-lg mt-3">ย้อนกลับ</a>
         </form>
 
@@ -19,7 +44,6 @@
         <p>ผู้ใช้งาน <?php echo $_SESSION['fullname'];?></p>
         <table id="example1" class="table table-bordered table-striped">
             <thead>
-                <th>#</th>
                 <th>วันเวลาที่ขอ</th>
                 <th>หมายเหตุ</th>
                 <th>print</th>
@@ -27,17 +51,15 @@
 
             <tbody>
                 <?php
-                //$obj = new manage_officer();
-                // $sql =  $obj->fetchdata_all_person();
-                // while ($row = mysqli_fetch_array($sql)) {
+                $sql =  $obj->fetct_byuser($_SESSION['user_id']);
+                while ($row = mysqli_fetch_array($sql)) {
                 ?>
                     <tr>
-                        <td><?php // echo $row['id'] ?></td>
-                        <td><?php //echo $row['pname'] ?></td>
-                        <td><?php //echo $row['fname'] ?></td>
+                        <td><?php echo $row['timestamp'] ?></td>
+                        <td><?php echo $row['note'] ?></td>
                         <td><button class="btn btn-warning btn-block"><i class="fa fa-print" aria-hidden="true"></i> </button> </td>
                     </tr>
-                <?php //} ?>
+                <?php } ?>
             </tbody>
         </table>
 

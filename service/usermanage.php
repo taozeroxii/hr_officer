@@ -40,7 +40,11 @@ class manage_user extends Dbcon
 
     public function login_user($u)
     {
-        $result = mysqli_query($this->mycon, "SELECT * FROM hr_user WHERE username = '$u'");
+        $result = mysqli_query($this->mycon, "SELECT hru.id,hru.username,hru.password,hru.pname,
+        hru.fname,hru.lname,hru.cid,hpm.id as person_id,hpm.position,hpm.typeposition ,hru.user_role_id
+        FROM hr_user hru
+        LEFT JOIN hr_cpa_person_main hpm on hru.cid = hpm.cid
+        WHERE username = '$u'");
         return mysqli_fetch_assoc($result);
     }
     public function check_username($v)

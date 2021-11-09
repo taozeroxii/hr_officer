@@ -18,6 +18,8 @@
             $querylogin = $obj->login_user($username);
             if ($querylogin != 0 and password_verify($pass, $querylogin['password'])) {
                 $_SESSION['username'] = $querylogin['username'];
+                $_SESSION['user_id'] = $querylogin['id'];
+                $_SESSION['person_id'] = $querylogin['person_id'];
                 $_SESSION['fullname'] =  $querylogin['pname'] . '  ' . $querylogin['fname'] . ' ' . $querylogin['lname'];
                 $_SESSION['role'] = $querylogin['user_role_id'];
                 echo "<script>window.location.href = './'</script>";
