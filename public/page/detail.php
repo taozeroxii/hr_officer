@@ -109,7 +109,7 @@
                                                     <h4 class="card- text-center mt-3"><?php echo $result['pname'] . $result['fname'] . ' ' . $result['lname']; ?></h4>
                                                     <p class="card-text"> <?php echo $result['workgroup_name']; ?></p>
                                                     <p class="card-text"><?php echo  $result['position'] ?></p>
-                                                    <a href="<?php if (isset($_SESSION['username'])) {  echo "./manageperson/" . $result['id']; } else ""; ?>" class="btn btn-primary btn-sm"> <i class="fa fa-edit"> <?php echo  $result['typeposition'] ?></i></a>
+                                                    <a href="<?php if (isset($_SESSION['username'])) {  echo "./manageperson/" . $result['id']; } else ""; ?>" class="btn btn-primary btn-sm"> <i class="fa fa-edit"> <?php echo  $result['typeposition_name'] ?></i></a>
                                                 </div>
                                             </div>
                                         </div>

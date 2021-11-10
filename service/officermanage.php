@@ -112,9 +112,10 @@ class manage_officer extends Dbcon
     }
     public function fetchdata_person_by_workgroup($workgroup){
         $result = mysqli_query($this->mycon, 
-        "SELECT hpm.*,hcw.id as workgroup_id,hcw.workgroup as workgroup_name,hcw.mission_id 
+        "SELECT hpm.*,hcw.id as workgroup_id,hcw.workgroup as workgroup_name,hcw.mission_id ,hrt.person_name as typeposition_name
         FROM hr_cpa_person_main hpm
         LEFT JOIN hr_cpa_workgroup hcw on hcw.id = hpm.workgroup
+        LEFT JOIN hr_cpa_person_type hrt on hrt.id = hpm.typeposition_id
         WHERE hcw.id = '$workgroup'
         ");
         return $result;
@@ -125,23 +126,26 @@ class manage_officer extends Dbcon
         
         if($rfname != '' && $rlname == ''){
             $result = mysqli_query($this->mycon, 
-            "SELECT hpm.*,hcw.id as workgroup_id,hcw.workgroup as workgroup_name,hcw.mission_id 
+            "SELECT hpm.*,hcw.id as workgroup_id,hcw.workgroup as workgroup_name,hcw.mission_id ,hrt.person_name as typeposition_name
             FROM hr_cpa_person_main hpm
             LEFT JOIN hr_cpa_workgroup hcw on hcw.id = hpm.workgroup
+			LEFT JOIN hr_cpa_person_type hrt on hrt.id = hpm.typeposition_id
             WHERE hpm.fname like '%$rfname%'");
         }
         else if($rfname == '' && $rlname != ''){
             $result = mysqli_query($this->mycon, 
-            "SELECT hpm.*,hcw.id as workgroup_id,hcw.workgroup as workgroup_name,hcw.mission_id 
+            "SELECT hpm.*,hcw.id as workgroup_id,hcw.workgroup as workgroup_name,hcw.mission_id ,hrt.person_name as typeposition_name
             FROM hr_cpa_person_main hpm
             LEFT JOIN hr_cpa_workgroup hcw on hcw.id = hpm.workgroup
+			LEFT JOIN hr_cpa_person_type hrt on hrt.id = hpm.typeposition_id
             WHERE hpm.lname like '%$rlname%'");
         }
         else if($rfname != '' && $lname != ''){
             $result = mysqli_query($this->mycon, 
-            "SELECT hpm.*,hcw.id as workgroup_id,hcw.workgroup as workgroup_name,hcw.mission_id 
+            "SELECT hpm.*,hcw.id as workgroup_id,hcw.workgroup as workgroup_name,hcw.mission_id ,hrt.person_name as typeposition_name
             FROM hr_cpa_person_main hpm
             LEFT JOIN hr_cpa_workgroup hcw on hcw.id = hpm.workgroup
+			LEFT JOIN hr_cpa_person_type hrt on hrt.id = hpm.typeposition_id
             WHERE hpm.fname like '%$rfname%' AND hpm.lname like '%$rlname%' ");
         }
         return $result;
@@ -236,7 +240,18 @@ class manage_officer extends Dbcon
         return $ipaddress;
     }
 
+    public function check_cid($v)
+    {
+        $result = mysqli_fetch_assoc(mysqli_query($this->mycon, "SELECT cid FROM hr_user WHERE cid = '$v'"));
+        return $result;
+    }
 
+    public function escape($v)
+    {
+        $result = mysqli_real_escape_string($this->mycon, $v);
+        return $result;
+    }
+    
     public function person_count(){
         $result = mysqli_query($this->mycon, " SELECT 'จำนวนเจ้าหน้าที่ทั้งหมด' AS pn, 'bg-info' AS bg_color,SUM(person_total) AS person_total
         FROM hr_cpa_person_type 
