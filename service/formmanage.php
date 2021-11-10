@@ -16,8 +16,5 @@ class manage_form extends Dbcon
         return $result;
     }
 
-
-
-
     
 } 

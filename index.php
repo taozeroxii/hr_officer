@@ -76,7 +76,7 @@ if(isset($_SESSION['fullname']) && ( $_SESSION['role'] == 1 ||  $_SESSION['role'
     $router->map("GET", "/tableperson", function () {
         require __DIR__ . "./public/page/tableperson.php";
     });
-    $router->map("GET", "/manageperson", function () {
+    $router->map("GET|post", "/manageperson", function () {
         require __DIR__ . "./public/page/manageperson.php";
     });
     $router->map("GET|post", "/manageperson/[i:id]", function ($id) {

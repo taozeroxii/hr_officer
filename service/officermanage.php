@@ -100,7 +100,7 @@ class manage_officer extends Dbcon
 
     
 
-    //PERSON  -------------------------------------------------------------------------
+    //PERSON  MAIN-------------------------------------------------------------------------
     public function fetchdata_person_by_mission($mission_id){
         $result = mysqli_query($this->mycon, 
         "SELECT hpm.*,hcw.id as workgroup_id,hcw.workgroup as workgroup_name,hcw.mission_id 
@@ -157,6 +157,13 @@ class manage_officer extends Dbcon
         $result = mysqli_query($this->mycon, "SELECT * FROM hr_cpa_person_main where id = '$id'");
         return $result;
     }
+    public function insert_person($pname,$fname,$lname,$cid,$workgroup_id,$position,$typeposition,$birthday,$userupdate,$position_id){
+        $ipaddress =  $this-> get_client_ip();
+        $result = mysqli_query($this->mycon, "INSERT INTO  hr_cpa_person_main  (id,workgroup ,mission_id ) 
+        value ('$pname','$fname','$lname','$cid','$workgroup_id','$position','$typeposition','$birthday','$userupdate','$ipaddress','$position_id')");
+        return $result;
+    }
+
     public function delete_person($id){
         $result = mysqli_query($this->mycon, "DELETE FROM hr_cpa_person_main WHERE id = '$id'");
         return $result;
@@ -209,11 +216,26 @@ class manage_officer extends Dbcon
 
 
 
-
-    public function test(){
-        $result = 'Show test function in officer';
-        return $result;
+    // Function to get the client IP address
+    function get_client_ip() {
+        $ipaddress = '';
+        if (isset($_SERVER['HTTP_CLIENT_IP']))
+            $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
+        else if(isset($_SERVER['HTTP_X_FORWARDED_FOR']))
+            $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        else if(isset($_SERVER['HTTP_X_FORWARDED']))
+            $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
+        else if(isset($_SERVER['HTTP_FORWARDED_FOR']))
+            $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
+        else if(isset($_SERVER['HTTP_FORWARDED']))
+            $ipaddress = $_SERVER['HTTP_FORWARDED'];
+        else if(isset($_SERVER['REMOTE_ADDR']))
+            $ipaddress = $_SERVER['REMOTE_ADDR'];
+        else
+            $ipaddress = 'UNKNOWN';
+        return $ipaddress;
     }
+
 
     public function person_count(){
         $result = mysqli_query($this->mycon, " SELECT 'จำนวนเจ้าหน้าที่ทั้งหมด' AS pn, 'bg-info' AS bg_color,SUM(person_total) AS person_total

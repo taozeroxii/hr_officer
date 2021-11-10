@@ -13,7 +13,7 @@
 
         if(isset($_POST['submit'])){
             $note =   $_POST['note'];
-            echo $insert =  $obj ->insert( $form_id,$_SESSION['user_id'],$_SESSION['person_id'],$formname,$_SESSION['fullname'],$note) ;
+            $insert =  $obj ->insert( $form_id,$_SESSION['user_id'],$_SESSION['person_id'],$formname,$_SESSION['fullname'],$note) ;
             if ($insert) {
                 echo '<script>
                     Swal.fire({
