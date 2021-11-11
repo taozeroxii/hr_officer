@@ -63,13 +63,12 @@
             $cid   = $obj->escape($_POST['cid']);
             $stjob = $obj->escape($_POST['stjob']);
             $birthday = $obj->escape($_POST['birthday']);
-            @$workgroup_id = $_POST['workgroup_id'];
-            @$typeposition_id =  $_POST['typeposition_id'];
-            $mission_id = $_POST['mission_id'];
+            $mission_id = $_POST['mission_id']; //id กลุ่มภารกิจ
+            @$workgroup_id = $_POST['workgroupid']; //id หน่วยงาน
+            $position_id = $_POST['position_id']; //ตำแหน่ง
+            @$typeposition_id =  $_POST['typeposition']; //ประเภทการจ้าง
+            $updateuser = $_SESSION['user_id'];
 
-
-
-            
             if (empty($pname)) $errors[0] =  "กรุณากรอกคำนำหน้า";
             if (empty($fname)) $errors[1] =  "กรุณากรอกชื่อ";
             if (empty($lname)) $errors[2] =  "กรุณากรอกนามสกุล";
@@ -81,10 +80,10 @@
 
             if (@count($errors) == 0) {
                 // echo "insert";
-                // $queryInsert = $obj->insert_person($pname,$fname,$lname,$cid,$workgroup_id, $typeposition_id,$birthday,$$_SESSION[''],$position_id);
-                // if ($queryInsert) {
-                //     echo "<script>window.location.href = './manageperson'</script>";
-                // }
+                $queryInsert = $obj->insert_person( $pname,$fname ,$lname,$cid, $stjob, $birthday , $mission_id ,$workgroup_id, $position_id,$typeposition_id, $updateuser);
+                if ($queryInsert) {
+                    echo "<script>window.location.href = './manageperson'</script>";
+                }
             }
         }
     }
@@ -118,14 +117,14 @@
                         <div class="row">
                             <div class="col-lg-4 col-12">
                                 <div class="form-group">
-                                    <label>ตำแหน่ง</label>
-                                    <select class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 100%;" required>
+                                    <label for="position_id">ตำแหน่ง</label>
+                                    <select class="form-control select2 select2-danger" name="position_id" data-dropdown-css-class="select2-danger" style="width: 100%;" required>
                                         <option value="" <?php echo !empty($_POST['position_name']) ? "selected" : "" ?>>-กรุณาเลือก-</option>
                                         <?php
                                         $persontype =  $obj->fetchdata_position();
                                         while ($row = mysqli_fetch_array($persontype)) {
                                         ?>
-                                            <option value="" <?php echo $row['id']; ?>> <?php echo  $row['id'] . ' : ' . $row['position_name']; ?> </option>
+                                            <option value="<?php echo $row['id']; ?>"> <?php echo  $row['id'] . ' : ' . $row['position_name']; ?> </option>
                                         <?php }   ?>
                                     </select>
                                 </div>
@@ -139,12 +138,12 @@
 
                         <div class="row">
                             <div class="col-lg-2 mt-2">
-                            <label for="pname" class="form-label">คำนำหน้า</label>
+                                <label for="pname" class="form-label">คำนำหน้า</label>
                                 <select class="form-control" name="pname" id="pname" require>
                                     <option value="" <?php echo !empty($_POST['pname']) ? "selected" : "" ?>>กรุณาเลือก</option>
-                                    <option value="นาย" <?php echo $_POST['pname'] == "นาย" ? "selected" : "" ?>>นาย</option>
-                                    <option value="นาง" <?php echo $_POST['pname'] == "นาง" ? "selected" : "" ?>>นาง</option>
-                                    <option value="นางสาว" <?php echo $_POST['pname'] == "นางสาว" ? "selected" : "" ?>>นางสาว</option>
+                                    <option value="นาย" <?php echo (isset($_POST['pname']) && $_POST['pname'] == "นาย") ? "selected" : "" ?>>นาย</option>
+                                    <option value="นาง" <?php echo (isset($_POST['pname']) && $_POST['pname'] == "นาง") ? "selected" : "" ?>>นาง</option>
+                                    <option value="นางสาว" <?php echo (isset($_POST['pname']) && $_POST['pname'] == "นางสาว") ? "selected" : "" ?>>นางสาว</option>
                                 </select>
                                 <?php if (!empty($errors[0])) echo "<p>" . $errors[0] . "</p>" ?>
                             </div>
@@ -176,14 +175,14 @@
                                     ?>
                                 </div>
                                 <div class="col-lg-3">
-                                    <label for="ตำแหน่ง" class="form-label mt-2">ประเภทการจ้าง</label>
+                                    <label for="typeposition" class="form-label mt-2">ประเภทการจ้าง</label>
                                     <select class="form-control" name="typeposition" id="typeposition" required>
                                         <option value="" <?php echo !empty($_POST['typeposition']) ? "selected" : "" ?>>-กรุณาเลือก-</option>
                                         <?php
                                         $persontype =  $obj->fetchdata_person_type();
                                         while ($row = mysqli_fetch_array($persontype)) {
                                         ?>
-                                            <option value="" <?php echo $row['id']; ?>> <?php echo $row['person_name']; ?> </option>
+                                            <option value=" <?php echo $row['id']; ?>"> <?php echo $row['person_name']; ?> </option>
                                         <?php  }   ?>
                                     </select>
                                 </div>

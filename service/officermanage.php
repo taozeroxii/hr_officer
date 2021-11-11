@@ -161,10 +161,12 @@ class manage_officer extends Dbcon
         $result = mysqli_query($this->mycon, "SELECT * FROM hr_cpa_person_main where id = '$id'");
         return $result;
     }
-    public function insert_person($pname,$fname,$lname,$cid,$workgroup_id,$position,$typeposition,$birthday,$userupdate,$position_id){
+    public function insert_person($pname,$fname ,$lname,$cid, $stjob, $birthday , $mission_id ,$workgroup_id, $position_id,$typeposition_id ,$updateuser){
         $ipaddress =  $this-> get_client_ip();
-        $result = mysqli_query($this->mycon, "INSERT INTO  hr_cpa_person_main  (id,workgroup ,mission_id ) 
-        value ('$pname','$fname','$lname','$cid','$workgroup_id','$position','$typeposition','$birthday','$userupdate','$ipaddress','$position_id')");
+        
+        $result = mysqli_query($this->mycon, "INSERT INTO  hr_cpa_person_main  
+        (pname,fname,lname,cid,      date_start_job ,birthdate,    mission_id   , workgroup,     position_id,   typeposition_id,userupdate,ipupdate,w_status) value 
+        ('$pname','$fname','$lname','$cid','$stjob','$birthday',' $mission_id ','$workgroup_id','$position_id','$typeposition_id','$updateuser','$ipaddress','Y' )");
         return $result;
     }
 
