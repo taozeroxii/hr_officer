@@ -80,9 +80,17 @@
 
             if (@count($errors) == 0) {
                 // echo "insert";
-                $queryInsert = $obj->insert_person( $pname,$fname ,$lname,$cid, $stjob, $birthday , $mission_id ,$workgroup_id, $position_id,$typeposition_id, $updateuser);
+                $queryInsert = $obj->insert_person($pname, $fname, $lname, $cid, $stjob, $birthday, $mission_id, $workgroup_id, $position_id, $typeposition_id, $updateuser);
                 if ($queryInsert) {
-                    echo "<script>window.location.href = './manageperson'</script>";
+                    echo '<script>
+                        Swal.fire({
+                            title: "เพิ่มข้อมูลสำเร็จ!",
+                            text: "Insert data successfuly!",
+                            type: "success"
+                        }).then(function() {
+                            window.location = "./manageperson";
+                        });
+                        </script>';
                 }
             }
         }

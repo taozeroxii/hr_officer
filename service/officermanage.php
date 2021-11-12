@@ -163,10 +163,11 @@ class manage_officer extends Dbcon
     }
     public function insert_person($pname,$fname ,$lname,$cid, $stjob, $birthday , $mission_id ,$workgroup_id, $position_id,$typeposition_id ,$updateuser){
         $ipaddress =  $this-> get_client_ip();
-        
+        $position = $this->fetchdata_position_byid($position_id);
+        $typeposition = $this->fetchdata_person_type_byid($typeposition_id);
         $result = mysqli_query($this->mycon, "INSERT INTO  hr_cpa_person_main  
-        (pname,fname,lname,cid,      date_start_job ,birthdate,    mission_id   , workgroup,     position_id,   typeposition_id,userupdate,ipupdate,w_status) value 
-        ('$pname','$fname','$lname','$cid','$stjob','$birthday',' $mission_id ','$workgroup_id','$position_id','$typeposition_id','$updateuser','$ipaddress','Y' )");
+        (pname,fname,lname,cid,      date_start_job ,birthdate,    mission_id   , workgroup,     position_id, position ,   typeposition,   typeposition_id,  userupdate,ipupdate,w_status) value 
+        ('$pname','$fname','$lname','$cid','$stjob','$birthday',' $mission_id ','$workgroup_id','$position_id','$position','$typeposition','$typeposition_id','$updateuser','$ipaddress','Y' )");
         return $result;
     }
 
@@ -176,9 +177,21 @@ class manage_officer extends Dbcon
     }
     
     //persontype  -------------------------------------------------------------------------
+    public function fetchdata_persontype(){
+        $result = mysqli_query($this->mycon, "select * from hr_cpa_person_type");
+        return $result;
+    }
     public function fetchdata_person_type(){
         $result = mysqli_query($this->mycon, "SELECT * FROM hr_cpa_person_type");
         return $result;
+    }
+    public function fetchdata_person_type_byid($id){
+        $result = mysqli_query($this->mycon, "SELECT * FROM hr_cpa_person_type where id =  '$id'");
+        while ($row = mysqli_fetch_array($result)) {
+            $person_name = $row['person_name'];
+        }
+        if( $person_name == '') { $person_name = 'person_name';}
+        return  $person_name;
     }
 
 
@@ -189,6 +202,14 @@ class manage_officer extends Dbcon
     public function fetchdata_position(){
         $result = mysqli_query($this->mycon, "select * from hrd_cpa_position");
         return $result;
+    }
+    public function fetchdata_position_byid($id){
+        $result = mysqli_query($this->mycon, "select * from hrd_cpa_position where id = '$id'");
+        while ($row = mysqli_fetch_array($result)) {
+            $position_name = $row['position_name'];
+        }
+        if( $position_name == '') { $position_name = 'ไม่ได้เลือกข้อมูล';}
+        return  $position_name;
     }
     public function delete_postition($id){
         $qisuse = mysqli_query($this->mycon, "SELECT * FROM hr_cpa_person_main where position_id = '$id'");
@@ -209,15 +230,6 @@ class manage_officer extends Dbcon
         $result = mysqli_query($this->mycon, "UPDATE  hrd_cpa_position SET position_name = '$name'   WHERE id = '$id'");
         return $result;
     }
-
-
-
-    //person_type  -------------------------------------------------------------------------
-    public function fetchdata_persontype(){
-        $result = mysqli_query($this->mycon, "select * from hr_cpa_person_type");
-        return $result;
-    }
-    
 
 
 
