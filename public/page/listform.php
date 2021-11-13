@@ -14,16 +14,16 @@
 
 
     <div class="container mt-5">
-        <h1>ใบคำขอต่างๆ</h1>
+        <h1>แบบฟอร์มคำขอต่างๆ</h1>
         <hr>
         <button style="width: 150px; height:125px;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
             <i class="fa fa-archive fa-4x"></i><br>
             <strong>หนังสือรับรอง</strong>
         </button>
 
-        <button style="width: 150px; height:125px;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#leavemodal">
-            <i class="fa fa-archive fa-4x"></i><br>
-            <strong>ลาประเภทต่างๆ</strong>
+        <button style="width: 150px; height:125px;" type="button" class="btn btn-info" data-toggle="modal" data-target="#leavemodal">
+            <i class="fa fa-share fa-4x" ></i><br>
+            <strong>ลา</strong>
         </button>
     </div>
 
@@ -79,7 +79,7 @@
 
 
     <?php include './public/components/footer.php'; ?>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" ></script>
 </body>
 
 </html>
