@@ -100,7 +100,7 @@
                                             <div class="card">
                                                 <div class="card-body text-center">
                                                     <?php
-                                                    $imagePath = "uploads/image/" . $result['cid'] . ".jpg";
+                                                    $imagePath = "uploads/image/" . $result['image_path'] ;
                                                     if (!file_exists($imagePath)) {
                                                         $imagePath = "uploads/image/noimage.jpg";
                                                     } // เช็คห่ไม่เจอภาพในโฟลเดอร์ให้แสดง default

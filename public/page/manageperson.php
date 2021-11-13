@@ -79,18 +79,70 @@
             if (empty($cid)) $errors[9] =  "กรุณากรอก หมายเลขบัตรประชาชน";
 
             if (@count($errors) == 0) {
-                // echo "insert";
-                $queryInsert = $obj->insert_person($pname, $fname, $lname, $cid, $stjob, $birthday, $mission_id, $workgroup_id, $position_id, $typeposition_id, $updateuser);
-                if ($queryInsert) {
-                    echo '<script>
+                 
+                if (isset($_FILES['file_upload']) && $_FILES['file_upload']['tmp_name']!='' ) { // เช็คว่ามีการอัพไฟล์เข้ามารึเปล่า
+                    $errorsImgs = array();
+                    $file_name = $_FILES['file_upload']['name'];
+                    $file_size = $_FILES['file_upload']['size'];
+                    $file_tmp = $_FILES['file_upload']['tmp_name'];
+                    $file_type = $_FILES['file_upload']['type'];
+                    @$file_ext = strtolower(end(explode('.', $_FILES['file_upload']['name'])));
+                    $file_name = md5(md5(date("his"))) . rand(10, 100) . '.' . $file_ext; //ตั้งชื่อไฟล์ใหม่
+                    $extensions = array("jpeg", "jpg", "png");
+
+                    if (in_array($file_ext, $extensions) === false) {
+                        $errorsImgs[] = "extension not allowed, please choose a JPEG or PNG file.";
+                    }
+
+                    if ($file_size > 2097152) {
+                        $errorsImgs[] = 'File size must be excately 2 MB';
+                    }
+
+                    if (empty($errorsImgs) == true) {
+                        move_uploaded_file($file_tmp, "./uploads/image/" . $file_name);
+                        $queryInsert = $obj->insert_person($pname, $fname, $lname, $cid, $stjob, $birthday, $mission_id, $workgroup_id, $position_id, $typeposition_id, $updateuser, $file_name);
+                        if ($queryInsert) {
+                            echo '<script>
+                                    Swal.fire({
+                                        title: "เพิ่มข้อมูลสำเร็จ!",
+                                        text: "Insert data successfuly!",
+                                        type: "success"
+                                    }).then(function() {
+                                        window.location = "./manageperson";
+                                    });
+                                    </script>';
+                        } else {
+                            echo '<script>
+                                Swal.fire({
+                                    title: "เพิ่มข้อมูลลงฐานข้อมูลไม่สำเร็จ",
+                                    text: "Insert data Fail!",
+                                    type: "error"
+                                }).then(function() {
+                                    window.location = "./manageperson";
+                                });
+                                </script>';
+                        }
+                    } else {
+                        echo '<script>
                         Swal.fire({
-                            title: "เพิ่มข้อมูลสำเร็จ!",
-                            text: "Insert data successfuly!",
-                            type: "success"
-                        }).then(function() {
-                            window.location = "./manageperson";
-                        });
-                        </script>';
+                            title: "ไม่สามารถอัพไฟล์รูปภาพได้ !",
+                            text: "โปรดลองอีกครั้งหรือเพิ่มข้อมูลโดยไม่อัพรูปภาพ!",
+                            type: "error"
+                        })</script>';
+                    }
+                } else { // หากไม่มีการอัพรูปภาพให้ insert ไปเลย
+                    $queryInsert = $obj->insert_person($pname, $fname, $lname, $cid, $stjob, $birthday, $mission_id, $workgroup_id, $position_id, $typeposition_id, $updateuser, '');
+                    if ($queryInsert) {
+                        echo '<script>
+                            Swal.fire({
+                                title: "เพิ่มข้อมูลสำเร็จ!",
+                                text: "Insert data successfuly!",
+                                type: "success"
+                            }).then(function() {
+                                window.location = "./manageperson";
+                            });
+                            </script>';
+                    }
                 }
             }
         }
@@ -111,12 +163,12 @@
                 <div style="float:right;" id="thumbnail"></div>
 
 
-                <form method="post" action="<?php echo !isset($id) ? "./manageperson" : "../manageperson" ?>">
+                <form method="post" enctype="multipart/form-data" action="<?php echo !isset($id) ? "./manageperson" : "../manageperson" ?>">
                     <div class="">
                         <div class="row mb-3">
                             <div class="col-lg-12 mt-5">
                                 <label for="person_image" class="form-label mt-2">ภาพ</label>
-                                <input id="file_upload" name="file_upload[]" type="file" multiple="true">
+                                <input id="file_upload" name="file_upload" type="file" multiple="true">
                             </div>
                         </div>
 
@@ -127,7 +179,7 @@
                                 <div class="form-group">
                                     <label for="position_id">ตำแหน่ง</label>
                                     <select class="form-control select2 select2-danger" name="position_id" data-dropdown-css-class="select2-danger" style="width: 100%;" required>
-                                        <option value="" <?php echo !empty($_POST['position_name']) ? "selected" : "" ?>>-กรุณาเลือก-</option>
+                                        <option value="">-กรุณาเลือก-</option>
                                         <?php
                                         $persontype =  $obj->fetchdata_position();
                                         while ($row = mysqli_fetch_array($persontype)) {
@@ -139,7 +191,7 @@
                             </div>
                             <div class="col-lg-4 col-12">
                                 <label for="stjob" class="form-label ">วันที่เข้าทำงาน</label>
-                                <input type="date" class="form-control" name="stjob" value="<?= isset($stjob)  ? $stjob : ""; ?>" id="stjob">
+                                <input type="date" class="form-control" name="stjob" value="<?= isset($stjob)  ? $stjob : ""; ?>" id="stjob" required>
                                 <?php if (!empty($errors[3])) echo "<p>" . $errors[3] . "</p>" ?>
                             </div>
                         </div>
@@ -185,12 +237,12 @@
                                 <div class="col-lg-3">
                                     <label for="typeposition" class="form-label mt-2">ประเภทการจ้าง</label>
                                     <select class="form-control" name="typeposition" id="typeposition" required>
-                                        <option value="" <?php echo !empty($_POST['typeposition']) ? "selected" : "" ?>>-กรุณาเลือก-</option>
+                                        <option value="" <?php echo empty($_POST['typeposition']) ? "selected" : "" ?>>-กรุณาเลือก-</option>
                                         <?php
                                         $persontype =  $obj->fetchdata_person_type();
                                         while ($row = mysqli_fetch_array($persontype)) {
                                         ?>
-                                            <option value=" <?php echo $row['id']; ?>"> <?php echo $row['person_name']; ?> </option>
+                                            <option value=" <?php echo $row['id']; ?>" <?php echo (isset($_POST['typeposition']) && $_POST['typeposition'] == $row['id']) ? "selected" : "" ?>> <?php echo $row['person_name']; ?> </option>
                                         <?php  }   ?>
                                     </select>
                                 </div>
@@ -224,7 +276,10 @@
                             <button type="submit" class="btn btn-warning" name="status" value="update">แก้ไข</button>
                             <a href="../tableperson" class="btn btn-secondary"> ย้อนกลับ</a>
                             <input type="hidden" name="mission_id" value="<?php echo $id ?>">
-                        <?php } ?>
+                        <?php }
+                        if (isset($errorsImgs)) {
+                            print_r($errorsImgs);
+                        }  ?>
                     </div>
                 </form>
 
