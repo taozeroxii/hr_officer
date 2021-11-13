@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="th">
-<?php require_once "./public/components/head.php"; ?>
+<?php require "./public/components/head.php"; ?>
 
 <body>
 
     <?php
     $page = 'edit';
-    require_once "./public/components/navbar.php";
-    require_once "service/officermanage.php";
+    require "./public/components/navbar.php";
+    require "service/officermanage.php";
     $position_id = '';
     $mission_id = '';
     $obj = new manage_officer();

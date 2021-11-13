@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="th">
-<?php require_once "./public/components/head.php"; ?>
+<?php require "./public/components/head.php"; ?>
 <style type="text/css">
     #thumbnail img {
         border-radius: 25px;
@@ -48,8 +48,8 @@
     </style>
     <?php
     $page = 'edit';
-    require_once "./public/components/navbar.php";
-    require_once "service/officermanage.php";
+    require "./public/components/navbar.php";
+    require "service/officermanage.php";
     $mission_name = '';
     $mission_id = '';
     $obj = new manage_officer();
@@ -64,9 +64,9 @@
             $stjob = $obj->escape($_POST['stjob']);
             $birthday = $obj->escape($_POST['birthday']);
             $mission_id = $_POST['mission_id']; //id กลุ่มภารกิจ
-            @$workgroup_id = $_POST['workgroupid']; //id หน่วยงาน
+            $workgroup_id = $_POST['workgroupid']; //id หน่วยงาน
             $position_id = $_POST['position_id']; //ตำแหน่ง
-            @$typeposition_id =  $_POST['typeposition']; //ประเภทการจ้าง
+            $typeposition_id =  $_POST['typeposition']; //ประเภทการจ้าง
             $updateuser = $_SESSION['user_id'];
 
             if (empty($pname)) $errors[0] =  "กรุณากรอกคำนำหน้า";
@@ -78,7 +78,7 @@
             if ($checkcid) $errors[8] =  "cidนี้มีอยู่ในระบบแล้ว";
             if (empty($cid)) $errors[9] =  "กรุณากรอก หมายเลขบัตรประชาชน";
 
-            if (@count($errors) == 0) {
+            if (count($errors) == 0) {
                  
                 if (isset($_FILES['file_upload']) && $_FILES['file_upload']['tmp_name']!='' ) { // เช็คว่ามีการอัพไฟล์เข้ามารึเปล่า
                     $errorsImgs = array();
@@ -86,7 +86,7 @@
                     $file_size = $_FILES['file_upload']['size'];
                     $file_tmp = $_FILES['file_upload']['tmp_name'];
                     $file_type = $_FILES['file_upload']['type'];
-                    @$file_ext = strtolower(end(explode('.', $_FILES['file_upload']['name'])));
+                    $file_ext = strtolower(end(explode('.', $_FILES['file_upload']['name'])));
                     $file_name = md5(md5(date("his"))) . rand(10, 100) . '.' . $file_ext; //ตั้งชื่อไฟล์ใหม่
                     $extensions = array("jpeg", "jpg", "png");
 

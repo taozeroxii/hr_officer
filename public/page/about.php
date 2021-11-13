@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="th">
-<?php require_once "./public/components/head.php"; ?>
+<?php require "./public/components/head.php"; ?>
 
 <body>
 
     <?php
     $page = 'about';
-   require_once "./public/components/navbar.php"; ?>
+   require "./public/components/navbar.php"; ?>
 
     <div class="container mt-3">
         <b><p> เวอร์ชั่นอัพเดทล่าสุด 04/11/2564</p></b>

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="th">
 <?php
-require_once "./public/components/head.php";
-//require_once "components/func_datethai.php";
-//require_once "components/modal_holiday.php";
+require "./public/components/head.php";
+//require "components/func_datethai.php";
+//require "components/modal_holiday.php";
 date_default_timezone_set("Asia/Bangkok");
 
 $todate = date('Y-m-d');
@@ -198,7 +198,7 @@ $ps     = $ressum['person_sum'];
         </section>
     </div>
 
-    <?php require_once "./public/components/footer.php"; ?>
+    <?php require "./public/components/footer.php"; ?>
 
 
 

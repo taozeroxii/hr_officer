@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="th">
-<?php require_once "./public/components/head.php";;
-   //   require_once "components/func_datethai.php";
-    //  require_once "components/modal_holiday.php";
+<?php require "./public/components/head.php";;
+   //   require "components/func_datethai.php";
+    //  require "components/modal_holiday.php";
       date_default_timezone_set("Asia/Bangkok");
 
 ?>
@@ -11,7 +11,7 @@
     <?php
     $todate = date('Y-m-d');
     $page = 'leave_form';
-    require_once "./public/components/navbar.php";
+    require "./public/components/navbar.php";
   //  include_once "service/officermanage.php";
     ?>
 

@@ -16,5 +16,10 @@ class manage_form extends Dbcon
         return $result;
     }
 
+    public function fetch_leave(){
+        $result = mysqli_query($this->mycon, "select * from hr_cpa_leave");
+        return $result;
+    }
+
     
 } 

@@ -2,7 +2,7 @@
 // error_reporting (E_ALL ^ E_NOTICE);//ปิด notify error ทั้งหมดเช่น ตัวแปรที่เราเอามาใช้โดยยังไม่ได้ประกาศตัวแปร 
 use AltoRouter as Router;
 
-require_once  __DIR__ . '/vendor/autoload.php';
+require  __DIR__ . '/vendor/autoload.php';
 $router = new Router();
 $router->setBasePath('/hr_officer');
 session_start();

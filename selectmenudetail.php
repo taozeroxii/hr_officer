@@ -1,6 +1,6 @@
 
 <?php
-require_once "service/officermanage.php";
+require "service/officermanage.php";
 $obj = new manage_officer();
 $bid = '1';
 $bid = $_REQUEST["bid"];

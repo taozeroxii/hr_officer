@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="th">
-<?php require_once "./public/components/head.php" ?>
+<?php require "./public/components/head.php" ?>
 
 <body>
     <?php 
@@ -8,7 +8,7 @@
         include "./public/components/navbar.php";
         $formname = 'หนังสือรับรองเงินเดือน';
         $form_id = '001';
-        require_once ("./service/formmanage.php");
+        require ("./service/formmanage.php");
         $obj  = new manage_form();
 
         if(isset($_POST['submit'])){

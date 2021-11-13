@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="th">
 
-<?php require_once "./public/components/head.php"; ?>
+<?php require "./public/components/head.php"; ?>
 
 <body>
     <?php
     $page = 'tabledetailuser';
-    require_once "./public/components/navbar.php";
+    require "./public/components/navbar.php";
     include "service/usermanage.php";
     ?>
 

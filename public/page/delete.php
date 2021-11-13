@@ -2,7 +2,7 @@
 // echo 'page :'.$page;
 // echo "<br>";
 // echo "test : ".$id;
-require_once "./service/officermanage.php";
+require "./service/officermanage.php";
 $obj = new manage_officer;
 
 if($page === 'workgroup'){

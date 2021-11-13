@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="th">
-<?php require_once "./public/components/head.php"; ?>
+<?php require "./public/components/head.php"; ?>
 
 <body>
     <?php
@@ -47,12 +47,13 @@
         <div class="card">
             <div class="card-body">
                 <form action="./register" method="POST" autocomplete="off">
-                    <div class="row">
+                    <div class="row  mt-5">
                         <style>
                             p {
                                 color: red;
                             }
                         </style>
+                        <h3 class="mb-3">*เพิ่มข้อมูลบุคลากรก่อนทำการเพิ่ม user ทุกครั้ง* </h3>
                         <div class="col-lg-2">
                             <div class="mb-3">
                                 <label for="Inputpname" class="form-label">คำนำหน้า</label>
@@ -117,7 +118,7 @@
         </div>
     </div>
 
-    <?php require_once "./public/components/footer.php" ?>
+    <?php require "./public/components/footer.php" ?>
 </body>
 
 </html>

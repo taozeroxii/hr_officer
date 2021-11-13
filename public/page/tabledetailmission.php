@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="th">
-<?php require_once "./public/components/head.php";?>
+<?php require "./public/components/head.php";?>
 <body>
     <?php
     $page = 'tabledetail';
-    require_once "./public/components/navbar.php";
+    require "./public/components/navbar.php";
     include "service/officermanage.php";
     ?>
 
