@@ -2,7 +2,7 @@
 <html lang="th">
 <?php require "./public/components/head.php"; ?>
 
-<body>
+<body style="background-color: blueviolet;">
     <?php
 
     $page = 'login';
@@ -40,7 +40,7 @@
         <div class="row">
             <div class="col-lg-3">   </div>
             <div class="col-lg-6">
-                <div class="card mt-5" style="box-shadow: 2px 2px 2px 2px rgb(0 0 0 / 25%);">
+                <div class="card mt-5" style="box-shadow: 2px 2px 2px 2px rgb(0 0 0 / 25%); border-radius: 50px;">
                     <center><img src="./uploads/img_icon/la.jpg" width="150px" height="150px" id="logo"></center>
                     <h5 class="title text-center"><b>ข้อมูลบุคลากรรายบุคคล</b> </h5>
                     <div class="card-body">
@@ -59,7 +59,7 @@
                                 <input type="password" class="form-control" name="InputPassword" id="exampleInputPassword1" placeholder="รหัสผ่านเข้าใช้งาน">
                             </div>
 
-                            <button type="submit" name="submit" class="btn btn-info btn-block">เข้าสู่ระบบ</button>
+                            <button type="submit" name="submit" class="btng btng-glow btng-gradient btng-gradient-border mt-1 btn-block">เข้าสู่ระบบ</button>
                             <!-- <a href="./register" style="color:black;" class="btn btn-warning">Register</a> -->
                         </form>
                     </div>

@@ -3,12 +3,12 @@
 <?php require "./public/components/head.php"; ?>
 
 
-<body>
+<body >
     <?php
     $page = 'detail';
     require "./public/components/navbar.php";
     include_once "service/officermanage.php";
-    
+
     ?>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -38,7 +38,7 @@
 
     <div class="container mt-3">
         <form class="form-horizontal ">
-        <h4>ค้นหาด้วย ชื่อ-นามสกุล หรือ ค้นหาจากหน่วยงาน</h4>
+            <h4 class="text-glow text-gradient mt-2">ค้นหาด้วย ชื่อ-นามสกุล หรือ ค้นหาจากหน่วยงาน</h4>
             <div class="form-group">
                 <div class="input-group mt-3">
                     <span class="input-group-text">ชื่อ </span>
@@ -50,7 +50,7 @@
                 <?php
                 $obj = new manage_officer();
                 $sqlmission = $obj->fetchdata_mission();
-                echo " <div class='row'><div class='col-5'>Mission : <select id='brand' name='mission_id' class='form-control' >";
+                echo " <div class='row'><div class='col-5 '><p class = 'text-gradient '> Mission : </p><select id='brand' name='mission_id' class='form-control' >";
                 echo "<option value=''>-Select-</option>";
                 while ($row = mysqli_fetch_array($sqlmission)) {
                     echo "<option value='$row[mission_id]'>" . $row["mission_name"] . "</option>";
@@ -58,12 +58,11 @@
                 echo "</select>";
                 echo '</div>';
 
-                echo "<div class='col-5'>หน่วยงาน : <select id='model' name='workgroupid' class='form-control'>";
+                echo "<div class='col-5  '><p class = 'text-gradient '>หน่วยงาน : </p><select id='model' name='workgroupid' class='form-control'>";
                 echo "<option value=''>-Select-</option>";
                 echo "</select></div>";
                 ?>
-
-                <div class='col-2 d-grid gap-2'><button type="submit" class="btn btn-info mt-1 btn-lg "> ค้นหา </button> </div>
+                <div class='col-2 d-grid gap-2'><label for=""></label> <button type="submit" class="btng btng-glow btng-gradient btng-gradient-border mt-1"> ค้นหา </button> </div>
             </div>
         </form>
 
@@ -73,7 +72,7 @@
             <div class="container">
                 <?php
 
-                if ((isset($_GET['mission_id']) || isset($_GET['mission_id'] )) && isset($_GET['workgroupid']) || (isset($_GET['fname'])  || isset($_GET['lname']) )) {
+                if ((isset($_GET['mission_id']) || isset($_GET['mission_id'])) && isset($_GET['workgroupid']) || (isset($_GET['fname'])  || isset($_GET['lname']))) {
                     $mission_id  =  preg_replace('/[^a-z0-9\_\- ]/i', '', ($_GET['mission_id']));
                     $workgroupid =  preg_replace('/[^a-z0-9\_\- ]/i', '', ($_GET['workgroupid']));
                     $fname =  ($_GET['fname']);
@@ -85,41 +84,43 @@
                         $fetctperson = $obj->fetchdata_person_by_name($fname, $lname);
                     }
                 ?>
-   
+
                     <?php if ($mission_id != '' &&  $workgroupid != '') { ?>
-                        <h5 class="section-title h3">กลุ่มงาน: <?php echo $mission = $obj->fetchdata_mission_byid($mission_id); ?> </h5>
-                        <h6 class="section-title h6">หน่วยงาน: <?php echo $workgroup = $obj->fetchdata_workgroup_byid($workgroupid); ?> </h6>
+                        <h5 class="section-title h3 text-dark text-glow">กลุ่มงาน: <?php echo $mission = $obj->fetchdata_mission_byid($mission_id); ?> </h5>
+                        <h6 class="section-title h6 text-dark">หน่วยงาน: <?php echo $workgroup = $obj->fetchdata_workgroup_byid($workgroupid); ?> </h6>
                         <hr>
                     <?php } ?>
                     <div class="row">
-                        <?php while ($result = mysqli_fetch_array($fetctperson)) { ?>
-                            <div class="col-xs-12 col-sm-6 col-md-4">
-                                <div class="image-flip">
-                                    <div class="mainflip flip-0">
-                                        <div class="frontside">
-                                            <div class="card">
-                                                <div class="card-body text-center">
-                                                    <?php
-                                                    $imagePath = "uploads/image/" . $result['image_path'] ;
-                                                    if (!file_exists($imagePath)) {
-                                                        $imagePath = "uploads/image/noimage.jpg";
-                                                    } // เช็คห่ไม่เจอภาพในโฟลเดอร์ให้แสดง default
-                                                    ?>
-                                                    <div class="text-center"><img class="img-fluid " style="width:200;height:200px;object-fit: cover;" src="<?php echo $imagePath ?>"></div> 
-                                                    <h4 class="card- text-center mt-3"><?php echo $result['pname'] . $result['fname'] . ' ' . $result['lname']; ?></h4>
-                                                    <p class="card-text"> <?php echo $result['workgroup_name']; ?></p>
-                                                    <p class="card-text"><?php echo  $result['position'] ?></p>
-                                                    <a href="<?php if (isset($_SESSION['username'])) {  echo "./manageperson/" . $result['id']; } else ""; ?>" class="btn btn-primary btn-sm"> <i class="fa fa-edit"> <?php echo  $result['typeposition_name'] ?></i></a>
+                        <?php if (!empty($fetctperson)) {
+                            while ($result = mysqli_fetch_array($fetctperson)) { ?>
+                                <div class="col-xs-12 col-sm-6 col-md-4">
+                                    <div class="image-flip">
+                                        <div class="mainflip flip-0">
+                                            <div class="frontside">
+                                                <div class="card">
+                                                    <div class="card-body text-center">
+                                                        <?php
+                                                        $imagePath = "uploads/image/" . $result['image_path'];
+                                                        if (!file_exists($imagePath)) {
+                                                            $imagePath = "uploads/image/noimage.jpg";
+                                                        } // เช็คห่ไม่เจอภาพในโฟลเดอร์ให้แสดง default
+                                                        ?>
+                                                        <div class="text-center"><img class="img-fluid " style="width:200;height:200px;object-fit: cover;" src="<?php echo $imagePath ?>"></div>
+                                                        <h4 class="card- text-center mt-3"><?php echo $result['pname'] . $result['fname'] . ' ' . $result['lname']; ?></h4>
+                                                        <p class="card-text"> <?php echo $result['workgroup_name']; ?></p>
+                                                        <p class="card-text"><?php echo  $result['position'] ?></p>
+                                                        <a href="<?php if (isset($_SESSION['username'])) { echo "./manageperson/" . $result['id'];   } else ""; ?>" class="btn btn-primary btn-sm"> <i class="fa fa-edit"> <?php echo  $result['typeposition_name'] ?></i></a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                     <?php
+                            }
                         }
                     }
-                    
+
                     ?>
 
 

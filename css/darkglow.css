@@ -1,0 +1,44 @@
+body{
+  background-color: black;
+}
+p{
+  color: white;
+}
+h5{
+  color: white !important;
+}
+.btng {
+  color: white !important;
+  font-size: 18px;
+  padding: 12px 32px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  border-radius: 50px;
+}
+.btng-gradient-border {
+  color: rgb(var(--text-color));
+  border: 2px double transparent;
+  background-image: linear-gradient(rgb(13, 14, 33), rgb(13, 14, 33)),
+    radial-gradient(circle at left top, rgb(1, 110, 218), rgb(217, 0, 192));
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+.text-glow {
+  text-shadow: 0 0 80px rgb(192 219 255 / 75%), 0 0 32px rgb(65 120 255 / 24%);
+}
+.text-gradient {
+  background: linear-gradient(to right, #30cfd0, #c43ad6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.btng-glow:hover {
+  box-shadow: rgba(var(--primary-color), 0.5) 0px 0px 20px 0px;
+  color: tomato !important;
+}
+
+.btng-gradient {
+  background-image: linear-gradient(to right, rgb(1 134 218), rgb(182 49 167));
+  border: 0;
+  color: rgba(var(--text-color));
+}
