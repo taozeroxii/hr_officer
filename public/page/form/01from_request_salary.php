@@ -3,19 +3,19 @@
 <?php require "./public/components/head.php" ?>
 
 <body>
-    <?php 
-        $page = 'form';
-        include "./public/components/navbar.php";
-        $formname = 'หนังสือรับรองเงินเดือน';
-        $form_id = '001';
-        require ("./service/formmanage.php");
-        $obj  = new manage_form();
+    <?php
+    $page = 'form';
+    include "./public/components/navbar.php";
+    $formname = 'หนังสือรับรองเงินเดือน';
+    $form_id = '001';
+    require("./service/formmanage.php");
+    $obj  = new manage_form();
 
-        if(isset($_POST['submit'])){
-            $note =   $_POST['note'];
-            $insert =  $obj ->insert( $form_id,$_SESSION['user_id'],$_SESSION['person_id'],$formname,$_SESSION['fullname'],$note) ;
-            if ($insert) {
-                echo '<script>
+    if (isset($_POST['submit'])) {
+        $note =   $_POST['note'];
+        $insert =  $obj->insert($form_id, $_SESSION['user_id'], $_SESSION['person_id'], $formname, $_SESSION['fullname'], $note);
+        if ($insert) {
+            echo '<script>
                     Swal.fire({
                         title: "เพิ่มข้อมูลสำเร็จ!",
                         text: "Insert data successfuly!",
@@ -24,10 +24,10 @@
                         window.location = "./form_request_salary";
                     });
                     </script>';
-            } else {
-                echo "<script>alert failer to insert !<script>";
-            }
+        } else {
+            echo "<script>alert failer to insert !<script>";
         }
+    }
     ?>
 
     <div class="container">
@@ -41,7 +41,7 @@
 
         <hr>
         <h3>รายการขอใบรับรองเงินเดือนของท่าน</h3>
-        <p>ผู้ใช้งาน <?php echo $_SESSION['fullname'];?></p>
+        <p>ผู้ใช้งาน <?php echo $_SESSION['fullname']; ?></p>
         <table id="example1" class="table table-bordered table-striped">
             <thead>
                 <th>วันเวลาที่ขอ</th>
@@ -57,7 +57,12 @@
                     <tr>
                         <td><?php echo $row['timestamp'] ?></td>
                         <td><?php echo $row['note'] ?></td>
-                        <td><button class="btn btn-warning btn-block"><i class="fa fa-print" aria-hidden="true"></i> </button> </td>
+                        <td>
+                            <a href="./print_salary?<?php echo " ";?>">
+                                <button class="btn btn-warning btn-block"><i class="fa fa-print" aria-hidden="true"></i>
+                                </button>
+                            </a>
+                        </td>
                     </tr>
                 <?php } ?>
             </tbody>

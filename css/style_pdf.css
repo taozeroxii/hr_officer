@@ -1,0 +1,45 @@
+        * {
+            box-sizing: border-box;
+        }
+
+        .column {
+            float: left;
+            width: 33.33%;
+        }
+
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .hr1 {
+            float: left;
+            width: 38%;
+            /* background-color:#aaa; */
+        }
+
+        .hr2 {
+            float: left;
+            width: 62%;
+            /* background-color:#bbb; */
+            font-size: 2.4em;
+            font-weight: bold;
+
+        }
+
+        .hh2 {
+            width: 100%;
+        }
+
+        .fix1 {
+            font-size: 1.6em;
+        }
+
+        .hh3 {
+            width: 100%;
+        }
+
+        .hh4 {
+            width: 50%;
+        }

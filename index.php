@@ -127,6 +127,9 @@ if(isset($_SESSION['fullname']) && (isset($_SESSION['role'] )) ){
     $router->map("GET,POST", "/form_request_salary", function () {
         require __DIR__ . "./public/page/form/01from_request_salary.php";
     });
+    $router->map("GET,POST", "/print_salary", function () {
+        require __DIR__ . "./public/page/form/print_request_salary.php";
+    });
 }
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  ส่วน User ทั่วไป หรือต้องมีการเข้าสู่ระบบ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 

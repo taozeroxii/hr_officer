@@ -79,11 +79,9 @@ $ps     = $ressum['person_sum'];
 
 
 
-
-                <!--  -->
                 <div class="row">
                     <div class='col-md-6'>
-                        <div class="card">
+                        <!-- <div class="card">
                             <div class="card-header border-transparent">
                                 <h3 class="card-title">Latest Orders</h3>
 
@@ -172,7 +170,7 @@ $ps     = $ressum['person_sum'];
                                 <a href="javascript:void(0)" class="btn btn-sm btn-info float-left">Place New Order</a>
                                 <a href="javascript:void(0)" class="btn btn-sm btn-secondary float-right">View All Orders</a>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
 
                     <div class='col-md-6'>
@@ -180,19 +178,20 @@ $ps     = $ressum['person_sum'];
                             <div class="panel panel-default">
                                 <div class="panel-body">
                                     <div class="row">
-                                        <div class="col-lg-12">
-                                            <!-- <div id='calendar'></div>
+                                        <!-- <div class="col-lg-12">
+                                            <div id='calendar'></div>
                                             <div style="margin:10px 0 50px 0;" align="center">
-                                            </div> -->
+                                            </div>
 
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- ###### -->
+
+     
 
             </div>
         </section>

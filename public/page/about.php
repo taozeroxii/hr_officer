@@ -9,6 +9,7 @@
    require "./public/components/navbar.php"; ?>
 
     <div class="container mt-3">
+        <b><p> แก้ไขหน้า Index 17/11/2564</p></b>
         <b><p> เวอร์ชั่นอัพเดทล่าสุด 04/11/2564</p></b>
         <b><p>อัพเดท</p></b>
         <p> - เพิ่มส่วนแอดข้อมูล user จากข้อมูลพื้นฐาน</p>
