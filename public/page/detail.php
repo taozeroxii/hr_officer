@@ -86,8 +86,8 @@
                 ?>
 
                     <?php if ($mission_id != '' &&  $workgroupid != '') { ?>
-                        <h5 class="section-title h3 text-dark text-glow">กลุ่มงาน: <?php echo $mission = $obj->fetchdata_mission_byid($mission_id); ?> </h5>
-                        <h6 class="section-title h6 text-dark">หน่วยงาน: <?php echo $workgroup = $obj->fetchdata_workgroup_byid($workgroupid); ?> </h6>
+                        <h5 class="  text-light text-glow">กลุ่มงาน: <?php echo $mission = $obj->fetchdata_mission_byid($mission_id); ?> </h5>
+                        <h6 class="  text-light">หน่วยงาน: <?php echo $workgroup = $obj->fetchdata_workgroup_byid($workgroupid); ?> </h6>
                         <hr>
                     <?php } ?>
                     <div class="row">
