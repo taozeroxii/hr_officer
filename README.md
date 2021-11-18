@@ -26,5 +26,6 @@
          }
         ?>
  ```
-4.หากโฟลเดอร์ vender ไม่มีหรือมาไม่ครบทำให้เรียก path Routing ไม่ได้ ติดตั้งcomposer ก่อนและ ให้รันคำสั้ง composer require altorouter/altorouter ใน directory hr_officer
-
+4.หากโฟลเดอร์ vender ไม่มีหรือมาไม่ครบทำให้เรียก path Routing ไม่ได้ ติดตั้งcomposer ก่อนและเข้า cmd ไปที่โฟลเดอร์เก็บโปรเจค
+  4.1 ให้รันคำสั้ง composer require altorouter/altorouter ใน directory hr_officer
+  4.2 ให้รันคำสั้ง composer require mpdf/mpdf ใน directory hr_officer
