@@ -6,8 +6,8 @@ class manage_officer extends Dbcon
     // add user เพิ่ม user เข้าใช้งานระบบผ่านหน้าบุตลากร---------------------------------------------------
     public function add_user($person_main_id)
     {
-        $sql_data = "select * from hr_cpa_person_main where id  =  '$person_main_id'";
-        $query =  mysqli_query($this->mycon, $sql_data);
+        $id    = $this->escape($person_main_id);
+        $query = $this->fetchdata_person_byid($id);
         while ($row = mysqli_fetch_assoc($query)) {
             $pname = $row['pname'];
             $fname = $row['fname'];
@@ -15,7 +15,7 @@ class manage_officer extends Dbcon
             $cid = $row['cid'];
             $username = $row['cid'];
         }
-        $pass = md5('1234');
+        $pass = md5('1234');//default password for user
         $pass = password_hash($pass, PASSWORD_DEFAULT);
         if (isset($pname) && isset($fname) && isset($lname) && isset($cid) && isset($username) && isset($pass)) {
             $result = mysqli_query($this->mycon, "INSERT INTO hr_user (username ,password ,pname ,fname ,lname ,user_role_id ,cid) VALUES ('$username', '$pass', '$pname', '$fname', '$lname' ,0,'$cid')");

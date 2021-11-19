@@ -8,6 +8,13 @@
         height: 100px;
         object-fit: cover;
     }
+
+    img {
+        border-radius: 25px;
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+    }
 </style>
 
 <!-- Tempusdominus Bootstrap 4 -->
@@ -79,8 +86,8 @@
             if (empty($cid)) $errors[9] =  "กรุณากรอก หมายเลขบัตรประชาชน";
 
             if (count($errors) == 0) {
-                 
-                if (isset($_FILES['file_upload']) && $_FILES['file_upload']['tmp_name']!='' ) { // เช็คว่ามีการอัพไฟล์เข้ามารึเปล่า
+
+                if (isset($_FILES['file_upload']) && $_FILES['file_upload']['tmp_name'] != '') { // เช็คว่ามีการอัพไฟล์เข้ามารึเปล่า
                     $errorsImgs = array();
                     $file_name = $_FILES['file_upload']['name'];
                     $file_size = $_FILES['file_upload']['size'];
@@ -147,6 +154,48 @@
             }
         }
     }
+
+
+
+    if (isset($id)) {
+        $ps_id = $obj->escape($id);
+        $query_person_byid = $obj->fetchdata_person_byid($ps_id);
+        $row = mysqli_fetch_assoc($query_person_byid);
+        if ($row) {
+            $old_img =  $row['image_path'];
+            $pname  =  $row['pname'];
+            $fname  =  $row['fname'];
+            $lname  =  $row['lname'];
+            $cid    =  $row['cid'];
+            $stjob  =  $row['date_start_job'];
+            $birthday = $row['birthdate'];
+            $typeposition_id = $row['typeposition_id'];
+
+            if (isset($_POST['status'])) {
+                $pname = $_POST['pname'];
+                $fname = $obj->escape($_POST['fname']);
+                $lname = $obj->escape($_POST['lname']);
+                $cid   = $obj->escape($_POST['cid']);
+                $stjob = $obj->escape($_POST['stjob']);
+                $birthday = $obj->escape($_POST['birthday']);
+                $mission_id = $_POST['mission_id']; //id กลุ่มภารกิจ
+                $workgroup_id = $_POST['workgroupid']; //id หน่วยงาน
+                $position_id = $_POST['position_id']; //ตำแหน่ง
+                $typeposition_id =  $_POST['typeposition']; //ประเภทการจ้าง
+                $updateuser = $_SESSION['user_id'];
+
+                if ($_POST['status'] == 'edit') {
+                    echo 'edit';
+                }
+
+
+            }
+        } else {
+            echo '<script> Swal.fire({title: "ไม่พบข้อมูล id ดังกล่าว !!! ",  text: "ดำเนินการเปลี่ยนไปหน้าเพิ่มข้อมูล", type: "error" }).then(function() {
+                window.location = "../manageperson";
+            });</script>';
+        }
+    }
     ?>
 
 
@@ -162,6 +211,9 @@
 
                 <div style="float:right;" id="thumbnail"></div>
 
+                <?php if (isset($id)) { ?>
+                    <img src="../uploads/image/<?php echo $old_img; ?>" style="float:right;">
+                <?php } ?>
 
                 <form method="post" enctype="multipart/form-data" action="<?php echo !isset($id) ? "./manageperson" : "../manageperson" ?>">
                     <div class="">
@@ -200,10 +252,10 @@
                             <div class="col-lg-2 mt-2">
                                 <label for="pname" class="form-label">คำนำหน้า</label>
                                 <select class="form-control" name="pname" id="pname" require>
-                                    <option value="" <?php echo !empty($_POST['pname']) ? "selected" : "" ?>>กรุณาเลือก</option>
-                                    <option value="นาย" <?php echo (isset($_POST['pname']) && $_POST['pname'] == "นาย") ? "selected" : "" ?>>นาย</option>
-                                    <option value="นาง" <?php echo (isset($_POST['pname']) && $_POST['pname'] == "นาง") ? "selected" : "" ?>>นาง</option>
-                                    <option value="นางสาว" <?php echo (isset($_POST['pname']) && $_POST['pname'] == "นางสาว") ? "selected" : "" ?>>นางสาว</option>
+                                    <option value="" <?php echo !empty($pname) ? "selected" : "" ?>>กรุณาเลือก</option>
+                                    <option value="นาย" <?php echo (isset($pname) && $pname == "นาย") ? "selected" : "" ?>>นาย</option>
+                                    <option value="นาง" <?php echo (isset($pname) && $pname == "นาง") ? "selected" : "" ?>>นาง</option>
+                                    <option value="นางสาว" <?php echo (isset($pname) && $pname == "นางสาว") ? "selected" : "" ?>>นางสาว</option>
                                 </select>
                                 <?php if (!empty($errors[0])) echo "<p>" . $errors[0] . "</p>" ?>
                             </div>
