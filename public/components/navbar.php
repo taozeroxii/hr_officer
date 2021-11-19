@@ -8,17 +8,17 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link <?php if ($page == 'home') echo 'active';if ($page == 'edit') echo 'disabled'; ?>" aria-current="page" href="./">หน้าแรก</a>
+          <a class="nav-link <?php if ($page == 'home') echo 'active';if ($page == 'edit') echo 'disabled'; ?>" aria-current="page" href="./"><i class="fa fa-home" aria-hidden="true" > หน้าแรก</i></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link <?php if ($page == 'detail') echo 'active';if ($page == 'edit') echo 'disabled'; ?>" href="./detail">ข้อมูลบุคลากร</a>
+          <a class="nav-link <?php if ($page == 'detail') echo 'active';if ($page == 'edit') echo 'disabled'; ?>" href="./detail"><i class="fa fa-address-book" aria-hidden="true"> ข้อมูลบุคลากร</i> </a>
         </li>
         <li class="nav-item">
           <a class="nav-link <?php if ($page == 'about') echo 'active'; if ($page == 'edit') echo 'disabled'; ?>" href="./about">เกี่ยวกับ</a>
         </li>
         <?php if (isset($_SESSION['role'])) { ?>
         <li class="nav-item">
-          <a class="nav-link <?php if ($page == 'form') echo 'active'; if ($page == 'edit') echo 'disabled'; ?>" href="./form">แบบฟอร์มต่างๆ</a>
+          <a class="nav-link <?php if ($page == 'form') echo 'active'; if ($page == 'edit') echo 'disabled'; ?>" href="./form"><i class="fa fa-folder-open" aria-hidden="true"> แบบฟอร์มต่างๆ</i> </a>
         </li>
         <?php  } ?>
 
@@ -63,8 +63,14 @@
       if (!isset($_SESSION['username']) && $page != 'login') { ?>
         <hi class="text-white"> ผู้ใช้งาน : guest &nbsp;</hi>
         <button class="btn btn-success" style="float: right;" onclick="login()"><i class="fas fa-sign-in-alt f-16"> LOGIN</i></button>
+      
+      
         <form action="logout" method="GET" autocomplete="off">
-        <?php } else if (isset($_SESSION['username'])) {  ?> <hi class="text-white"><?php echo 'ผู้ใช้งาน : '.$_SESSION['fullname'] ?> &nbsp; </hi><a href="logout"><button style="float: right;" class="btn btn-light" name="logout" type="submit">LOGOUT</button></a><?php } ?>
+          <?php } else if (isset($_SESSION['username'])) {  ?> 
+            <hi class="text-white"><?php echo 'ผู้ใช้งาน : '.$_SESSION['fullname'] ?> &nbsp; </hi>
+            <a href="logout"><button style="float: right;" class="btn btn-light" name="logout" type="submit">LOGOUT</button></a>&nbsp;&nbsp;
+            <button class="btn btn-success" style="float: right;"><i class="fa fa-cog" aria-hidden="true"> เปลี่ยน Password</i></button>
+          <?php } ?>
         </form>
         <?php } ?>
     </div>
