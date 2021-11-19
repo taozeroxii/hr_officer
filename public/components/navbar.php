@@ -13,9 +13,7 @@
         <li class="nav-item">
           <a class="nav-link <?php if ($page == 'detail') echo 'active';if ($page == 'edit') echo 'disabled'; ?>" href="./detail"><i class="fa fa-address-book" aria-hidden="true"> ข้อมูลบุคลากร</i> </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link <?php if ($page == 'about') echo 'active'; if ($page == 'edit') echo 'disabled'; ?>" href="./about">เกี่ยวกับ</a>
-        </li>
+       
         <?php if (isset($_SESSION['role'])) { ?>
         <li class="nav-item">
           <a class="nav-link <?php if ($page == 'form') echo 'active'; if ($page == 'edit') echo 'disabled'; ?>" href="./form"><i class="fa fa-folder-open" aria-hidden="true"> แบบฟอร์มต่างๆ</i> </a>
@@ -57,7 +55,13 @@
         <?php  } 
       } ?>
 
+        <li class="nav-item">
+          <a class="nav-link <?php if ($page == 'about') echo 'active'; if ($page == 'edit') echo 'disabled'; ?>" href="./about">เกี่ยวกับ</a>
+        </li>
+
       </ul>
+
+      
       <?php
       if(isset($page)){
       if (!isset($_SESSION['username']) && $page != 'login') { ?>
