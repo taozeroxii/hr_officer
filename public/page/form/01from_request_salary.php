@@ -24,8 +24,9 @@
                         window.location = "./form_request_salary";
                     });
                     </script>';
+            $errormesssage = null;
         } else {
-            echo "<p style='color:red;'>Can't not insert data to tables : ".$insert.'</p>';
+            $errormesssage =  "<p class='mt-2 alert alert-danger'>Can't not insert data to table : " . $insert . '</p>';
         }
     }
     ?>
@@ -39,34 +40,40 @@
             <a href="./form" class="btn btn-secondary btn-lg mt-3">ย้อนกลับ</a>
         </form>
 
+        <?php if (isset($errormesssage)) echo $errormesssage; ?>
+
         <hr>
         <h3>รายการขอใบรับรองเงินเดือนของท่าน</h3>
         <p>ผู้ใช้งาน <?php echo $_SESSION['fullname']; ?></p>
-        <table id="example1" class="table table-bordered table-striped">
-            <thead>
-                <th>วันเวลาที่ขอ</th>
-                <th>หมายเหตุ</th>
-                <th>print</th>
-            </thead>
+        <div class="card">
+            <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                        <th>วันเวลาที่ขอ</th>
+                        <th>หมายเหตุ</th>
+                        <th>print</th>
+                    </thead>
 
-            <tbody>
-                <?php
-                $sql =  $obj->fetct_byuser($_SESSION['user_id']);
-                while ($row = mysqli_fetch_array($sql)) {
-                ?>
-                    <tr>
-                        <td><?php echo $row['timestamp'] ?></td>
-                        <td><?php echo $row['note'] ?></td>
-                        <td>
-                            <a href="./print_salary?<?php echo " "; ?>">
-                                <button class="btn btn-warning btn-block"><i class="fa fa-print" aria-hidden="true"></i>
-                                </button>
-                            </a>
-                        </td>
-                    </tr>
-                <?php } ?>
-            </tbody>
-        </table>
+                    <tbody>
+                        <?php
+                        $sql =  $obj->fetct_byuser($_SESSION['user_id']);
+                        while ($row = mysqli_fetch_array($sql)) {
+                        ?>
+                            <tr>
+                                <td><?php echo $row['timestamp'] ?></td>
+                                <td><?php echo $row['note'] ?></td>
+                                <td>
+                                    <a href="./print_salary?<?php echo " "; ?>">
+                                        <button class="btn btn-warning btn-block"><i class="fa fa-print" aria-hidden="true"></i>
+                                        </button>
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
 
     </div>

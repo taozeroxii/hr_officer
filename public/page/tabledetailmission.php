@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="th">
-<?php require "./public/components/head.php";?>
+<?php require "./public/components/head.php"; ?>
+
 <body>
     <?php
     $page = 'tabledetail';
@@ -11,36 +12,42 @@
     <div class="container">
         <hr>
         <div class="row">
-            <div class="col-2"> <a href="./managemission"> <button class="btn btn-success"><i class="fas fa-plus f-16"></i>  เพิ่มรายการ</button></a></div>
-            <div class="col-10"><h2 class="text-right mr-5">กลุ่มภารกิจ</h2> </div>
+            <div class="col-2"> <a href="./managemission"> <button class="btn btn-success"><i class="fas fa-plus f-16"></i> เพิ่มรายการ</button></a></div>
+            <div class="col-10">
+                <h2 class="text-right mr-5">กลุ่มภารกิจ</h2>
+            </div>
         </div>
         <hr>
-        <table id="mytable" class="table table-bordered table-striped">
-            <thead>
-                <th>mission_name</th>
-                <th>mission_id</th>
-                <th>edit</th>
-                <th>delete</th>
-            </thead>
+        <div class="card">
+            <div class="card-body">
+                <table id="mytable" class="table table-bordered table-striped">
+                    <thead class="thead-light">
+                        <th>mission_name</th>
+                        <th>mission_id</th>
+                        <th>edit</th>
+                        <th>delete</th>
+                    </thead>
 
-            <tbody>
-                <?php
-                $obj = new manage_officer();
-                $sql =  $obj->fetchdata_mission();
-                while ($row = mysqli_fetch_array($sql)) {
-                ?>
-                    <tr>
-                        <td><?php echo $row['mission_name'] ?></td>
-                        <td><?php echo $row['mission_id'] ?></td>
-                        <td><a href="managemission/<?php echo $row['mission_id'] ?>" class="btn btn-primary d-grid gap-2"><i class="fas fa-pencil-alt f-16"> แก้ไข</i> </a></td>
-                        <td><a class="btn btn-danger d-grid gap-2 text-white" onclick="test(<?php echo $row['mission_id'] ?>)"><i class="fas fa-trash f-16"> ลบ</i></a></td>
-                    </tr>
+                    <tbody>
+                        <?php
+                        $obj = new manage_officer();
+                        $sql =  $obj->fetchdata_mission();
+                        while ($row = mysqli_fetch_array($sql)) {
+                        ?>
+                            <tr>
+                                <td><?php echo $row['mission_name'] ?></td>
+                                <td><?php echo $row['mission_id'] ?></td>
+                                <td><a href="managemission/<?php echo $row['mission_id'] ?>" class="btn btn-primary d-grid gap-2"><i class="fas fa-pencil-alt f-16"> แก้ไข</i> </a></td>
+                                <td><a class="btn btn-danger d-grid gap-2 text-white" onclick="test(<?php echo $row['mission_id'] ?>)"><i class="fas fa-trash f-16"> ลบ</i></a></td>
+                            </tr>
 
-                <?php } ?>
-            </tbody>
-        </table>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
-        
+
     </div>
 
     <script>

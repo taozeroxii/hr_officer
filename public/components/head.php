@@ -20,7 +20,7 @@
   <!-- fullCalendar -->
   <link rel="stylesheet" href="adminltes/AdminLTE-master/plugins/fullcalendar/main.css">
 
-  <!-- <link rel="stylesheet" href="./css/darkglow.css"> -->
+  <link rel="stylesheet" href="./css/darkglow.css">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
