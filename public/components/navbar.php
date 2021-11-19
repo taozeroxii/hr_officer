@@ -36,8 +36,6 @@
               <li><a class="dropdown-item" href="./tableposition">ตำแหน่ง(position)</a></li>
               <li><a class="dropdown-item" href="./tablepersontype">ประเภทการจ้าง(persontype)</a></li>
               <li><a class="dropdown-item" href="./tableperson">บุคลากร(person)</a></li>
-              <!-- <li><hr class="dropdown-divider"></li> -->
-              <!-- <li><a class="dropdown-item" href="#">Something else here</a></li> -->
             </ul>
           </li>
         <?php  } 
@@ -51,7 +49,7 @@
               admin (จัดการ user)
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="./register">เพิ่มข้อมูลผู้ใช้งานระบบ </a></li>
+              <?php // <li><a class="dropdown-item" href="./register">เพิ่มข้อมูลผู้ใช้งานระบบ </a></li> ?>
               <li><a class="dropdown-item" href="./tableusergroup">กลุ่มการใช้งาน</a></li>
               <li><a class="dropdown-item" href="./table-userrole">สิทธิการเข้าถึง </a></li>
             </ul>

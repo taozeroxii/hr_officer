@@ -36,6 +36,16 @@ if($page === 'workgroup'){
     }
 }
 
+//เพิ่มผู้ใช้งานระบบ ผ่านหน้า รายการบุคลากร
+if($page === 'addUserperson'){
+     $adduser = $obj->add_user($id);
+     if( $adduser){
+        echo "<script>window.location.href = '../../tableperson';</script>";
+    }else {
+        echo "<script>alert('พบข้อผิดพลาดไม่สามารถเพิ่มข้อมูลได้');window.location.href = '../../tableperson';</script>";
+    }
+}
+
 
 
 

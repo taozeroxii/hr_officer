@@ -28,17 +28,9 @@ $router->map("GET", "/detail", function () {
     require __DIR__ . "./public/page/detail.php";
 });
 
-// Delete
-$router->map("GET|post", "/delete/[a:page]/[i:id]", function ($page, $id) {
-    require __DIR__ . "./public/page/delete.php";
-});
-
-
-
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ส่วน admin (ข้อมูลพื้นฐาน)<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-// Workgroup
-if(isset($_SESSION['fullname']) && ( $_SESSION['role'] == 1 ||  $_SESSION['role'] == 2) ){
+if (isset($_SESSION['fullname']) && ($_SESSION['role'] == 1 ||  $_SESSION['role'] == 2)) {
     $router->map("GET", "/tabledepartment", function () {
         // return 'homepage';
         require __DIR__ . "./public/page/tabledepartment.php";
@@ -91,8 +83,11 @@ if(isset($_SESSION['fullname']) && ( $_SESSION['role'] == 1 ||  $_SESSION['role'
     $router->map("GET", "/updatedepart/[i:id]", function ($id) {
         require __DIR__ . "./public/page/updatedepart.php";
     });
-    
 
+    // Delete
+    $router->map("GET|post", "/delete/[a:page]/[i:id]", function ($page, $id) {
+        require __DIR__ . "./public/page/delete.php";
+    });
 }
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> End ส่วน admin (ข้อมูลพื้นฐาน)<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
@@ -102,7 +97,7 @@ if(isset($_SESSION['fullname']) && ( $_SESSION['role'] == 1 ||  $_SESSION['role'
 
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  ส่วน admin (USER ROLE)<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-if(isset($_SESSION['fullname']) && ( $_SESSION['role'] == 1 ||  $_SESSION['role'] == 2 || $_SESSION['role'] == 3 ) ){
+if (isset($_SESSION['fullname']) && ($_SESSION['role'] == 1 ||  $_SESSION['role'] == 2 || $_SESSION['role'] == 3)) {
     $router->map("GET", "/tableusergroup", function () {
         require __DIR__ . "./public/page/tableusergroup.php";
     });
@@ -120,7 +115,7 @@ if(isset($_SESSION['fullname']) && ( $_SESSION['role'] == 1 ||  $_SESSION['role'
 
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  ส่วน User ทั่วไป หรือต้องมีการเข้าสู่ระบบ<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-if(isset($_SESSION['fullname']) && (isset($_SESSION['role'] )) ){
+if (isset($_SESSION['fullname']) && (isset($_SESSION['role']))) {
     $router->map("GET", "/form", function () {
         require __DIR__ . "./public/page/listform.php";
     });
@@ -156,10 +151,11 @@ $router->map("GET|POST", "/login", function () {
 });
 
 
-function check_userrole( ){
+function check_userrole()
+{
     // $user_role_id = $_SESSION['role'];
     $user_fullname = $_SESSION['fullname'];
-    return $user_fullname ;
+    return $user_fullname;
 }
 
 

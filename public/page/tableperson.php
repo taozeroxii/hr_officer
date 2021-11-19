@@ -34,27 +34,28 @@
                 <a href="./manageperson"> <button class="btn btn-success "><i class="fas fa-plus f-16"></i> เพิ่มรายการ</button></a>
             </div>
             <div class="col-10 ">
-                <h2 class="text-right mr-5">รายการบุคลากร</h2>
+                <h2 class="text-right mr-5 text-light">รายการบุคลากร</h2>
             </div>
         </div>
 
         <hr>
-        *ปุ่ม +user นำข้อมูลพื้นฐานมาทำเป็นรหัสเข้าใช้งานระบบ*
+       <p class="text-light">   * การสร้างรหัสเข้าใช้งาน จะนำข้อมูลพื้นฐานมาทำเป็นรหัสเข้าใช้งานระบบ User : เลขบัตรประจำตัวประชาชน Password : 1234 *</p>
+     
         <div class="row">
             <div class="col-12">
                 <div class="card">
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <table id="example1" class="table table-bordered table-striped">
+                        <table id="example1" class="table table-bordered">
                             <thead>
                                 <th>#</th>
                                 <th>คำนำหน้า pname</th>
                                 <th>ชื่อ</th>
                                 <th>สกุล</th>
                                 <th>สิทธิเข้าถึง</th>
-                                <th>edit</th>
-                                <th>delete</th>
-                                <th>add user</th>
+                                <th>แก้ไขข้อมูลบุคลากร</th>
+                                <!-- <th>delete</th> -->
+                                <th>สร้างรหัสเข้าใช้งาน</th>
                             </thead>
 
                             <tbody>
@@ -70,8 +71,8 @@
                                         <td><?php echo $row['lname'] ?></td>
                                         <td><?php echo $row['user_role_id'] ?></td>
                                         <td><a href="manageperson/<?php echo $row['id'] ?>" class="btn btn-primary d-grid gap-2"><i class="fas fa-pencil-alt f-16"> แก้ไข</i> </a></td>
-                                        <td><a class="btn btn-danger d-grid gap-2 text-white" onclick="test(<?php echo $row['mission_id'] ?>)"><i class="fas fa-trash f-16"> ลบ</i></a></td>
-                                        <td><button class="btn btn-success d-grid gap-2 text-white" onclick="" <?php if(isset($row['haveuser_yet'])) {echo 'disabled';}?>><i class="fas fa-plus   f-16"> user</i></button></td>
+                                        <!-- <td><a class="btn btn-danger d-grid gap-2 text-white" onclick="test(<?php echo $row['mission_id'] ?>)"><i class="fas fa-trash f-16"> ลบ</i></a></td> -->
+                                        <td><button class="btn btn-success d-grid gap-2 text-white" onclick="addUser(<?php echo $row['id'] ?>)" <?php if (isset($row['haveuser_yet'])) {echo 'disabled';} ?>><i class="fas fa-plus   f-16"> สร้างรหัสเข้าใช้งาน</i></button></td>
                                     </tr>
                                 <?php } ?>
                             </tbody>
@@ -82,18 +83,34 @@
         </div>
 
         <script>
-            function test(value) {
+            // function test(value) {
+            //     Swal.fire({
+            //         title: 'ลบข้อมูล?',
+            //         text: "คุณต้องการลบข้อมูลนี้หรือไม่",
+            //         icon: 'warning',
+            //         showCancelButton: true,
+            //         confirmButtonColor: '#3085d6',
+            //         cancelButtonColor: '#d33',
+            //         confirmButtonText: 'Yes'
+            //     }).then((result) => {
+            //         if (result.isConfirmed) {
+            //             window.location.href = './delete/person/' + value; //ส่งค่า page และ id ไปเช็คเพื่อทำการลบค่า 
+            //         }
+            //     })
+            // }
+
+            function addUser(value) {
                 Swal.fire({
-                    title: 'ลบข้อมูล?',
-                    text: "คุณต้องการลบข้อมูลนี้หรือไม่",
-                    icon: 'warning',
+                    title: 'เพิ่มข้อมูล USER ระดับใช้งานทั่วไป ',
+                    text: " ยืนยันการเพิ่มข้อมูล  ?",
+                    icon: 'info',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
                     confirmButtonText: 'Yes'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location.href = './delete/mission/' + value; //ส่งค่า page และ id ไปเช็คเพื่อทำการลบค่า 
+                        window.location.href = './delete/addUserperson/' + value; //ส่งค่า page และ id ไปเช็คเพื่อทำการเพิ่ม user ให้บุคลากร
                     }
                 })
             }

@@ -14,8 +14,8 @@
 
 
     <div class="container mt-5">
-        <h1>แบบฟอร์มคำขอต่างๆ</h1>
-        <hr>
+        <h2 class="text-light">แบบฟอร์มคำขอต่างๆ</h2>
+        <hr class="text-light">
         <button style="width: 150px; height:125px;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
             <i class="fa fa-archive fa-4x"></i><br>
             <strong>หนังสือรับรอง</strong>
@@ -40,7 +40,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p class="ml-3 text-success"><a href="./form_request_salary">1. หนังสือรับรองเงินเดือน</a></p>
+                    <p class="ml-3 "><a class="btn btn-block btn-info text-light text-left" href="./form_request_salary">1. หนังสือรับรองเงินเดือน </a></p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -64,7 +64,7 @@
                     $fetch_leave =  $obj->fetch_leave();
                     while ($result = mysqli_fetch_assoc($fetch_leave)) {
                     ?>
-                        <p class="ml-3 text-success"><a href="<?php echo $result['link_path']; ?>"><?php echo $result['id'] . ' : ' . $result['leave_name']; ?> </a></p>
+                        <p class="ml-3"><a class="btn btn-block btn-info text-light text-left" href="<?php echo $result['link_path']; ?>"><?php echo $result['id'] . ' : ' . $result['leave_name']; ?> </a></p>
                     <?php } ?>
 
                 </div>

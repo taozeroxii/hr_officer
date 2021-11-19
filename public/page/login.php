@@ -42,7 +42,7 @@
             <div class="col-lg-6">
                 <div class="card mt-5" style="box-shadow: 2px 2px 2px 2px rgb(0 0 0 / 25%); border-radius: 50px;">
                     <center><img src="./uploads/img_icon/la.jpg" width="150px" height="150px" id="logo"></center>
-                    <h5 class="title text-center"><b>ข้อมูลบุคลากรรายบุคคล</b> </h5>
+                    <h5 class="title text-center"><b>ข้อมูลบุคลากรรายบุคคล</b><sub> Cpa hospital</sub> </h5>
                     <div class="card-body">
                         <form action="./login" method="POST" autocomplete="off">
                             <style>

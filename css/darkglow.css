@@ -1,22 +1,8 @@
-body{
-  background-color:  blueviolet;
-}
-p{
-  color: white;
+body {
+  background-color: blueviolet;
 }
 
-h2{
-  color: white !important;
-}
-h3{
-  color: white !important;
-}
-h4{
-  color: white !important;
-}
-h5{
-  color: white !important;
-}
+
 
 .btng {
   color: white !important;

@@ -154,9 +154,9 @@
         <div class="card mt-3">
             <div class="card-body">
                 <?php if (isset($id)) { ?>
-                    <h2 class="card-title"> แก้ไข รายชื่อบุคลากร <?php echo 'id : ' . $id; ?></h2>
+                    <h1 class="card-title"> แก้ไข รายชื่อบุคลากร <?php echo 'id : ' . $id; ?></h1>
                 <?php } else { ?>
-                    <h2 class="card-title"> เพิ่ม รายชื่อบุคลากร </h2>
+                    <h1 class="card-title"> เพิ่ม รายชื่อบุคลากร </h1>
                     <label for="" class="form-label">&nbsp; person</label>
                 <?php } ?>
 

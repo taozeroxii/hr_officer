@@ -26,32 +26,36 @@
                     </script>';
             $errormesssage = null;
         } else {
-            $errormesssage =  "<p class='mt-2 alert alert-danger'>Can't not insert data to table : " . $insert . '</p>';
+            $errormesssage =  "<p class='mt-2 alert alert-danger'> " . $insert . '</p>';
         }
     }
     ?>
 
     <div class="container">
-        <h5 class="mt-5">แบบฟอร์มขอใบรับรองเงินเดือน</h5>
-        <form action="#" method="post">
-            <p>โปรดกรอกหมายเหตุที่ต้องการขอใบรับรอง</p>
-            <input class="form-control" type="text" name="note" placeholder="ระบุเหตุผลที่ต้องการขอใบรับรอง" value="" required>
-            <button type="submit" name="submit" value="submit" class="btn btn-success btn-lg mt-3">บันทึก</button>
-            <a href="./form" class="btn btn-secondary btn-lg mt-3">ย้อนกลับ</a>
-        </form>
+        <div class="card mt-5">
+            <div class="card-body">
+                <h5>แบบฟอร์มขอใบรับรองเงินเดือน</h5>
+                <form action="#" method="post">
+                    <p>โปรดกรอกหมายเหตุที่ต้องการขอใบรับรอง</p>
+                    <input class="form-control" type="text" name="note" placeholder="ระบุเหตุผลที่ต้องการขอใบรับรอง" value="" required>
+                    <button type="submit" name="submit" value="submit" class="btn btn-success btn-lg mt-3">บันทึก</button>
+                    <a href="./form" class="btn btn-secondary btn-lg mt-3">ย้อนกลับ</a>
+                </form>
 
-        <?php if (isset($errormesssage)) echo $errormesssage; ?>
+                <?php if (isset($errormesssage)) echo $errormesssage; ?>
+            </div>
+        </div>
 
         <hr>
-        <h3>รายการขอใบรับรองเงินเดือนของท่าน</h3>
-        <p>ผู้ใช้งาน <?php echo $_SESSION['fullname']; ?></p>
+        <h2>รายการขอใบรับรองเงินเดือนของท่าน</h2>
+        <p class="text-light">ผู้ใช้งาน <?php echo $_SESSION['fullname']; ?></p>
         <div class="card">
             <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                         <th>วันเวลาที่ขอ</th>
                         <th>หมายเหตุ</th>
-                        <th>print</th>
+                        <th>สถานะ</th>
                     </thead>
 
                     <tbody>
@@ -62,12 +66,13 @@
                             <tr>
                                 <td><?php echo $row['timestamp'] ?></td>
                                 <td><?php echo $row['note'] ?></td>
-                                <td>
-                                    <a href="./print_salary?<?php echo " "; ?>">
+                                <td><?php echo 'รอดำเนินการ'; ?></td>
+                                <!-- <td>
+                                    <a href="./print_salary?<?php //echo " "; ?>">
                                         <button class="btn btn-warning btn-block"><i class="fa fa-print" aria-hidden="true"></i>
                                         </button>
                                     </a>
-                                </td>
+                                </td> -->
                             </tr>
                         <?php } ?>
                     </tbody>
