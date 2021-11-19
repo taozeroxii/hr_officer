@@ -14,7 +14,7 @@
     if (isset($_POST['submit'])) {
         $note =   $_POST['note'];
         $insert =  $obj->insert($form_id, $_SESSION['user_id'], $_SESSION['person_id'], $formname, $_SESSION['fullname'], $note);
-        if ($insert) {
+        if ($insert === true) {
             echo '<script>
                     Swal.fire({
                         title: "เพิ่มข้อมูลสำเร็จ!",
@@ -25,7 +25,7 @@
                     });
                     </script>';
         } else {
-            echo "<script>alert failer to insert !<script>";
+            echo "<p style='color:red;'>Can't not insert data to tables : ".$insert.'</p>';
         }
     }
     ?>
@@ -58,7 +58,7 @@
                         <td><?php echo $row['timestamp'] ?></td>
                         <td><?php echo $row['note'] ?></td>
                         <td>
-                            <a href="./print_salary?<?php echo " ";?>">
+                            <a href="./print_salary?<?php echo " "; ?>">
                                 <button class="btn btn-warning btn-block"><i class="fa fa-print" aria-hidden="true"></i>
                                 </button>
                             </a>
