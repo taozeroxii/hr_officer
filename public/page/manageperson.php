@@ -29,17 +29,17 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script>
         $(document).ready(function() { //
+            // alert(window.location.origin);
+            // alert(document.URL);
             $("#brand").change(function() { //
                 $.ajax({
-                    url: "selectmenudetail.php", //ทำงานกับไฟล์นี้
+                    url: document.URL === window.location.origin + '/hr_officer/manageperson' ? "selectmenudetail.php" : "../selectmenudetail.php",
                     data: "bid=" + $("#brand").val(), //ส่งตัวแปร
                     type: "POST",
                     async: false,
                     success: function(data, status) {
                         $("#model").html(data);
-
                     },
-
                     error: function(xhr, status, exception) {
                         alert(status);
                     }
@@ -63,7 +63,7 @@
 
 
     if (isset($_POST['status'])) {
-        if ($_POST['status'] == 'insert') {
+        if ($_POST['status'] === 'insert') {
             $pname = $_POST['pname'];
             $fname = $obj->escape($_POST['fname']);
             $lname = $obj->escape($_POST['lname']);
@@ -163,13 +163,15 @@
         $row = mysqli_fetch_assoc($query_person_byid);
         if ($row) {
             $old_img =  $row['image_path'];
+            $postition_id  =  $row['position_id']; //ตำแหน่ง
             $pname  =  $row['pname'];
             $fname  =  $row['fname'];
             $lname  =  $row['lname'];
             $cid    =  $row['cid'];
             $stjob  =  $row['date_start_job'];
             $birthday = $row['birthdate'];
-            $typeposition_id = $row['typeposition_id'];
+            $typeposition_id = $row['typeposition_id']; //ประเภทการจ้าง
+
 
             if (isset($_POST['status'])) {
                 $pname = $_POST['pname'];
@@ -184,11 +186,9 @@
                 $typeposition_id =  $_POST['typeposition']; //ประเภทการจ้าง
                 $updateuser = $_SESSION['user_id'];
 
-                if ($_POST['status'] == 'edit') {
+                if ($_POST['status'] === 'edit') {
                     echo 'edit';
                 }
-
-
             }
         } else {
             echo '<script> Swal.fire({title: "ไม่พบข้อมูล id ดังกล่าว !!! ",  text: "ดำเนินการเปลี่ยนไปหน้าเพิ่มข้อมูล", type: "error" }).then(function() {
@@ -231,12 +231,12 @@
                                 <div class="form-group">
                                     <label for="position_id">ตำแหน่ง</label>
                                     <select class="form-control select2 select2-danger" name="position_id" data-dropdown-css-class="select2-danger" style="width: 100%;" required>
-                                        <option value="">-กรุณาเลือก-</option>
+                                        <option value="" <?php echo empty($postition_id) ? "selected" : "" ?>>-กรุณาเลือก-</option>
                                         <?php
                                         $persontype =  $obj->fetchdata_position();
                                         while ($row = mysqli_fetch_array($persontype)) {
                                         ?>
-                                            <option value="<?php echo $row['id']; ?>"> <?php echo  $row['id'] . ' : ' . $row['position_name']; ?> </option>
+                                            <option value="<?php echo $row['id']; ?>" <?php echo (isset($postition_id) &&  $postition_id  == $row['id']) ? "selected" : "" ?>> <?php echo  $row['id'] . ' : ' . $row['position_name']; ?> </option>
                                         <?php }   ?>
                                     </select>
                                 </div>
@@ -289,12 +289,12 @@
                                 <div class="col-lg-3">
                                     <label for="typeposition" class="form-label mt-2">ประเภทการจ้าง</label>
                                     <select class="form-control" name="typeposition" id="typeposition" required>
-                                        <option value="" <?php echo empty($_POST['typeposition']) ? "selected" : "" ?>>-กรุณาเลือก-</option>
+                                        <option value="" <?php echo empty($typeposition_id) ? "selected" : "" ?>>-กรุณาเลือก-</option>
                                         <?php
                                         $persontype =  $obj->fetchdata_person_type();
                                         while ($row = mysqli_fetch_array($persontype)) {
                                         ?>
-                                            <option value=" <?php echo $row['id']; ?>" <?php echo (isset($_POST['typeposition']) && $_POST['typeposition'] == $row['id']) ? "selected" : "" ?>> <?php echo $row['person_name']; ?> </option>
+                                            <option value=" <?php echo $row['id']; ?>" <?php echo (isset($typeposition_id) &&  $typeposition_id  == $row['id']) ? "selected" : "" ?>> <?php echo $row['person_name']; ?> </option>
                                         <?php  }   ?>
                                     </select>
                                 </div>
