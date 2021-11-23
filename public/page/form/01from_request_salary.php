@@ -60,15 +60,25 @@
 
                     <tbody>
                         <?php
+                        function statusCheck($status)
+                        {
+                            if ($status == null || $status == '')
+                                return 'รอดำเนินการ';
+                            else if ($status == 1)
+                                return 'ผ่านการอนุมัติ';
+                            else
+                                return 'ไม่ผ่านการอนุมัติ';
+                        }
                         $sql =  $obj->fetct_byuser($_SESSION['user_id']);
                         while ($row = mysqli_fetch_array($sql)) {
                         ?>
                             <tr>
                                 <td><?php echo $row['timestamp'] ?></td>
                                 <td><?php echo $row['note'] ?></td>
-                                <td><?php echo 'รอดำเนินการ'; ?></td>
+                                <td><?php echo statusCheck($row['status']) ?></td>
                                 <!-- <td>
-                                    <a href="./print_salary?<?php //echo " "; ?>">
+                                    <a href="./print_salary?<?php //echo " "; 
+                                                            ?>">
                                         <button class="btn btn-warning btn-block"><i class="fa fa-print" aria-hidden="true"></i>
                                         </button>
                                     </a>

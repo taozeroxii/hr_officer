@@ -32,25 +32,8 @@
     ?>
 
     <div class="container">
-        <!-- <div class="card mt-5">
-            <div class="card-body">
-                <h5>แบบฟอร์มขอใบรับรองเงินเดือน</h5>
-                <form action="#" method="post">
-                    <p>โปรดกรอกหมายเหตุที่ต้องการขอใบรับรอง</p>
-                    <input class="form-control" type="text" name="note" placeholder="ระบุเหตุผลที่ต้องการขอใบรับรอง" value="" required>
-                    <button type="submit" name="submit" value="submit" class="btn btn-success btn-lg mt-3">บันทึก</button>
-                    <a href="./form" class="btn btn-secondary btn-lg mt-3">ย้อนกลับ</a>
-                </form>
-
-                <?php
-
-                // if (isset($errormesssage)) echo $errormesssage; 
-                ?>
-            </div>
-        </div> -->
-
-        <hr>
-        <h2>รายการขอใบรับรองเงินเดือนของท่าน</h2>
+        <br>
+        <h1>รายการขอใบรับรองเงินเดือนของท่าน</h1>
         <p class="text-light">ผู้ใช้งานนะ <?php echo $_SESSION['fullname']; ?></p>
         <div class="card">
             <div class="card-body">
@@ -63,13 +46,26 @@
 
                     <tbody>
                         <?php
-                        $sql =  $obj->fetct_byuser($_SESSION['user_id']);
+                        function statusCheck($status)
+                        {
+                            if ($status == null || $status == '')
+                                return 'รอดำเนินการ';
+                            else if ($status == 1)
+                                return 'ผ่านการอนุมัติ';
+                            else
+                                return 'ไม่ผ่านการอนุมัติ';
+                        }
+
+                        $sql =  $obj->fetct_byadmin();
                         while ($row = mysqli_fetch_array($sql)) {
+
                         ?>
+
                             <tr>
                                 <td><?php echo $row['timestamp'] ?></td>
                                 <td><?php echo $row['note'] ?></td>
-                                <td><?php echo $row['status'] == null ? 'รอดำเนินการ' : $row['status'] == 1 ? 'ผ่านการอนุมัติ' : 'ไม่ผ่านการอนุมัติ'; ?></td>
+                                <td><?php echo statusCheck($row['status']) ?></td>
+                                <td><button style="line-height: 70%;" class="btn btn-success text-white" onclick="approveUser(<?php echo $row['id'] ?>)"><?php echo statusCheck($row['status']) ?></button></td>
                                 <!-- <td>
                                     <a href="./print_salary?<?php //echo " "; 
                                                             ?>">
@@ -87,7 +83,27 @@
 
     </div>
 
-
+    <script>
+        function approveUser(value) {
+            Swal.fire({
+                title: 'อนุมัติหรือไม่',
+                showDenyButton: true,
+                showCancelButton: true,
+                confirmButtonColor: '#28A745',
+                confirmButtonText: 'อนุมัติ',
+                denyButtonText: `ไม่อนุมัติ`,
+            }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    Swal.fire('อนุมัติ', '', 'success')
+                    $obj => approve($row['id'], 1)
+                } else if (result.isDenied) {
+                    Swal.fire('ไม่อนุมัติ', '', 'error')
+                    $obj => approve($row['id'], 0)
+                }
+            })
+        }
+    </script>
 
 
 
