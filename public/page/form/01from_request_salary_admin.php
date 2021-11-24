@@ -105,24 +105,44 @@
             }).then((result) => {
                 /* Read more about isConfirmed, isDenied below */
                 if (result.isConfirmed) {
-                    Swal.fire('อนุมัติ', '', 'success')
-                    $obj => approve(value, 1)
+                    Swal.fire('อนุมัติ', '', 'success').then((result) => {
+                        post('./post', {
+                            id: value,
+                            status: 1
+                        });
+                    })
                 } else if (result.isDenied) {
-                    Swal.fire('ไม่อนุมัติ', '', 'error')
-                    $obj => approve(value, 0)
+                    Swal.fire('ไม่อนุมัติ', '', 'error').then((result) => {
+                        post('./post', {
+                            id: value,
+                            status: 0
+                        });
+                    })
                 }
-                $.ajax({
-                    type: "POST",
-                    url: './post',
-                    data: {
-                        id: value,
-                        status: 33
-                    }
-
-                });
-                console.log(value);
-
             })
+        }
+
+        function post(path, params, method = 'post') {
+
+            // The rest of this code assumes you are not using a library.
+            // It can be made less verbose if you use one.
+            const form = document.createElement('form');
+            form.method = method;
+            form.action = path;
+
+            for (const key in params) {
+                if (params.hasOwnProperty(key)) {
+                    const hiddenField = document.createElement('input');
+                    hiddenField.type = 'hidden';
+                    hiddenField.name = key;
+                    hiddenField.value = params[key];
+
+                    form.appendChild(hiddenField);
+                }
+            }
+
+            document.body.appendChild(form);
+            form.submit();
         }
     </script>
 
