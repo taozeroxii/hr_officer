@@ -125,6 +125,9 @@ if (isset($_SESSION['fullname']) && (isset($_SESSION['role']))) {
     $router->map("GET,POST", "/form_request_salary_admin", function () {
         require __DIR__ . "./public/page/form/01from_request_salary_admin.php";
     });
+    $router->map("GET,POST", "/post", function () {
+        require __DIR__ . "./public/page/form/post.php";
+    });
     $router->map("GET,POST", "/print_salary", function () {
         require __DIR__ . "./public/page/form/print_request_salary.php";
     });

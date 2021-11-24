@@ -56,7 +56,15 @@
                             else
                                 return 'ไม่ผ่านการอนุมัติ';
                         }
-
+                        function statusCheckColor($status)
+                        {
+                            if ($status == null || $status == '')
+                                return 'btn-warning';
+                            else if ($status == 1)
+                                return 'btn-success';
+                            else
+                                return 'btn-danger';
+                        }
                         $sql =  $obj->fetct_byadmin();
                         while ($row = mysqli_fetch_array($sql)) {
 
@@ -65,12 +73,13 @@
                             <tr>
                                 <td class="text-left"><?php echo $row['timestamp'] ?></td>
                                 <td class="text-left"><?php echo $row['note'] ?></td>
-                                <!-- <td><?php //echo statusCheck($row['status']) ?></td> -->
-                                <td><button  class="btn btn-success text-white btn-block" onclick="approveUser(<?php echo $row['id'] ?>)"><?php echo statusCheck($row['status']) ?></button></td>
+                                <!-- <td><?php //echo statusCheck($row['status']) 
+                                            ?></td> -->
+                                <td><button style="line-height: 100%;" class="btn <?php echo statusCheckColor($row['status']) ?> btn-block" onclick="approveUser(<?php echo $row['id'] ?>)"><?php echo statusCheck($row['status']) ?></button></td>
                                 <td>
                                     <a href="./print_salary?<?php //echo " "; 
                                                             ?>">
-                                        <button class="btn btn-info btn-block"><i class="fa fa-print" aria-hidden="true"></i>
+                                        <button style="line-height: 10%;" class="btn btn-info btn-block"><i class="fa fa-print" aria-hidden="true"></i>
                                         </button>
                                     </a>
                                 </td>
@@ -97,11 +106,22 @@
                 /* Read more about isConfirmed, isDenied below */
                 if (result.isConfirmed) {
                     Swal.fire('อนุมัติ', '', 'success')
-                    $obj => approve($row['id'], 1)
+                    $obj => approve(value, 1)
                 } else if (result.isDenied) {
                     Swal.fire('ไม่อนุมัติ', '', 'error')
-                    $obj => approve($row['id'], 0)
+                    $obj => approve(value, 0)
                 }
+                $.ajax({
+                    type: "POST",
+                    url: './post',
+                    data: {
+                        id: value,
+                        status: 33
+                    }
+
+                });
+                console.log(value);
+
             })
         }
     </script>
