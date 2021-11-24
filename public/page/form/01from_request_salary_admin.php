@@ -11,30 +11,13 @@
     require("./service/formmanage.php");
     $obj  = new manage_form();
 
-    if (isset($_POST['submit'])) {
-        $note =   $_POST['note'];
-        $insert =  $obj->insert($form_id, $_SESSION['user_id'], $_SESSION['person_id'], $formname, $_SESSION['fullname'], $note);
-        if ($insert === true) {
-            echo '<script>
-                    Swal.fire({
-                        title: "เพิ่มข้อมูลสำเร็จ!",
-                        text: "Insert data successfuly!",
-                        type: "success"
-                    }).then(function() {
-                        window.location = "./form_request_salary";
-                    });
-                    </script>';
-            $errormesssage = null;
-        } else {
-            $errormesssage =  "<p class='mt-2 alert alert-danger'> " . $insert . '</p>';
-        }
-    }
+
     ?>
 
     <div class="container">
         <br>
         <h1>รายการขอใบรับรองเงินเดือนของท่าน</h1>
-        <p class="text-light">ผู้ใช้งานนะ <?php echo $_SESSION['fullname']; ?></p>
+        <p class="text-light">ผู้ใช้งานนะ <?php echo $_SESSION['fullname'] ?></p>
         <div class="card">
             <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped text-center">
@@ -75,7 +58,7 @@
                                 <td class="text-left"><?php echo $row['note'] ?></td>
                                 <!-- <td><?php //echo statusCheck($row['status']) 
                                             ?></td> -->
-                                <td><button style="line-height: 100%;" class="btn <?php echo statusCheckColor($row['status']) ?> btn-block" onclick="approveUser(<?php echo $row['id'] ?>)"><?php echo statusCheck($row['status']) ?></button></td>
+                                <td><button style="line-height: 100%;" class="btn <?php echo statusCheckColor($row['status']) ?> btn-block" onclick="approveUser(<?php echo $row['id'] ?>, <?php echo $_SESSION['user_id'] ?>)"><?php echo statusCheck($row['status']) ?></button></td>
                                 <td>
                                     <a href="./print_salary?<?php //echo " "; 
                                                             ?>">
@@ -94,9 +77,9 @@
     </div>
 
     <script>
-        function approveUser(value) {
+        function approveUser(value, user_id) {
             Swal.fire({
-                title: 'อนุมัติหรือไม่',
+                title: 'อนุมัติหรือไม่' + user_id,
                 showDenyButton: true,
                 showCancelButton: true,
                 confirmButtonColor: '#28A745',
@@ -108,14 +91,16 @@
                     Swal.fire('อนุมัติ', '', 'success').then((result) => {
                         post('./post', {
                             id: value,
-                            status: 1
+                            status: 1,
+                            userupdate: user_id
                         });
                     })
                 } else if (result.isDenied) {
                     Swal.fire('ไม่อนุมัติ', '', 'error').then((result) => {
                         post('./post', {
                             id: value,
-                            status: 0
+                            status: 0,
+                            userupdate: user_id
                         });
                     })
                 }

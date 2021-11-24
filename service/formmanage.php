@@ -27,9 +27,9 @@ class manage_form extends Dbcon
         $result = mysqli_query($this->mycon, "select * from hr_cpa_leave");
         return $result;
     }
-    public function approve($id, $statusapprove)
+    public function approve($id, $statusapprove, $userupdate)
     {
-        $result = mysqli_query($this->mycon, "UPDATE hr_form_list SET status = '$statusapprove' WHERE id = $id");
+        $result = mysqli_query($this->mycon, "UPDATE hr_form_list SET status = '$statusapprove' , user_appove_status = '$userupdate'  WHERE id = $id");
         return $result;
     }
 }
