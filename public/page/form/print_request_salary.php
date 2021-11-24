@@ -1,375 +1,160 @@
-<?php
-<<<<<<< Updated upstream
-require_once './vendor/autoload.php';
-=======
-require_once 'vendor/autoload.php';
-
-$mpdf = new \Mpdf\Mpdf();
->>>>>>> Stashed changes
-
-$defaultConfig = (new Mpdf\Config\ConfigVariables())->getDefaults();
-$fontDirs = $defaultConfig['fontDir'];
-
-$defaultFontConfig = (new Mpdf\Config\FontVariables())->getDefaults();
-$fontData = $defaultFontConfig['fontdata'];
-
-$mpdf = new \Mpdf\Mpdf([
-    'fontDir' => array_merge($fontDirs, [
-<<<<<<< Updated upstream
-        __DIR__ . '/tmp',
-    ]),
-    'fontdata' => $fontData + [
-        'sarabun' => [
-            'R' => 'THSarabunNew.ttf',
-            'I' => 'THSarabunNew Italic.ttf',
-            'B' => 'THSarabunNew Bold.ttf',
-            'BI' => 'THSarabunNew BoldItalic.ttf'
-        ]
-    ],
-    'default_font' => 'sarabun'
-]);
-
-ob_start();
-=======
-        __DIR__ . '/fonts',
-    ]),
-    'fontdata' => $fontData + [
-        'thsarabun' => [
-            'R' => 'THSarabunNew.ttf',
-            //'I' => 'THSarabunIT๙.ttf',
-            //'B' => 'THSarabunNew Bold.ttf',
-        ]
-    ],
-    'default_font' => 'thsarabun'
-]);
-
-$content = '
->>>>>>> Stashed changes
-?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
-<<<<<<< Updated upstream
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
-    <link rel="stylesheet" type="text/css" href="./css/style_pdf.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 
 </head>
 
+<style>
+    body {
+        margin-top: 30px;
+        /* background-color: rgba(86, 61, 124, .05); */
+    }
+
+    a,
+    a:hover {
+        color: #212529;
+    }
+
+    a:hover {
+        text-decoration: none;
+    }
+
+    .block {
+        height: 400px;
+        background: rgba(86, 61, 124, .15);
+        margin-bottom: 30px;
+    }
+
+    .label {
+        font-size: .85rem;
+        font-weight: bold;
+    }
+
+    .fh01{
+        font-size: 14px;
+    }
+    .fh02{
+        font-size: 12px;
+    }
+    .bb{
+        font-weight: bold;
+    }
+</style>
+
 <body>
+
     <div class="container">
         <div class="row">
-            <div class="hr1">
-                <div><img src="./img/krut-3-cm.png" width="70px" height="70px" alt=""></div>
+            <div class="col-12">
+                <a class="d-flex flex-column align-items-end justify-content-between p-3 block" href="">
+                    <div class="label"></div>
+                    <div class="description"></div>
+                </a>
             </div>
-            <div class="hr2">
-                <div>บันทึกข้อความ</div>
-            </div>
-        </div>
-
-
-        <div class="row">
-            <div class="hh2">
-                <div><b class="fix1">ส่วนราชการ</b>&nbsp;&nbsp;&nbsp;<u>โรงพยาบาลเจ้าพระยาอภัยภูเบศร (กลุ่มงานทรัพยากรบุคคล โทร.2503/037217128)</u> </div>
-            </div>
-            <br>
-
-=======
-    <link rel="stylesheet" type="text/css" href="./css/style_pdf.css">
-    
-</head>
-
-<body>
-
-    <div class="row">
-        <div class="hr1">
-            <div><img src="./img/krut-3-cm.png" width="70px" height="70px" alt=""></div>
-        </div>
-        <div class="hr2">
-            <div>บันทึกข้อความ</div>
-        </div>
-    </div>
-
-
-    <div class="row">
-        <div class="hh2">
-            <div><b class="fix1">ส่วนราชการ</b>&nbsp;&nbsp;&nbsp;<u>โรงพยาบาลเจ้าพระยาอภัยภูเบศร (กลุ่มงานทรัพยากรบุคคล โทร.2503/037217128)</u> </div>
-        </div>
-      
-        <div class="hh3">
->>>>>>> Stashed changes
-            <div>
-                <b>ที่</b>
-                <u>&nbsp;&nbsp;&nbsp;ปจ 0032.101.04/พิเศษ
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </u>
-                <b>วันที่</b>
-                <u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </u>
-            </div>
-<<<<<<< Updated upstream
-            <br>
-
-            <div>
-                <b>เรื่อง</b>
-                <u>&nbsp;&nbsp;&nbsp;ขอหนังสือรับรอง
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </u>
-            </div>
-            <br>
-            <div class="hh3">
-                <div>
-                    <b>เรียน</b>
-                    <u>ผู้อำนวยการโรงพยาบาลเจ้าพระยาอภัยภูเบศร
-                    </u>
-                </div>
-
-
-
-
-
-                <br><br><br><br>
-                <hr>
-
-                <table style="width:100%">
+            <table class="table table-hover">
+                <tbody>
                     <tr>
-                        <td>ด้วยข้าพเจ้า (นาย/นาง/นางสาว)</td>
-                        <td>.......................................</td>
-                        <td>10</td>
-                        <td>Person 3</td>
+                        <td>
+                            <img src="img/krut-3-cm.png" width="30px" height="30px" alt="" srcset="">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="fh01 bb">บันทึกข้อความ</span>
+                        </td>
+                        <td>13113</td>
+                        <td>Mark</td>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>Mark</td>
                     </tr>
                     <tr>
-                        <td>ตำแหน่ง.......................................</td>
-                        <td>ฝ่าย/กลุ่มงาน.........................</td>
-                        <td>10</td>
-                        <td>Person 3</td>
+                        <td><span class="fh02 bb">ส่วนราชการ</span> <span class="fh02">โรงพยาบาลเจ้าพระยาอภัยภูเบศร (กลุ่มงานทรัพยากรบุคคล โทร.2503/037217128)</span></td>
+                        <td>Otto</td>
+                        <td>Mark</td>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>Mark</td>
                     </tr>
                     <tr>
-                        <td>โรงพยาบาลเจ้าพระยาอภัยภูเบศร มีความประสงค์ขอหนังสือรับรองเพื่อ</td>
-                        <td>.....................................</td>
-                        <td>10</td>
-                        <td>Person 3</td>
+                        <td><span class="fh02 bb">ที่</span> 
+                        <span class="fh02">ปจ 0032.101.04/พิเศษ </span>
+                        <span class="fh02 bb">วันที่</span>
+                        <span class="fh02">.......................................................................................................................</span></td>
+                        <td>Otto</td>
+                        <td>Mark</td>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>Mark</td>
                     </tr>
                     <tr>
-                        <td>.....................................</td>
-                        <td>.....................................</td>
-                        <td>10</td>
-                        <td>Person 3</td>
+                        <td><span class="fh02 bb">เรื่อง</span> <span class="fh02">ขอหนังสือรับรอง</span></td>
+                        <td>Otto</td>
+                        <td>Mark</td>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>Mark</td>
                     </tr>
                     <tr>
-                        <td>.....................................</td>
-                        <td>.....................................</td>
-                        <td>10</td>
-                        <td>Person 3</td>
+                        <td>เรียน ผู้อำนวยการโรงพยาบาลเจ้าพระยาอภัยภูเบศร</td>
+                        <td>Otto</td>
+                        <td>Mark</td>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>Mark</td>
+                    </tr>
+                    <tr>
+                        <td>ด้วยข้าพเจ้า (นาย/นาง/นางสาว).............................................................................................
+                            ตำแหน่ง....................................................................... ฝ่าย/กลุ่มงาน.................................................................
+                            โรงพยาบาลเจ้าพระยาอภัยภูเบศร มีความประสงค์ขอหนังสือรับรองเพื่อ.........................................................
+                            .......................................................................................................................................................................... .............................................................................................................................................................................
+                        </td>
+                        <td>Otto</td>
+                        <td>Mark</td>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>Mark</td>
                     </tr>
                     <tr>
                         <td>แนบสลิปเงินเดือนปัจจุบัน 1 ฉบับ หมายเลขโทรศัพท์ เบอร์ภายใน/มือถือ....................................................</td>
-                        <td>10 </td>
-                        <td>10</td>
-                        <td>Person 3</td>
+                        <td>Otto</td>
+                        <td>Mark</td>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>Mark</td>
                     </tr>
                     <tr>
                         <td>จึงเรียนมาเพื่อโปรดพิจารณาอนุมัติ</td>
-                        <td>10 </td>
-                        <td>10</td>
-                        <td>Person 3</td>
+                        <td>Otto</td>
+                        <td>Mark</td>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>Mark</td>
                     </tr>
                     <tr>
-                        <td>..</td>
-                        <td>10 </td>
-                        <td>................................</td>
-                        <td>Person 3</td>
+                        <td>เรียน ผู้อำนวยการโรงพยาบาลเจ้าพระยาอภัยภูเบศร</td>
+                        <td>Otto</td>
+                        <td>Mark</td>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>Mark</td>
                     </tr>
-                    <tr>
-                        <td>..</td>
-                        <td>10 </td>
-                        <td>(................................)</td>
-                        <td>Person 3</td>
-                    </tr>
-                    <tr>
-                        <td>..</td>
-                        <td>10 </td>
-                        <td>ตำแหน่ง................................</td>
-                        <td>Person 3</td>
-                    </tr>
-                    <tr>
-                        <td>เรียน ผอก. (ผ่าน รองฯ บริหาร)</td>
-                        <td>10 </td>
-                        <td>Person 3</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>เรียน ผอก. (ผ่าน รองฯ บริหาร) </td>
-                        <td></td>
-                        <td>Person 3</td>
-                    </tr>
-                </table>
 
 
-                <!-- ลงนามแล้ว -->
 
-                <?php
-                $html = ob_get_contents();
-                $mpdf->WriteHTML($html);
-                $mpdf->Output("MyReport.pdf");
-                ob_end_flush();
-                ?>
-                <a href="MyReport.pdf" class="btn btn-primary">โหลดแบบฟอร์มใบรับรองเงินเดือน (pdf)</a>
-            </div>
+
+                </tbody>
+            </table>
         </div>
-</body>
-=======
-           
-            <div class="hh3">
-                <div>
-                    <b>เรื่อง</b>
-                    <u>&nbsp;&nbsp;&nbsp;ขอหนังสือรับรอง
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </u>
-                </div>
-              
-                <div class="hh3">
-                    <div>
-                        <b>เรียน</b>
-                        <u>ผู้อำนวยการโรงพยาบาลเจ้าพระยาอภัยภูเบศร
-                        </u>
-                    </div>
-
-
-
-
-
-
-<br><br><br><br>
-<hr>
-
-                    <table style="width:100%">
-                        <tr>
-                            <td>ด้วยข้าพเจ้า (นาย/นาง/นางสาว)</td>
-                            <td>.......................................</td>
-                            <td>10</td>
-                            <td>Person 3</td>
-                        </tr>
-                        <tr>
-                            <td>ตำแหน่ง.......................................</td>
-                            <td>ฝ่าย/กลุ่มงาน.........................</td>
-                            <td>10</td>
-                            <td>Person 3</td>
-                        </tr>
-                        <tr>
-                            <td>โรงพยาบาลเจ้าพระยาอภัยภูเบศร มีความประสงค์ขอหนังสือรับรองเพื่อ</td>
-                            <td>.....................................</td>
-                            <td>10</td>
-                            <td>Person 3</td>
-                        </tr>
-                        <tr>
-                            <td>.....................................</td>
-                            <td>.....................................</td>
-                            <td>10</td>
-                            <td>Person 3</td>
-                        </tr>
-                        <tr>
-                            <td>.....................................</td>
-                            <td>.....................................</td>
-                            <td>10</td>
-                            <td>Person 3</td>
-                        </tr>
-                        <tr>
-                            <td>แนบสลิปเงินเดือนปัจจุบัน 1 ฉบับ หมายเลขโทรศัพท์ เบอร์ภายใน/มือถือ....................................................</td>
-                            <td>10 </td>
-                            <td>10</td>
-                            <td>Person 3</td>
-                        </tr>
-                        <tr>
-                            <td>จึงเรียนมาเพื่อโปรดพิจารณาอนุมัติ</td>
-                            <td>10 </td>
-                            <td>10</td>
-                            <td>Person 3</td>
-                        </tr>
-                        <tr>
-                            <td>..</td>
-                            <td>10 </td>
-                            <td>................................</td>
-                            <td>Person 3</td>
-                        </tr>
-                        <tr>
-                            <td>..</td>
-                            <td>10 </td>
-                            <td>(................................)</td>
-                            <td>Person 3</td>
-                        </tr>
-                        <tr>
-                            <td>..</td>
-                            <td>10 </td>
-                            <td>ตำแหน่ง................................</td>
-                            <td>Person 3</td>
-                        </tr>
-                        <tr>
-                            <td>เรียน ผอก. (ผ่าน รองฯ บริหาร)</td>
-                            <td>10 </td>
-                            <td>Person 3</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>เรียน ผอก. (ผ่าน รองฯ บริหาร) </td>
-                            <td></td>
-                            <td>Person 3</td>
-                        </tr>
-                    </table>
-
-
-
-
-
-
-                    <!-- ลงนามแล้ว -->
-
-'
-?>
+    </div>
 
 </body>
+
 </html>
-<?php
-
-$mpdf->WriteHTML($content);
-$mpdf->Output();
-
-
-/*
-$filedate = DATE('YmdHis');
-$save = "./pdf/".$filedate.".pdf";
-$lo   = "Location:".$save;
-
-$html = ob_get_contents();
-ob_end_clean();
-$pdf = new mPDF('th','A4','0','THSaraban');
-$pdf->SetDisplayMode('fullpage');
-$stylesheet = file_get_contents('./css/style_pdf.css');
-$pdf->WriteHTML($stylesheet,1);
-$pdf->WriteHTML($html,2);
-$success = $pdf->Output($save);
-header($lo);
-die();
-*/
-
-?>
->>>>>>> Stashed changes
