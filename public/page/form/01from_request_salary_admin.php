@@ -37,11 +37,12 @@
         <p class="text-light">ผู้ใช้งานนะ <?php echo $_SESSION['fullname']; ?></p>
         <div class="card">
             <div class="card-body">
-                <table id="example1" class="table table-bordered table-striped">
+                <table id="example1" class="table table-bordered table-striped text-center">
                     <thead>
                         <th>วันเวลาที่ขอ</th>
                         <th>หมายเหตุ</th>
                         <th>สถานะ</th>
+                        <th>พิมพ์</th>
                     </thead>
 
                     <tbody>
@@ -62,17 +63,17 @@
                         ?>
 
                             <tr>
-                                <td><?php echo $row['timestamp'] ?></td>
-                                <td><?php echo $row['note'] ?></td>
-                                <td><?php echo statusCheck($row['status']) ?></td>
-                                <td><button style="line-height: 70%;" class="btn btn-success text-white" onclick="approveUser(<?php echo $row['id'] ?>)"><?php echo statusCheck($row['status']) ?></button></td>
-                                <!-- <td>
+                                <td class="text-left"><?php echo $row['timestamp'] ?></td>
+                                <td class="text-left"><?php echo $row['note'] ?></td>
+                                <!-- <td><?php //echo statusCheck($row['status']) ?></td> -->
+                                <td><button  class="btn btn-success text-white btn-block" onclick="approveUser(<?php echo $row['id'] ?>)"><?php echo statusCheck($row['status']) ?></button></td>
+                                <td>
                                     <a href="./print_salary?<?php //echo " "; 
                                                             ?>">
-                                        <button class="btn btn-warning btn-block"><i class="fa fa-print" aria-hidden="true"></i>
+                                        <button class="btn btn-info btn-block"><i class="fa fa-print" aria-hidden="true"></i>
                                         </button>
                                     </a>
-                                </td> -->
+                                </td>
                             </tr>
                         <?php } ?>
                     </tbody>
