@@ -47,7 +47,7 @@
         </div>
 
         <hr>
-        <h2>รายการขอใบรับรองเงินเดือนของท่าน</h2>
+        <h2 class="text-light">รายการขอใบรับรองเงินเดือนของท่าน</h2>
         <p class="text-light">ผู้ใช้งาน <?php echo $_SESSION['fullname']; ?></p>
         <div class="card">
             <div class="card-body">
@@ -73,7 +73,7 @@
                         while ($row = mysqli_fetch_array($sql)) {
                         ?>
                             <tr>
-                                <td><?php echo $row['timestamp'] ?></td>
+                                <td><?php echo $row['insert_datetime'] ?></td>
                                 <td><?php echo $row['note'] ?></td>
                                 <td><?php echo statusCheck($row['status']) ?></td>
                                 <!-- <td>
