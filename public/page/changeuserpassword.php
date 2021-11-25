@@ -19,8 +19,9 @@
         if (empty($InputPassword1)) $errors[4] =  "กรุณากรอกพาสเวิร์ด";
         if (empty($InputPassword2)) $errors[5] =  "กรุณากรอกพาสเวิร์ดยืนยันให้ตรงกับด้านบน";
         if ($InputPassword1 != $InputPassword2 and !empty($InputPassword1) and !empty($InputPassword2)) $errors[6] =  "กรุณากรอกพาสเวิร์ดให้ตรงกัน";
-        // if (empty($cid)) $errors[9] =  "กรุณากรอก หมายเลขบัตรประชาชน";
-        // $user_checkcid = $obj->check_cid($cid);
+        if (empty($cid)) $errors[9] =  "กรุณากรอก หมายเลขบัตรประชาชน";
+        $user_checkcid = $obj->check_cid_changepassword($_SESSION['person_id']);
+        if($user_checkcid != $cid) $errors[2] =  "โปรดกรอก cid ให้ตรงกับที่ให้ไว้ในข้อมูลบุคลากร";
 
         if (count($errors) == 0) {
             $pass = md5($InputPassword1);
@@ -45,13 +46,13 @@
             <div class="card-body">
                 <form action="./changeuser-password" method="POST" autocomplete="off">
                     <div class="row  ">
-                        <!-- <div class="mb-3">
+                        <div class="mb-3">
                             <label class="form-label">เลขบัตรประชาชน</label>
-                            <input type="text" class="form-control" name="cid" id="cid" maxlength="13" value="<?php e//cho empty($_POST['cid']) ? "" : $_POST['cid'] ?>" placeholder="เลขบัตรประชาชน" require>
-                            <?php //if (!empty($errors[9])) echo "<p>" . $errors[9] . "</p>";
-                                  // elseif (!empty($errors[8])) echo "<p>" .  $errors[8] . "</p>";
+                            <input type="text" class="form-control" name="cid" id="cid" maxlength="13" value="<?php echo empty($_POST['cid']) ? "" : $_POST['cid'] ?>" placeholder="เลขบัตรประชาชน" require>
+                            <?php if (!empty($errors[9])) echo "<p>" . $errors[9] . "</p>";
+                                   elseif (!empty($errors[2])) echo "<p>" .  $errors[2] . "</p>";
                             ?>
-                        </div> -->
+                        </div>
                         
                         <div class="mb-3">
                             <label for="InputPassword1" class="form-label">Password</label>

@@ -35,12 +35,17 @@ class manage_user extends Dbcon
         $result = mysqli_fetch_assoc(mysqli_query($this->mycon, "SELECT cid FROM hr_user WHERE cid = '$v'"));
         return $result;
     }
+
+    public function check_cid_changepassword($person_id){
+        $result = mysqli_fetch_assoc(mysqli_query($this->mycon, "SELECT cid FROM hr_cpa_person_main WHERE id = '$person_id' LIMIT 1"));
+        $cid = $result['cid'];
+        return $cid;
+    }
     public function insert_user($username, $pass, $pname, $fname, $lname,$cid)
     {
         $result = mysqli_query($this->mycon, "INSERT INTO hr_user (username ,password ,pname ,fname ,lname ,user_role_id ,cid) VALUES ('$username', '$pass', '$pname', '$fname', '$lname' ,0,'$cid')");
         return $result;
     }
-
     public function changePassword($user_id,$password){
         $query =  mysqli_query($this->mycon,"UPDATE hr_user SET  password = '$password' WHERE id = '$user_id'");
         return $query;
