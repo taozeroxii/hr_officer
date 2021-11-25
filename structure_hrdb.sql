@@ -11,7 +11,7 @@
  Target Server Version : 80018
  File Encoding         : 65001
 
- Date: 24/11/2021 14:58:37
+ Date: 25/11/2021 21:42:23
 */
 
 SET NAMES utf8mb4;
@@ -35,17 +35,6 @@ CREATE TABLE `hr_cpa_head_file`  (
   `h_tmp_en` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `h_amp_en` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `h_chw_en` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Table structure for hr_cpa_job
--- ----------------------------
-DROP TABLE IF EXISTS `hr_cpa_job`;
-CREATE TABLE `hr_cpa_job`  (
-  `id` int(11) NOT NULL,
-  `job_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `job_id` int(11) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
@@ -82,9 +71,10 @@ CREATE TABLE `hr_cpa_leavedetail`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `hr_cpa_mission`;
 CREATE TABLE `hr_cpa_mission`  (
+  `mission_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสกลุ่มภารกิจ',
   `mission_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'ภารกิจ',
-  `mission_id` int(11) NOT NULL COMMENT 'รหัสกลุ่มภารกิจ',
-  PRIMARY KEY (`mission_id`) USING BTREE
+  PRIMARY KEY (`mission_id`) USING BTREE,
+  UNIQUE INDEX `mission_id`(`mission_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
@@ -99,7 +89,7 @@ CREATE TABLE `hr_cpa_person_main`  (
   `cid` varchar(13) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'เลขบัตร',
   `date_start_job` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'วันเริ่มงาน',
   `mission_id` int(30) NULL DEFAULT NULL COMMENT 'กลุ่มภารกิจ',
-  `workgroup` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'หน่วยงาน',
+  `workgroup` int(11) NULL DEFAULT NULL COMMENT 'หน่วยงาน',
   `position_id` int(255) NULL DEFAULT NULL COMMENT 'รหัสตำแหน่ง',
   `position` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `typeposition_id` int(11) NULL DEFAULT NULL COMMENT 'ประเภทการจ้าง',
@@ -110,7 +100,13 @@ CREATE TABLE `hr_cpa_person_main`  (
   `ipupdate` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `w_status` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `image_path` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'ชื่อไฟล์รูปภาพ',
-  PRIMARY KEY (`id`) USING BTREE
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `mission`(`mission_id`) USING BTREE,
+  INDEX `position`(`position_id`) USING BTREE,
+  INDEX `workgroup_fk`(`workgroup`) USING BTREE,
+  INDEX `job_type_fk`(`typeposition_id`) USING BTREE,
+  CONSTRAINT `job_type_fk` FOREIGN KEY (`typeposition_id`) REFERENCES `hr_cpa_person_type` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `workgroup_fk` FOREIGN KEY (`workgroup`) REFERENCES `hr_cpa_workgroup` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1456 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
@@ -136,8 +132,10 @@ DROP TABLE IF EXISTS `hr_cpa_workgroup`;
 CREATE TABLE `hr_cpa_workgroup`  (
   `id` int(11) NOT NULL,
   `workgroup` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `mission_id` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE
+  `mission_id` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `mission_id`(`mission_id`) USING BTREE,
+  CONSTRAINT `mission_isuse` FOREIGN KEY (`mission_id`) REFERENCES `hr_cpa_mission` (`mission_id`) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -156,8 +154,10 @@ CREATE TABLE `hr_form_list`  (
   `timestamp` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT 'วันที่เวลาที่เกิดการแก้ไขล่าสุด',
   `user_appove_status` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'id user admin ที่ทำการอนุมัติใบคำร้อง',
   `status` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'สถานะการอนุมัติใบรับรอง',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `person_isuse`(`person_main_id`) USING BTREE,
+  CONSTRAINT `person_isuse` FOREIGN KEY (`person_main_id`) REFERENCES `hr_cpa_person_main` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE
+) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for hr_user
@@ -248,7 +248,8 @@ CREATE TABLE `hrd_cpa_person`  (
   `dateupdate` datetime(0) NULL DEFAULT NULL,
   `userupdate` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `ipupdate` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  PRIMARY KEY (`cid`) USING BTREE
+  PRIMARY KEY (`cid`) USING BTREE,
+  INDEX `position_fk`(`position_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
