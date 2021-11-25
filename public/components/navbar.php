@@ -73,7 +73,7 @@
           <?php } else if (isset($_SESSION['username'])) {  ?> 
             <hi class="text-white"><?php echo 'ผู้ใช้งาน : '.$_SESSION['fullname'] ?> &nbsp; </hi>
             <a href="logout"><button style="float: right;" class="btn btn-light" name="logout" type="submit">LOGOUT</button></a>&nbsp;&nbsp;
-            <button class="btn btn-success" style="float: right;"><i class="fa fa-cog" aria-hidden="true"> เปลี่ยน Password</i></button>
+            <a href="./changeuser-password"><button class="btn btn-success" style="float: right;"><i class="fa fa-cog" aria-hidden="true"> เปลี่ยน Password</i></button></a>
           <?php } ?>
         </form>
         <?php } ?>

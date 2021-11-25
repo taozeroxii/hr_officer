@@ -41,6 +41,11 @@ class manage_user extends Dbcon
         return $result;
     }
 
+    public function changePassword($user_id,$password){
+        $query =  mysqli_query($this->mycon,"UPDATE hr_user SET  password = '$password' WHERE id = '$user_id'");
+        return $query;
+    }
+
 
 
 

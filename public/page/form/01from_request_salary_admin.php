@@ -16,8 +16,8 @@
 
     <div class="container">
         <br>
-        <h1>รายการขอใบรับรองเงินเดือนของท่าน</h1>
-        <p class="text-light">ผู้ใช้งานนะ <?php echo $_SESSION['fullname'] ?></p>
+        <h1 class="text-light">รายการขอใบรับรองเงินเดือน</h1>
+        <hr>
         <div class="card">
             <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped text-center">
