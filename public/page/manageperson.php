@@ -171,23 +171,23 @@
             $stjob  =  $row['date_start_job'];
             $birthday = $row['birthdate'];
             $typeposition_id = $row['typeposition_id']; //ประเภทการจ้าง
-
+            $mission_id = $row['mission_id']; //id กลุ่มภารกิจ
+            $workgroup_id = $row['workgroup']; //id หน่วยงาน
 
             if (isset($_POST['status'])) {
-                $pname = $_POST['pname'];
-                $fname = $obj->escape($_POST['fname']);
-                $lname = $obj->escape($_POST['lname']);
-                $cid   = $obj->escape($_POST['cid']);
-                $stjob = $obj->escape($_POST['stjob']);
-                $birthday = $obj->escape($_POST['birthday']);
-                $mission_id = $_POST['mission_id']; //id กลุ่มภารกิจ
-                $workgroup_id = $_POST['workgroupid']; //id หน่วยงาน
-                $position_id = $_POST['position_id']; //ตำแหน่ง
-                $typeposition_id =  $_POST['typeposition']; //ประเภทการจ้าง
-                $updateuser = $_SESSION['user_id'];
-
                 if ($_POST['status'] === 'edit') {
-                    echo 'edit';
+                    $pname = $_POST['pname'];
+                    $fname = $obj->escape($_POST['fname']);
+                    $lname = $obj->escape($_POST['lname']);
+                    $cid   = $obj->escape($_POST['cid']);
+                    $stjob = $obj->escape($_POST['stjob']);
+                    $birthday = $obj->escape($_POST['birthday']);
+                    $mission_id = $_POST['mission_id']; //id กลุ่มภารกิจ
+                    $workgroup_id = $_POST['workgroupid']; //id หน่วยงาน
+                    $position_id = $_POST['position_id']; //ตำแหน่ง
+                    $typeposition_id =  $_POST['typeposition']; //ประเภทการจ้าง
+                    $updateuser = $_SESSION['user_id'];
+                    echo '<center><H1 class= "text-danger mt-5">ไม่สามารแก้ไขได้ : การแก้ไขข้อมูลบุคลากรอยู่ระหว่างการพัฒนาระบบ !!!</H1></center>';
                 }
             }
         } else {
@@ -204,18 +204,22 @@
             <div class="card-body">
                 <?php if (isset($id)) { ?>
                     <h1 class="card-title"> แก้ไข รายชื่อบุคลากร <?php echo 'id : ' . $id; ?></h1>
+                    <?php
+                    echo $obj->fetchdata_mission_byid($mission_id) . '<br>';
+                    echo $obj->fetchdata_workgroup_byid($workgroup_id)
+                    ?>
                 <?php } else { ?>
                     <h1 class="card-title"> เพิ่ม รายชื่อบุคลากร </h1>
                     <label for="" class="form-label">&nbsp; person</label>
                 <?php } ?>
 
-                <div style="float:right;" id="thumbnail"></div>
+                <div style="float:right;"  title="ภาพที่ต้องการอัพใหม่" id="thumbnail"></div>
 
                 <?php if (isset($id)) { ?>
-                    <img src="../uploads/image/<?php echo $old_img; ?>" style="float:right;">
+                    <img src="../uploads/image/<?php echo $old_img; ?>" style="float:right;" title="ภาพเดิม" >
                 <?php } ?>
 
-                <form method="post" enctype="multipart/form-data" action="<?php echo !isset($id) ? "./manageperson" : "../manageperson" ?>">
+                <form method="post" enctype="multipart/form-data" action="<?php echo !isset($id) ? "./manageperson" : "../manageperson/$id" ?>">
                     <div class="">
                         <div class="row mb-3">
                             <div class="col-lg-12 mt-5">
@@ -304,8 +308,9 @@
                                 echo " <div class='col-lg-3 col-12'>  <label for='ตำแหน่ง' class='form-label mt-2'>กลุ่มภารกิจ Mission  </label><select id='brand' name='mission_id' class='form-control' required>";
                                 echo "<option value=''>-กรุณาเลือก-</option>";
                                 while ($row = mysqli_fetch_array($sqlmission)) {
-                                    echo "<option value='$row[mission_id]'>" . $row["mission_name"] . "</option>";
-                                }
+                                ?>
+                                  <option value='<? echo $row["mission_id"]?>'><?php echo $row["mission_name"] ?> </option>
+                                <?php }
                                 echo "</select>";
                                 echo '</div>';
 
@@ -325,9 +330,9 @@
                             <a href="./tableperson" class="btn btn-secondary"> ย้อนกลับ</a>
                             <input type="hidden" name="status" value="insert">
                         <?php } else { ?>
-                            <button type="submit" class="btn btn-warning" name="status" value="update">แก้ไข</button>
+                            <button type="submit" class="btn btn-warning" name="status" value="edit">แก้ไข</button>
                             <a href="../tableperson" class="btn btn-secondary"> ย้อนกลับ</a>
-                            <input type="hidden" name="mission_id" value="<?php echo $id ?>">
+                           
                         <?php }
                         if (isset($errorsImgs)) {
                             print_r($errorsImgs);

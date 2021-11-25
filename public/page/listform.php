@@ -20,14 +20,18 @@
             <i class="fa fa-archive fa-4x"></i><br>
             <strong>หนังสือรับรอง</strong>
         </button>
-
         <button style="width: 150px; height:125px;" type="button" class="btn btn-info" data-toggle="modal" data-target="#leavemodal">
             <i class="fa fa-share fa-4x"></i><br>
             <strong>ลา</strong>
         </button>
+
+
+        <hr class="text-light">
+        <h2 class="text-light">Admin</h2>
+
         <?php if ($_SESSION['role'] == 1 || $_SESSION['role'] == 0) { ?>
             <button style="width: 150px; height:125px;" type="button" class="btn btn-warning" data-toggle="modal" data-target="#approveModal">
-                <i class="fa fa-share fa-4x"></i><br>
+                <i class="fa fa-archive fa-4x"></i><br>
                 <strong>อนุมัติหนังสือรับรอง</strong>
             </button>
         <?php
@@ -81,6 +85,8 @@
             </div>
         </div>
     </div>
+
+
     <div class="modal" id="approveModal" tabindex="-1" role="dialog" aria-labelledby="approveModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">

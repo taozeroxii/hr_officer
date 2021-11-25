@@ -120,8 +120,7 @@
         <?php include './public/components/footer.php'; ?>
         <script type="text/javascript">
             $(function() {
-                $("#overlay").fadeOut();
-                $(".main-contain").removeClass("main-contain");
+                $("#overlay").fadeOut(5);
             });
         </script>
 </body>

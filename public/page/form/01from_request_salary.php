@@ -47,7 +47,7 @@
         </div>
 
         <hr>
-        <h2 class="text-light">รายการขอใบรับรองเงินเดือนของท่าน</h2>
+        <h4 class="text-light">รายการขอใบรับรองเงินเดือนของท่าน 10 รายการล่าสุด</h4>
         <p class="text-light">ผู้ใช้งาน <?php echo $_SESSION['fullname']; ?></p>
         <div class="card">
             <div class="card-body">
@@ -63,11 +63,11 @@
                         function statusCheck($status)
                         {
                             if ($status == null || $status == '')
-                                return 'รอดำเนินการ';
+                                return '<p class="text-info"><i class="fa fa-genderless" aria-hidden="true"></i>&nbsp;รอดำเนินการ</p>';
                             else if ($status == 1)
-                                return 'ผ่านการอนุมัติ';
+                                return '<p class="text-success"><i class="fa fa-check" aria-hidden="true"></i>&nbsp;ผ่านการอนุมัติ</p>';
                             else
-                                return 'ไม่ผ่านการอนุมัติ';
+                                return '<p class="text-danger"><i class="fa fa-times" aria-hidden="true"></i>&nbsp;ไม่ผ่านการอนุมัติ</p>';
                         }
                         $sql =  $obj->fetct_byuser($_SESSION['user_id']);
                         while ($row = mysqli_fetch_array($sql)) {
@@ -76,13 +76,6 @@
                                 <td><?php echo $row['insert_datetime'] ?></td>
                                 <td><?php echo $row['note'] ?></td>
                                 <td><?php echo statusCheck($row['status']) ?></td>
-                                <!-- <td>
-                                    <a href="./print_salary?<?php //echo " "; 
-                                                            ?>">
-                                        <button class="btn btn-warning btn-block"><i class="fa fa-print" aria-hidden="true"></i>
-                                        </button>
-                                    </a>
-                                </td> -->
                             </tr>
                         <?php } ?>
                     </tbody>
