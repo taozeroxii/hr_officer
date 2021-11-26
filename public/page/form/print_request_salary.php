@@ -4,20 +4,11 @@
 <head>
 	<meta charset="utf-8">
 	<title></title>
-	<script src="../ckeditor.js"></script>
-	<script src="js/sample.js"></script>
-	<link rel="stylesheet" href="css/samples.css">
-	<link rel="stylesheet" href="toolbarconfigurator/lib/codemirror/neo.css">
+	<script src="./adminltes/ckeditor/ckeditor.js"></script>
+	<script src="./adminltes/ckeditor/samples/js/sample.js"></script>
+	<link rel="stylesheet" href="./adminltes/ckeditor/samples/css/samples.css">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<meta name="description" content="Try the latest sample of CKEditor 4 and learn more about customizing your WYSIWYG editor with endless possibilities.">
-	<style>
-
-
-
-	</style>
-
-
-
 </head>
 
 <body id="main">
@@ -25,7 +16,7 @@
 	<main>
 
 		<div class="adjoined-bottom">
-			<div class="grid-container">
+			<div class="container">
 				<div class="grid-width-100">
 					<div id="editor">
 						<p>&nbsp;</p>
