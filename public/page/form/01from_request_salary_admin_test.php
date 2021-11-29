@@ -4,7 +4,6 @@
 
 <head>
     <script src="./adminltes/ckeditor/ckeditor.js"></script>
-    <!-- <script src="./adminltes/ckeditor/samples/js/sample.js"></script> -->
     <link rel="stylesheet" href="./adminltes/ckeditor/samples/css/samples.css">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="description" content="Try the latest sample of CKEditor 4 and learn more about customizing your WYSIWYG editor with endless possibilities.">
@@ -67,12 +66,7 @@
 
 <p>&nbsp;</p>
 
-
-
-    </textarea>
-    <script>
-        CKEDITOR.replace('editor1');
-    </script>
+    </textarea>     
     <style>
         /* .cke_reset {
             margin: auto;
@@ -109,6 +103,7 @@
             width: 810px !important;
         }
     </style>
+<script src="./adminltes/ckeditor/config.js"></script>
+<script>CKEDITOR.replace('editor1');</script>
 </body>
-
 </html>
