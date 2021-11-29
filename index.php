@@ -135,9 +135,9 @@ if (isset($_SESSION['fullname']) && (isset($_SESSION['role']))) {
     $router->map("GET,POST", "/changeuser-password", function () {
         require __DIR__ . "./public/page/changeuserpassword.php";
     });
-
-
-    
+    $router->map("GET,POST", "/form_request_salary_admin_test", function () {
+        require __DIR__ . "./public/page/form/01from_request_salary_admin_test.php";
+    });
 }
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  ส่วน User ทั่วไป หรือต้องมีการเข้าสู่ระบบ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
