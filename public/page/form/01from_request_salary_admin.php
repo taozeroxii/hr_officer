@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="th">
-<?php require "./public/components/head.php" ?>
+<?php require "./public/components/head.php"; 
+      require "./public/components/func_datethai.php";
+
+?>
 
 <body>
     <?php
@@ -54,7 +57,7 @@
                         ?>
 
                             <tr>
-                                <td class="text-left"><?php echo $row['timestamp'] ?></td>
+                                <td class="text-left"><?php echo DateThai($row['timestamp'])." ".TimeThai($row['timestamp']); ?></td>
                                 <td class="text-left"><?php echo $row['note'] ?></td>
                                 <!-- <td><?php //echo statusCheck($row['status']) 
                                             ?></td> -->

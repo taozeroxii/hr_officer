@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="th">
-<?php require "./public/components/head.php" ?>
+<?php require "./public/components/head.php"; 
+      require "./public/components/func_datethai.php";
+ ?>
 
 <body>
     <?php
@@ -73,9 +75,9 @@
                         while ($row = mysqli_fetch_array($sql)) {
                         ?>
                             <tr>
-                                <td><?php echo $row['insert_datetime'] ?></td>
-                                <td><?php echo $row['note'] ?></td>
-                                <td><?php echo statusCheck($row['status']) ?></td>
+                                <td><?php echo DateTimeThai($row['insert_datetime']); ?></td>
+                                <td><?php echo $row['note']; ?></td>
+                                <td><?php echo statusCheck($row['status']); ?></td>
                             </tr>
                         <?php } ?>
                     </tbody>
