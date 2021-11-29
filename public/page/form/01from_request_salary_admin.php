@@ -39,7 +39,7 @@ require "./public/components/func_datethai.php";
 
     <div class="container-fulid mr-3 ml-3">
         <br>
-        <h1 class="text-light">รายการขอใบรับรองเงินเดือน limit 1000 รายการ</h1>
+        <h1 class="text-light">รายการขอหนังสือรับรอง limit 1000 รายการ</h1>
         <form action="./form_request_salary_admin#" method="post">
             <button type="submit" name="submit" value="wait" class="btn btn-lg btn-warning">รอดำเนินการ</button>
             <button type="submit" name="submit" value="acp" class="btn btn-lg btn-success">ผ่านการอนุมัติ</button>
@@ -54,12 +54,12 @@ require "./public/components/func_datethai.php";
                     <!-- /.card-header -->
                     <div class="card-body">
                         <table id="example1" class="table table-bordered table-striped">
-                            <thead>
+                            <thead class="text-center">
                                 <th>วันเวลาที่ขอ</th>
                                 <th>ผู้ขอ</th>
                                 <th>แผนก</th>
                                 <th>หน่วยงาน</th>
-                                <th>หมายเหตุ</th>
+                                <th>ประสงค์ขอหนังสือรับรองเพื่อ</th>
                                 <th>วันเวลาอัพเดทข้อมูลล่าสุด</th>
                                 <th>สถานะ</th>
                                 <th>พิมพ์</th>

@@ -8,7 +8,7 @@
     <?php
     $page = 'form';
     include "./public/components/navbar.php";
-    $formname = 'หนังสือรับรองเงินเดือน';
+    $formname = 'หนังสือรับรอง';
     $form_id = '001';
     require("./service/formmanage.php");
     $obj  = new manage_form();
@@ -36,7 +36,7 @@
     <div class="container">
         <div class="card mt-5">
             <div class="card-body">
-                <h5>แบบฟอร์มขอใบรับรองเงินเดือน</h5>
+                <h5>แบบฟอร์มขอหนังสือรับรอง</h5>
                 <form action="#" method="post">
                     <p>โปรดกรอกหมายเหตุที่ต้องการขอใบรับรอง</p>
                     <input class="form-control" type="text" name="note" placeholder="ระบุเหตุผลที่ต้องการขอใบรับรอง" value="" required>
@@ -49,14 +49,14 @@
         </div>
 
         <hr>
-        <h4 class="text-light">รายการขอใบรับรองเงินเดือนของท่าน 10 รายการล่าสุด</h4>
+        <h4 class="text-light">รายการขอหนังสือรับรองของท่าน 10 รายการล่าสุด</h4>
         <p class="text-light">ผู้ใช้งาน <?php echo $_SESSION['fullname']; ?></p>
         <div class="card">
             <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
-                    <thead>
+                    <thead class="text-center">
                         <th>วันเวลาที่ขอ</th>
-                        <th>หมายเหตุ</th>
+                        <th>ประสงค์ขอหนังสือรับรองเพื่อ</th>
                         <th>สถานะ</th>
                     </thead>
 

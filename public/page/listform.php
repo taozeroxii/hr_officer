@@ -51,7 +51,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p class="ml-3 "><a class="btn btn-block btn-info text-light text-left" href="./form_request_salary">1. หนังสือรับรองเงินเดือน </a></p>
+                    <p class="ml-3 "><a class="btn btn-block btn-info text-light text-left" href="./form_request_salary">1. หนังสือรับรอง </a></p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -97,7 +97,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p class="ml-3 "><a class="btn btn-block btn-info text-light text-left" href="./form_request_salary_admin">1. หนังสือรับรองเงินเดือน </a></p>
+                    <p class="ml-3 "><a class="btn btn-block btn-info text-light text-left" href="./form_request_salary_admin">1. หนังสือรับรอง </a></p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
