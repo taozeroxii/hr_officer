@@ -100,7 +100,7 @@ require "./public/components/func_datethai.php";
                                         <td><button style="line-height: 100%;" class="btn <?php echo statusCheckColor($row['status']) ?> btn-block" onclick="approveUser(<?php echo $row['id'] ?>, <?php echo $_SESSION['user_id'] ?>)"><?php echo statusCheck($row['status']) ?></button></td>
 
                                         <td>
-                                            <a href="./print_salary">
+                                            <a href="./form_request_salary_admin_test">
                                                 <button style="line-height: 10%;" class="btn btn-info btn-block"><i class="fa fa-print" aria-hidden="true"></i>
                                                 </button>
                                             </a>
