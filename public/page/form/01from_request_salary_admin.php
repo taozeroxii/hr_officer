@@ -97,17 +97,14 @@ require "./public/components/func_datethai.php";
                                         <td><button style="line-height: 100%;" class="btn <?php echo statusCheckColor($row['status']) ?> btn-block" onclick="approveUser(<?php echo $row['id'] ?>, <?php echo $_SESSION['user_id'] ?>)"><?php echo statusCheck($row['status']) ?></button></td>
 
                                         <td>
-                                            <a href="./form_request_salary_admin_test">
+                                            <!-- <a> -->
+                                                <!-- href="./form_request_salary_admin_test" -->
                                                 <button style="line-height: 10%;" class="btn btn-info btn-block" onclick="printUser(
-                                                    <?php echo $row['id'] ?>, 
-                                                    <?php echo DateThai($row['insert_datetime']) ?>, 
-                                                    <?php echo $row['fullname'] ?>, 
-                                                    <?php echo $row['mission_name'] ?>, 
-                                                    <?php echo $row['workgroup'] ?>
-                                                    <?php echo $row['note'] ?>)">
+                                                    <?php echo $row['id'] ?>
+                                                    )">
                                                     <i class="fa fa-print" aria-hidden="true"></i>
                                                 </button>
-                                            </a>
+                                            <!-- </a> -->
                                         </td>
                                     </tr>
                                 <?php } ?>
@@ -153,21 +150,16 @@ require "./public/components/func_datethai.php";
                         });
                     })
                 }
-            })
+            });
         }
 
 
-        function printUser(id, insert_datetime, fullname, mission_name, workgroup, note) {
-                post('./form_request_salary_admin_test', {
-                    id: id,
-                    insert_datetime: insert_datetime,
-                    fullname: fullname,
-                    mission_name: mission_name,
-                    workgroup: workgroup,
-                    note: note,
-                });
+        function printUser(id, insert_datetime) {
+            post('./form_request_salary_admin_test', {
+                id: id
+            });
 
-            }
+        }
 
         function post(path, params, method = 'post') {
 

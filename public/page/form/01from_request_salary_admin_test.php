@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="th">
-<?php require "./public/components/head.php" ?>
+<?php
+require "./public/components/head.php";
+require "./public/components/func_datethai.php";
+?>
 
 <head>
     <script src="./adminltes/ckeditor/ckeditor.js"></script>
@@ -19,10 +22,18 @@
     $form_id = '001';
     require("./service/formmanage.php");
     $obj  = new manage_form();
+    $sql =  $obj->fetctprint_byuser($_POST['id']);
 
+    while ($row = mysqli_fetch_array($sql)) {
+        $insert_datetime = DateThai($row['insert_datetime']);
+        $mobile_phone_number = $row['mobile_phone_number'] == '' ? 'xxx-xxx-xxxx' : $row['mobile_phone_number'];
+        $fullname = $row['fullname'];
+        $workgroup = $row['workgroup'];
+        $note = $row['note'];
+    }
 
     ?>
-
+    <br>
     <textarea name="editor1">
 <p>&nbsp;</p>
 
@@ -43,16 +54,32 @@
 <p>&nbsp;</p>
 
 <p>&nbsp;</p>
+<div style="margin-left: 172px !important;
+    margin-top: 238px !important;
+    position: absolute !important;">
+<p style="margin-left: 40px !important;"><span style="font-size:8px"><span style="font-family:Trebuchet MS,Helvetica,sans-serif;"><?php echo $insert_datetime ?></span></span></p>
+</div>
+<div style="margin-left: 123px !important;
+    margin-top: 292px !important;
+    position: absolute !important;">
+<p style="margin-left: 40px !important;"><span style="font-size:8px"><span style="font-family:Trebuchet MS,Helvetica,sans-serif;"><?php echo $fullname ?></span></span></p>
+</div>
+
 <div style="position: absolute !important;
-    margin-left: 16px !important;
+    margin-left: 169px !important;
     margin-top: 307px !important;">
-<p style="margin-left: 40px !important;"><span style="font-size:8px"><span style="font-family:Trebuchet MS,Helvetica,sans-serif;">---นาย จักรภัทร
-<?php echo $_POST['id'];
-echo $_POST['insert_datetime'];
-echo $_POST['fullname'];
-echo $_POST['mission_name'];
-echo $_POST['workgroup'];
-echo $_POST['note']; ?>---</span></span></p>
+<p style="margin-left: 40px !important;"><span style="font-size:8px"><span style="font-family:Trebuchet MS,Helvetica,sans-serif;"><?php echo $workgroup ?></span></span></p>
+</div>
+<div style="line-height: 1.15;margin-left: -26px !important;
+    margin-top: 338px !important;
+    position: absolute !important;max-width: 333px;">
+<p style="margin-left: 40px !important;"><span style="font-size:8px"><span style="font-family:Trebuchet MS,Helvetica,sans-serif;"><?php
+                                                                                                                                    echo $note ?></span></span></p>
+</div>
+<div style="margin-left: 195px !important;
+    margin-top: 364px !important;
+    position: absolute !important;">
+<p style="margin-left: 40px !important;"><span style="font-size:8px"><span style="font-family:Trebuchet MS,Helvetica,sans-serif;"><?php echo $mobile_phone_number ?></span></span></p>
 </div>
 <p>&nbsp;</p>
 

@@ -18,10 +18,25 @@ class manage_form extends Dbcon
         $result = mysqli_query($this->mycon, "SELECT * FROM hr_form_list WHERE  user_id = '$userid' ORDER BY insert_datetime DESC LIMIT 10");
         return $result;
     }
+
+    public function fetctprint_byuser($userid)
+    {
+        $result = mysqli_query($this->mycon, "select hfl.*,pm.mobile_phone_number,pm.typeposition_id,hpt.person_name,pm.position_id,position_name,
+            pm.workgroup as workgroupid ,wg.workgroup,wg.mission_id,hcm.mission_name
+            from hr_form_list hfl
+            LEFT JOIN hr_cpa_person_main pm ON hfl.person_main_id  = pm.id
+            LEFT JOIN hrd_cpa_position hrp on hrp.id = pm.position_id
+            LEFT JOIN hr_cpa_person_type   hpt on hpt.id = pm.typeposition_id
+            LEFT JOIN hr_cpa_workgroup wg on wg.id = pm.workgroup
+            LEFT JOIN hr_cpa_mission hcm on hcm.mission_id = wg.mission_id
+            where hfl.id = '$userid'
+            ORDER BY timestamp DESC LIMIT 1");
+        return $result;
+    }
     public function fetct_byadmin($buttonclick)
     {
         $status = mysqli_real_escape_string($this->mycon, $buttonclick);
-        if ($status == null ||$status == ''  ) {
+        if ($status == null || $status == '') {
             $result = mysqli_query($this->mycon, "select hfl.*,pm.typeposition_id,hpt.person_name,pm.position_id,position_name,
             pm.workgroup as workgroupid ,wg.workgroup,wg.mission_id,hcm.mission_name
             from hr_form_list hfl
