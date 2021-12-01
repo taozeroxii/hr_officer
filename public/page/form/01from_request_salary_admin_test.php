@@ -26,6 +26,7 @@ require "./public/components/func_datethai.php";
 
     while ($row = mysqli_fetch_array($sql)) {
         $insert_datetime = DateThai($row['insert_datetime']);
+        $position_name = $row['position_name'];
         $mobile_phone_number = $row['mobile_phone_number'] == '' ? 'xxx-xxx-xxxx' : $row['mobile_phone_number'];
         $fullname = $row['fullname'];
         $workgroup = $row['workgroup'];
@@ -70,6 +71,11 @@ require "./public/components/func_datethai.php";
 </div>
 
 <div style="position: absolute !important;
+    margin-left: 22px !important;
+    margin-top: 316px !important;">
+<p style="margin-left: 40px !important;"><span style="font-size:8px"><span style="font-family:Trebuchet MS,Helvetica,sans-serif;"><?php echo $position_name ?></span></span></p>
+</div>
+<div style="position: absolute !important;
     margin-left: 189px !important;
     margin-top: 316px !important;">
 <p style="margin-left: 40px !important;"><span style="font-size:8px"><span style="font-family:Trebuchet MS,Helvetica,sans-serif;"><?php echo $workgroup ?></span></span></p>
@@ -85,6 +91,18 @@ require "./public/components/func_datethai.php";
     position: absolute !important;">
 <p style="margin-left: 40px !important;"><span style="font-size:8px"><span style="font-family:Trebuchet MS,Helvetica,sans-serif;"><?php echo $mobile_phone_number ?></span></span></p>
 </div>
+<div style="margin-left: 100px !important;
+    margin-top: 479px !important;
+    position: absolute !important;
+    width: 200px;
+    text-align: center;">
+<p style=""><span style="font-size:8px"><span style="font-family:Trebuchet MS,Helvetica,sans-serif;">( <?php echo $fullname ?> )</span></span></p>
+</div>
+<div style="margin-left: 125px !important;
+    margin-top: 498px !important;
+    position: absolute !important;">
+<p style="margin-left: 40px !important;"><span style="font-size:8px"><span style="font-family:Trebuchet MS,Helvetica,sans-serif;"><?php echo $position_name ?></span></span></p>
+</div>
 <p>&nbsp;</p>
 
 <p>&nbsp;</p>
@@ -97,7 +115,7 @@ require "./public/components/func_datethai.php";
 
 <p>&nbsp;</p>
 
-<p><img alt="" src="./img/085421.PNG" style="margin-left: 20px;margin-top: 10px;height:380px; width:320px" /></p>
+<p><img alt="" src="./img/miniform.PNG" style="margin-left: 20px;margin-top: 10px;height:380px; width:320px" /></p>
     </textarea>
     <script>
         CKEDITOR.replace('editor1');
