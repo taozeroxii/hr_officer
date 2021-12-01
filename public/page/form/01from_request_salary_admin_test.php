@@ -54,6 +54,10 @@ require "./public/components/func_datethai.php";
 <p>&nbsp;</p>
 
 <p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
 <div style="margin-left: 172px !important;
     margin-top: 238px !important;
     position: absolute !important;">
