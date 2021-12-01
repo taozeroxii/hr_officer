@@ -75,17 +75,20 @@
             $position_id = $_POST['position_id']; //ตำแหน่ง
             $typeposition_id =  $_POST['typeposition']; //ประเภทการจ้าง
             $updateuser = $_SESSION['user_id'];
+            $mobile_phone_number = $obj->escape($_POST['phone']);
 
             if (empty($pname)) $errors[0] =  "กรุณากรอกคำนำหน้า";
             if (empty($fname)) $errors[1] =  "กรุณากรอกชื่อ";
             if (empty($lname)) $errors[2] =  "กรุณากรอกนามสกุล";
             if (empty($birthday)) $errors[3] =  "กรุณากรอกวันเดือนปีเกิด";
             if (empty($stjob)) $errors[4] =  "กรุณากรอกวันที่เข้าทำงาน";
+            if (is_numeric($mobile_phone_number) === false) $errors[5] =  "กรุณากรอกเบอร์ติดต่อเป็นตัวเลข";
+           
             $checkcid = $obj->check_cid($cid);
             if ($checkcid) $errors[8] =  "cidนี้มีอยู่ในระบบแล้ว";
-            if (empty($cid)) $errors[9] =  "กรุณากรอก หมายเลขบัตรประชาชน";
+            if ((empty($cid) || is_numeric($cid) === false)) $errors[9] =  "กรุณากรอก หมายเลขบัตรประชาชนเป็นตัวเลขเท่านั้น";
 
-            if (count($errors) == 0) {
+            if (@count($errors) == 0) {
 
                 if (isset($_FILES['file_upload']) && $_FILES['file_upload']['tmp_name'] != '') { // เช็คว่ามีการอัพไฟล์เข้ามารึเปล่า
                     $errorsImgs = array();
@@ -138,7 +141,7 @@
                         })</script>';
                     }
                 } else { // หากไม่มีการอัพรูปภาพให้ insert ไปเลย
-                    $queryInsert = $obj->insert_person($pname, $fname, $lname, $cid, $stjob, $birthday, $mission_id, $workgroup_id, $position_id, $typeposition_id, $updateuser, '');
+                    $queryInsert = $obj->insert_person($pname, $fname, $lname, $cid, $stjob, $birthday, $mission_id, $workgroup_id, $position_id, $typeposition_id, $updateuser, '',$mobile_phone_number);
                     if ($queryInsert) {
                         echo '<script>
                             Swal.fire({
@@ -249,6 +252,11 @@
                                 <label for="stjob" class="form-label ">วันที่เข้าทำงาน</label>
                                 <input type="date" class="form-control" name="stjob" value="<?= isset($stjob)  ? $stjob : ""; ?>" id="stjob" required>
                                 <?php if (!empty($errors[3])) echo "<p>" . $errors[3] . "</p>" ?>
+                            </div>
+                            <div class="col-lg-4 col-12">
+                                <label for="phone" class="form-label ">เบอร์ติดต่อ </label>
+                                <input type="text" class="form-control" maxlength="10" name="phone" value="<?= isset($mobile_phone_number)  ? $mobile_phone_number : ""; ?>" id="phone">
+                                <?php if (!empty($errors[5])) echo "<p>" . $errors[5] . "</p>" ?>
                             </div>
                         </div>
 

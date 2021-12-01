@@ -204,14 +204,14 @@ class manage_officer extends Dbcon
         $result = mysqli_query($this->mycon, "SELECT * FROM hr_cpa_person_main where id = '$id'");
         return $result;
     }
-    public function insert_person($pname, $fname, $lname, $cid, $stjob, $birthday, $mission_id, $workgroup_id, $position_id, $typeposition_id, $updateuser, $imgpath)
+    public function insert_person($pname, $fname, $lname, $cid, $stjob, $birthday, $mission_id, $workgroup_id, $position_id, $typeposition_id, $updateuser, $imgpath,$mobile_phone_number)
     {
         $ipaddress =  $this->get_client_ip();
         $position = $this->fetchdata_position_byid($position_id);
         $typeposition = $this->fetchdata_person_type_byid($typeposition_id);
         $result = mysqli_query($this->mycon, "INSERT INTO  hr_cpa_person_main  
-        (pname,fname,lname,cid,      date_start_job ,birthdate,    mission_id   , workgroup,     position_id, position ,   typeposition,   typeposition_id,  userupdate,ipupdate,w_status,image_path) value 
-        ('$pname','$fname','$lname','$cid','$stjob','$birthday',' $mission_id ','$workgroup_id','$position_id','$position','$typeposition','$typeposition_id','$updateuser','$ipaddress','Y','$imgpath')");
+        (pname,fname,lname,cid,      date_start_job ,birthdate,    mission_id   , workgroup,     position_id, position ,   typeposition,   typeposition_id,  userupdate,ipupdate,w_status,image_path,mobile_phone_number) value 
+        ('$pname','$fname','$lname','$cid','$stjob','$birthday',' $mission_id ','$workgroup_id','$position_id','$position','$typeposition','$typeposition_id','$updateuser','$ipaddress','Y','$imgpath','$mobile_phone_number')");
         return $result;
     }
 
