@@ -58,30 +58,30 @@ require "./public/components/func_datethai.php";
 <p>&nbsp;</p>
 
 <p>&nbsp;</p>
-<div style="margin-left: 172px !important;
-    margin-top: 238px !important;
+<div style="margin-left: 192px !important;
+    margin-top: 247px !important;
     position: absolute !important;">
 <p style="margin-left: 40px !important;"><span style="font-size:8px"><span style="font-family:Trebuchet MS,Helvetica,sans-serif;"><?php echo $insert_datetime ?></span></span></p>
 </div>
-<div style="margin-left: 123px !important;
-    margin-top: 292px !important;
+<div style="margin-left: 143px !important;
+    margin-top: 301px !important;
     position: absolute !important;">
 <p style="margin-left: 40px !important;"><span style="font-size:8px"><span style="font-family:Trebuchet MS,Helvetica,sans-serif;"><?php echo $fullname ?></span></span></p>
 </div>
 
 <div style="position: absolute !important;
-    margin-left: 169px !important;
-    margin-top: 307px !important;">
+    margin-left: 189px !important;
+    margin-top: 316px !important;">
 <p style="margin-left: 40px !important;"><span style="font-size:8px"><span style="font-family:Trebuchet MS,Helvetica,sans-serif;"><?php echo $workgroup ?></span></span></p>
 </div>
-<div style="line-height: 1.15;margin-left: -26px !important;
-    margin-top: 338px !important;
+<div style="line-height: 1.15;margin-left: -6px !important;
+    margin-top: 347px !important;
     position: absolute !important;max-width: 333px;">
 <p style="margin-left: 40px !important;"><span style="font-size:8px"><span style="font-family:Trebuchet MS,Helvetica,sans-serif;"><?php
                                                                                                                                     echo $note ?></span></span></p>
 </div>
-<div style="margin-left: 195px !important;
-    margin-top: 364px !important;
+<div style="margin-left: 215px !important;
+    margin-top: 373px !important;
     position: absolute !important;">
 <p style="margin-left: 40px !important;"><span style="font-size:8px"><span style="font-family:Trebuchet MS,Helvetica,sans-serif;"><?php echo $mobile_phone_number ?></span></span></p>
 </div>
@@ -97,7 +97,7 @@ require "./public/components/func_datethai.php";
 
 <p>&nbsp;</p>
 
-<p><img alt="" src="./img/085421.PNG" style="height:380px; width:320px" /></p>
+<p><img alt="" src="./img/085421.PNG" style="margin-left: 20px;margin-top: 10px;height:380px; width:320px" /></p>
     </textarea>
     <script>
         CKEDITOR.replace('editor1');
