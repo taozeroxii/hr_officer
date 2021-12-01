@@ -23,52 +23,50 @@
 
     ?>
 
-    <textarea name="editor1"><p>&nbsp;</p>
-
-<p style="margin-left:40px">&nbsp;<span style="font-family:Trebuchet MS,Helvetica,sans-serif"><span style="font-size:16px"><strong><img src="./img/krut-3-cm.PNG" style="height:80px; width:80px" />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</strong></span><span style="font-size:36px"><strong>บันทึกข้อความ</strong></span></span></p>
-
-<p style="margin-left:40px"><span style="font-family:Trebuchet MS,Helvetica,sans-serif"><span style="font-size:16px"><strong>ส่วนราชการ</strong><u> &nbsp;&nbsp;โรงพยาบาลเจ้าพระยาอภัยภูเบศร&nbsp; (กลุ่มงานทรัพยากรบุคคล โทร.2503/037217128) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</u></span></span></p>
-
-<p style="margin-left:40px"><span style="font-family:Trebuchet MS,Helvetica,sans-serif"><span style="font-size:16px"><strong>ที่</strong><u>&nbsp;&nbsp; ปจ 0032.101.04/พิเศษ<strong> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</strong></u><strong>วันที่</strong><u>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</u></span></span></p>
-
-<p style="margin-left:40px"><span style="font-family:Trebuchet MS,Helvetica,sans-serif"><span style="font-size:16px"><strong>เรื่อง</strong><u>&nbsp;&nbsp; ขอหนังสือรับรอง&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</u></span></span></p>
-
-<p style="margin-left:40px"><span style="font-family:Trebuchet MS,Helvetica,sans-serif"><span style="font-size:16px">เรียน&nbsp;&nbsp;&nbsp; ผู้อำนวยการโรงพยาบาลเจ้าพระยาอภัยภูเบศร</span></span></p>
-
-<p style="margin-left:40px"><span style="font-family:Trebuchet MS,Helvetica,sans-serif"><span style="font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></p>
-
-<p style="margin-left:40px"><span style="font-family:Trebuchet MS,Helvetica,sans-serif"><span style="font-size:16px">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ด้วยข้าพเจ้า (นาย/นาง/นางสาว).................................</span></span></p>
-
-<p style="margin-left:40px"><span style="font-family:Trebuchet MS,Helvetica,sans-serif"><span style="font-size:16px">ตำแหน่ง............................................................... ฝ่าย/กลุ่มงาน...........................................................</span></span></p>
-
-<p style="margin-left:40px"><span style="font-family:Trebuchet MS,Helvetica,sans-serif"><span style="font-size:16px">โรงพยาบาลเจ้าพระยาอภัยภูเบศร&nbsp; มีความประสงค์ขอหนังสือรับรองเพื่อ................................................................................................................................................................................................................................................................................................................................................................</span></span></p>
-
-<p style="margin-left:40px"><span style="font-family:Trebuchet MS,Helvetica,sans-serif"><span style="font-size:16px"><strong><u>แนบสลิปเงินเดือนปัจจุบัน 1 ฉบับ หมายเลขโทรศัพท์ เบอร์ภายใน/มือถือ</u></strong>...................................</span></span></p>
-
+    <textarea name="editor1">
 <p>&nbsp;</p>
 
-<p><span style="font-family:Trebuchet MS,Helvetica,sans-serif"><span style="font-size:16px">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; จึงเรียนมาเพื่อโปรดพิจารณาอนุมัติ</span></span></p>
+<p>&nbsp;</p>
 
 <p>&nbsp;</p>
 
 <p>&nbsp;</p>
 
-<p style="text-align:center"><span style="font-family:Trebuchet MS,Helvetica,sans-serif"><span style="font-size:16px">&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.</span></span></p>
-
-<p style="text-align:center"><span style="font-family:Trebuchet MS,Helvetica,sans-serif"><span style="font-size:16px">(...........................................................)</span></span></p>
-
-<p style="text-align:center"><span style="font-family:Trebuchet MS,Helvetica,sans-serif"><span style="font-size:16px">ตำแหน่ง.............................................................</span></span></p>
+<p>&nbsp;</p>
 
 <p>&nbsp;</p>
 
-<p style="margin-left:40px"><span style="font-family:Trebuchet MS,Helvetica,sans-serif"><span style="font-size:16px">เรียน&nbsp;&nbsp;&nbsp; ผอก.&nbsp; (ผ่าน รองฯ บริหาร)</span></span></p>
-
-<p style="margin-left:40px"><span style="font-family:Trebuchet MS,Helvetica,sans-serif"><span style="font-size:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; เพื่อทราบและลงนามรับรอง</span></span></p>
+<p>&nbsp;</p>
 
 <p>&nbsp;</p>
 
+<p>&nbsp;</p>
 
+<p>&nbsp;</p>
+<div style="position: absolute !important;
+    margin-left: 16px !important;
+    margin-top: 307px !important;">
+<p style="margin-left: 40px !important;"><span style="font-size:8px"><span style="font-family:Trebuchet MS,Helvetica,sans-serif;">---นาย จักรภัทร
+<?php echo $_POST['id'];
+echo $_POST['insert_datetime'];
+echo $_POST['fullname'];
+echo $_POST['mission_name'];
+echo $_POST['workgroup'];
+echo $_POST['note']; ?>---</span></span></p>
+</div>
+<p>&nbsp;</p>
 
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><img alt="" src="./img/085421.PNG" style="height:380px; width:320px" /></p>
     </textarea>
     <script>
         CKEDITOR.replace('editor1');
@@ -100,6 +98,8 @@
             height: 700px !important;
         }
 
+
+
         .cke_wysiwyg_frame,
         .cke_wysiwyg_div {
             margin-top: 20px !important;
@@ -109,6 +109,12 @@
             width: 810px !important;
         }
     </style>
+    <script>
+        window.onload = function deleteElement() {
+            document = document.getElementById("cke_22");
+            myobj.remove();
+        }
+    </script>
 </body>
 
 </html>

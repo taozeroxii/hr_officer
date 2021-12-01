@@ -13,22 +13,19 @@ require "./public/components/func_datethai.php";
     $form_id = '001';
     require("./service/formmanage.php");
     $obj  = new manage_form();
-    $buttonclick   =  $_POST['submit']  ?? null;//default
+    $buttonclick   =  $_POST['submit']  ?? null; //default
 
     if (isset($_POST['submit'])) {
         if ($_POST['submit'] === 'wait') {
             $buttonclick = null;
             $sql =  $obj->fetct_byadmin($buttonclick);
-        }
-        else if ($_POST['submit'] === 'acp') {
+        } else if ($_POST['submit'] === 'acp') {
             $buttonclick = 1;
             $sql =  $obj->fetct_byadmin($buttonclick);
-        }
-        else if ($_POST['submit'] === 'nacp') {
+        } else if ($_POST['submit'] === 'nacp') {
             $buttonclick = 0;
             $sql =  $obj->fetct_byadmin($buttonclick);
-        }
-        else if ($_POST['submit'] === 'all') {
+        } else if ($_POST['submit'] === 'all') {
             $sql =  $obj->fetct_byadmin($buttonclick);
         }
     } else {
@@ -101,7 +98,14 @@ require "./public/components/func_datethai.php";
 
                                         <td>
                                             <a href="./form_request_salary_admin_test">
-                                                <button style="line-height: 10%;" class="btn btn-info btn-block"><i class="fa fa-print" aria-hidden="true"></i>
+                                                <button style="line-height: 10%;" class="btn btn-info btn-block" onclick="printUser(
+                                                    <?php echo $row['id'] ?>, 
+                                                    <?php echo DateThai($row['insert_datetime']) ?>, 
+                                                    <?php echo $row['fullname'] ?>, 
+                                                    <?php echo $row['mission_name'] ?>, 
+                                                    <?php echo $row['workgroup'] ?>
+                                                    <?php echo $row['note'] ?>)">
+                                                    <i class="fa fa-print" aria-hidden="true"></i>
                                                 </button>
                                             </a>
                                         </td>
@@ -140,6 +144,7 @@ require "./public/components/func_datethai.php";
                         });
                     })
                 } else if (result.isDenied) {
+
                     Swal.fire('ไม่อนุมัติ', '', 'error').then((result) => {
                         post('./post', {
                             id: value,
@@ -150,6 +155,19 @@ require "./public/components/func_datethai.php";
                 }
             })
         }
+
+
+        function printUser(id, insert_datetime, fullname, mission_name, workgroup, note) {
+                post('./form_request_salary_admin_test', {
+                    id: id,
+                    insert_datetime: insert_datetime,
+                    fullname: fullname,
+                    mission_name: mission_name,
+                    workgroup: workgroup,
+                    note: note,
+                });
+
+            }
 
         function post(path, params, method = 'post') {
 
