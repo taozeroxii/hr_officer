@@ -72,9 +72,9 @@ class manage_form extends Dbcon
 
         return $result;
     }
-    public function fetch_leave()
+    public function fetch_leave()// query แระเภทการลา
     {
-        $result = mysqli_query($this->mycon, "select * from hr_cpa_leave");
+        $result = mysqli_query($this->mycon, "select * from hr_cpa_leave where form_type = '1'");
         return $result;
     }
     public function approve($id, $statusapprove, $userupdate)
