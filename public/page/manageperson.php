@@ -110,7 +110,7 @@
 
                     if (empty($errorsImgs) == true) {
                         move_uploaded_file($file_tmp, "./uploads/image/" . $file_name);
-                        $queryInsert = $obj->insert_person($pname, $fname, $lname, $cid, $stjob, $birthday, $mission_id, $workgroup_id, $position_id, $typeposition_id, $updateuser, $file_name);
+                        $queryInsert = $obj->insert_person($pname, $fname, $lname, $cid, $stjob, $birthday, $mission_id, $workgroup_id, $position_id, $typeposition_id, $updateuser, $file_name,$mobile_phone_number);
                         if ($queryInsert) {
                             echo '<script>
                                     Swal.fire({
