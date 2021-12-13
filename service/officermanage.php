@@ -145,10 +145,13 @@ class manage_officer extends Dbcon
     {
         $result = mysqli_query(
             $this->mycon,
-            "SELECT hpm.*,hcw.id as workgroup_id,hcw.workgroup as workgroup_name,hcw.mission_id ,hrt.person_name as typeposition_name
-        FROM hr_cpa_person_main hpm
-        LEFT JOIN hr_cpa_workgroup hcw on hcw.id = hpm.workgroup
-        LEFT JOIN hr_cpa_person_type hrt on hrt.id = hpm.typeposition_id
+            "SELECT hpm.*,hcw.id as workgroup_id,hcw.workgroup as workgroup_name ,hrt.person_name as typeposition_name,
+            position_level_name,pot.position_type_name
+            FROM hr_cpa_person_main hpm
+            LEFT JOIN hr_cpa_workgroup hcw on hcw.id = hpm.workgroup
+            LEFT JOIN hr_cpa_person_type hrt on hrt.id = hpm.typeposition_id
+            LEFT JOIN hrd_cpa_position_level lv on lv.position_level_id = hpm.position_level_id
+            LEFT JOIN hrd_cpa_position_type  pot on pot.position_type_id = hpm.position_type_id
         WHERE hcw.id = '$workgroup'
         "
         );
@@ -162,28 +165,37 @@ class manage_officer extends Dbcon
         if ($rfname != '' && $rlname == '') {
             $result = mysqli_query(
                 $this->mycon,
-                "SELECT hpm.*,hcw.id as workgroup_id,hcw.workgroup as workgroup_name,hcw.mission_id ,hrt.person_name as typeposition_name
-            FROM hr_cpa_person_main hpm
-            LEFT JOIN hr_cpa_workgroup hcw on hcw.id = hpm.workgroup
-			LEFT JOIN hr_cpa_person_type hrt on hrt.id = hpm.typeposition_id
+                "SELECT hpm.*,hcw.id as workgroup_id,hcw.workgroup as workgroup_name ,hrt.person_name as typeposition_name,
+                position_level_name,pot.position_type_name
+                FROM hr_cpa_person_main hpm
+                LEFT JOIN hr_cpa_workgroup hcw on hcw.id = hpm.workgroup
+                LEFT JOIN hr_cpa_person_type hrt on hrt.id = hpm.typeposition_id
+                LEFT JOIN hrd_cpa_position_level lv on lv.position_level_id = hpm.position_level_id
+                LEFT JOIN hrd_cpa_position_type  pot on pot.position_type_id = hpm.position_type_id
             WHERE hpm.fname like '%$rfname%'"
             );
         } else if ($rfname == '' && $rlname != '') {
             $result = mysqli_query(
                 $this->mycon,
-                "SELECT hpm.*,hcw.id as workgroup_id,hcw.workgroup as workgroup_name,hcw.mission_id ,hrt.person_name as typeposition_name
-            FROM hr_cpa_person_main hpm
-            LEFT JOIN hr_cpa_workgroup hcw on hcw.id = hpm.workgroup
-			LEFT JOIN hr_cpa_person_type hrt on hrt.id = hpm.typeposition_id
+                "SELECT hpm.*,hcw.id as workgroup_id,hcw.workgroup as workgroup_name ,hrt.person_name as typeposition_name,
+                position_level_name,pot.position_type_name
+                FROM hr_cpa_person_main hpm
+                LEFT JOIN hr_cpa_workgroup hcw on hcw.id = hpm.workgroup
+                LEFT JOIN hr_cpa_person_type hrt on hrt.id = hpm.typeposition_id
+                LEFT JOIN hrd_cpa_position_level lv on lv.position_level_id = hpm.position_level_id
+                LEFT JOIN hrd_cpa_position_type  pot on pot.position_type_id = hpm.position_type_id
             WHERE hpm.lname like '%$rlname%'"
             );
         } else if ($rfname != '' && $lname != '') {
             $result = mysqli_query(
                 $this->mycon,
-                "SELECT hpm.*,hcw.id as workgroup_id,hcw.workgroup as workgroup_name,hcw.mission_id ,hrt.person_name as typeposition_name
-            FROM hr_cpa_person_main hpm
-            LEFT JOIN hr_cpa_workgroup hcw on hcw.id = hpm.workgroup
-			LEFT JOIN hr_cpa_person_type hrt on hrt.id = hpm.typeposition_id
+                "SELECT hpm.*,hcw.id as workgroup_id,hcw.workgroup as workgroup_name ,hrt.person_name as typeposition_name,
+                position_level_name,pot.position_type_name
+                FROM hr_cpa_person_main hpm
+                LEFT JOIN hr_cpa_workgroup hcw on hcw.id = hpm.workgroup
+                LEFT JOIN hr_cpa_person_type hrt on hrt.id = hpm.typeposition_id
+                LEFT JOIN hrd_cpa_position_level lv on lv.position_level_id = hpm.position_level_id
+                LEFT JOIN hrd_cpa_position_type  pot on pot.position_type_id = hpm.position_type_id
             WHERE hpm.fname like '%$rfname%' AND hpm.lname like '%$rlname%' "
             );
         }

@@ -83,7 +83,7 @@
             if (empty($birthday)) $errors[3] =  "กรุณากรอกวันเดือนปีเกิด";
             if (empty($stjob)) $errors[4] =  "กรุณากรอกวันที่เข้าทำงาน";
             if (is_numeric($mobile_phone_number) === false) $errors[5] =  "กรุณากรอกเบอร์ติดต่อเป็นตัวเลข";
-           
+
             $checkcid = $obj->check_cid($cid);
             if ($checkcid) $errors[8] =  "cidนี้มีอยู่ในระบบแล้ว";
             if ((empty($cid) || is_numeric($cid) === false)) $errors[9] =  "กรุณากรอก หมายเลขบัตรประชาชนเป็นตัวเลขเท่านั้น";
@@ -110,7 +110,7 @@
 
                     if (empty($errorsImgs) == true) {
                         move_uploaded_file($file_tmp, "./uploads/image/" . $file_name);
-                        $queryInsert = $obj->insert_person($pname, $fname, $lname, $cid, $stjob, $birthday, $mission_id, $workgroup_id, $position_id, $typeposition_id, $updateuser, $file_name,$mobile_phone_number);
+                        $queryInsert = $obj->insert_person($pname, $fname, $lname, $cid, $stjob, $birthday, $mission_id, $workgroup_id, $position_id, $typeposition_id, $updateuser, $file_name, $mobile_phone_number);
                         if ($queryInsert) {
                             echo '<script>
                                     Swal.fire({
@@ -141,7 +141,7 @@
                         })</script>';
                     }
                 } else { // หากไม่มีการอัพรูปภาพให้ insert ไปเลย
-                    $queryInsert = $obj->insert_person($pname, $fname, $lname, $cid, $stjob, $birthday, $mission_id, $workgroup_id, $position_id, $typeposition_id, $updateuser, '',$mobile_phone_number);
+                    $queryInsert = $obj->insert_person($pname, $fname, $lname, $cid, $stjob, $birthday, $mission_id, $workgroup_id, $position_id, $typeposition_id, $updateuser, '', $mobile_phone_number);
                     if ($queryInsert) {
                         echo '<script>
                             Swal.fire({
@@ -216,10 +216,10 @@
                     <label for="" class="form-label">&nbsp; person</label>
                 <?php } ?>
 
-                <div style="float:right;"  title="ภาพที่ต้องการอัพใหม่" id="thumbnail"></div>
+                <div style="float:right;" title="ภาพที่ต้องการอัพใหม่" id="thumbnail"></div>
 
                 <?php if (isset($id)) { ?>
-                    <img src="../uploads/image/<?php echo $old_img; ?>" style="float:right;" title="ภาพเดิม" >
+                    <img src="../uploads/image/<?php echo $old_img; ?>" style="float:right;" title="ภาพเดิม">
                 <?php } ?>
 
                 <form method="post" enctype="multipart/form-data" action="<?php echo !isset($id) ? "./manageperson" : "../manageperson/$id" ?>">
@@ -317,7 +317,7 @@
                                 echo "<option value=''>-กรุณาเลือก-</option>";
                                 while ($row = mysqli_fetch_array($sqlmission)) {
                                 ?>
-                                  <option value='<? echo $row["mission_id"]?>'><?php echo $row["mission_name"] ?> </option>
+                                    <option value='<? echo $row["mission_id"] ?>'><?php echo $row["mission_name"] ?> </option>
                                 <?php }
                                 echo "</select>";
                                 echo '</div>';
@@ -331,6 +331,28 @@
                         </div>
 
 
+
+                        <!-- ส่วนของข้อมูลใหม่อยู่ระหว่างการดำเนินการ -->
+                        <div class="mb-3">
+                            <div class="row">
+                                <div class="col-lg-2">
+                                    <label for="position_number" class="form-label mt-2">ตำแหน่งเลขที่</label>
+                                    <input type="text" class="form-control" name="position_number" value="<?= isset($position_namber)  ? $position_namber : ""; ?>" id="position_namber" placeholder="ปจ1234">
+                                </div>
+                                <div class="col-lg-2">
+                                    <label for="position_number" class="form-label mt-2">ประเภทตำแหน่ง</label>
+                                   
+                                </div>
+                                <div class="col-lg-2">
+                                    <label for="position_number" class="form-label mt-2">ระดับ</label>
+                                   
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ส่วนของข้อมูลใหม่อยู่ระหว่างการดำเนินการ -->
+
+
+
                         <hr class="mt-5">
 
                         <?php if (!isset($id)) { ?>
@@ -340,7 +362,7 @@
                         <?php } else { ?>
                             <button type="submit" class="btn btn-warning" name="status" value="edit">แก้ไข</button>
                             <a href="../tableperson" class="btn btn-secondary"> ย้อนกลับ</a>
-                           
+
                         <?php }
                         if (isset($errorsImgs)) {
                             print_r($errorsImgs);
