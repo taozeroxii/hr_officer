@@ -1,7 +1,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark " style="background-color: black;">
   <div class="container-fluid">
-    <a href="http://localhost/hr_officer/"><span class="navbar-brand">CPA HR Managements</span></a>
+    <a href="../hr_officer"><span class="navbar-brand">CPA HR Managements</span></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
