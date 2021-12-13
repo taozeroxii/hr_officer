@@ -108,9 +108,9 @@
                                                         <div class="text-center"><img class="img-fluid " style="width:200;height:200px;object-fit: cover;" src="<?php echo $imagePath ?>"></div>
                                                         <h4 class="card- text-center mt-3"><?php echo $result['pname'] . $result['fname'] . ' ' . $result['lname']; ?></h4>
                                                         <p class="card-text"> <?php echo $result['workgroup_name']; ?></p>
-                                                        <p class="card-text">ประเภท <?php  echo $result['position_type_name'];?></p>
-                                                        <p class="card-text">ตำแหน่ง <?php echo  $result['position'] ;?></p>
-                                                        <p> <?php  echo $result['position_level_name'];?></p>
+                                                        <p class="card-text"> <?php echo $result['position_type_name'] != null ? 'ประเภท '.$result['position_type_name'] : "";?></p>
+                                                        <p class="card-text"> <?php echo $result['position'] != null ? 'ตำแหน่ง '.$result['position'] : "";?></p>
+                                                        <p class="card-text"> <?php echo $result['position_level_name'] != null ? 'ระดับ '.$result['position_level_name'] : "";?></p>
                                                         <a href="<?php if (isset($_SESSION['username'])) { echo "./manageperson/" . $result['id'];   } else ""; ?>" class="btn btn-primary btn-sm"> <i class="fa fa-edit"> <?php echo  $result['typeposition_name'] ?></i></a>
                                                     </div>
                                                 </div>
