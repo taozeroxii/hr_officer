@@ -39,8 +39,7 @@ require "./public/components/func_datethai.php";
         <h1 class="text-light">รายการขอหนังสือรับรอง limit 1000 รายการ</h1>
         <form action="./form_request_salary_admin#" method="post">
             <button type="submit" name="submit" value="wait" class="btn btn-lg btn-warning">รอดำเนินการ</button>
-            <button type="submit" name="submit" value="acp" class="btn btn-lg btn-success">ผ่านการอนุมัติ</button>
-            <button type="submit" name="submit" value="nacp" class="btn btn-lg btn-danger">ไม่อนุมัติ</button>
+            <button type="submit" name="submit" value="acp" class="btn btn-lg btn-success">อนุมัติ</button>
             <button type="submit" name="submit" value="all" class="btn btn-lg btn-secondary">ทั้งหมด</button>
         </form>
         <hr>
@@ -69,9 +68,9 @@ require "./public/components/func_datethai.php";
                                     if ($status == null || $status == '')
                                         return 'รอดำเนินการ';
                                     else if ($status == 1)
-                                        return 'ผ่านการอนุมัติ';
+                                        return 'อนุมัติ';
                                     else
-                                        return 'ไม่ผ่านการอนุมัติ';
+                                        return 'ไม่อนุมัติ';
                                 }
                                 function statusCheckColor($status)
                                 {
@@ -94,7 +93,7 @@ require "./public/components/func_datethai.php";
                                         <td class="text-left"><?php echo $row['workgroup'] ?></td>
                                         <td class="text-left"><?php echo $row['note'] ?></td>
                                         <td class="text-left"><?php echo DateThai($row['timestamp']) . " " . TimeThai($row['timestamp']); ?></td>
-                                        <td><button style="line-height: 100%;" class="btn <?php echo statusCheckColor($row['status']) ?> btn-block" onclick="approveUser(<?php echo $row['id'] ?>, <?php echo $_SESSION['user_id'] ?>)"><?php echo statusCheck($row['status']) ?></button></td>
+                                        <td><button style="line-height: 100%;" class="btn <?php echo statusCheckColor($row['status']) ?> btn-block" onclick="approveUser(<?php echo $row['id'] ?>, <?php echo $_SESSION['user_id'] ?>)" <?php echo statusCheck($row['status']) === 'อนุมัติ' ? 'disabled' :""; ?>><?php echo statusCheck($row['status'])  ?></button></td>
 
                                         <td>
                                             <!-- <a> -->
@@ -124,8 +123,8 @@ require "./public/components/func_datethai.php";
     <script>
         function approveUser(value, user_id) {
             Swal.fire({
-                title: 'อนุมัติหรือไม่' + user_id,
-                showDenyButton: true,
+                title: 'อนุมัติหรือไม่',
+                showDenyButton: false,
                 showCancelButton: true,
                 confirmButtonColor: '#28A745',
                 confirmButtonText: 'อนุมัติ',
