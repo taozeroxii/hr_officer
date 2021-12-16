@@ -32,7 +32,6 @@ require "./public/components/func_datethai.php";
         $workgroup = $row['workgroup'];
         $note = $row['note'];
     }
-
     ?>
     <br>
     <textarea name="editor1">
@@ -55,53 +54,50 @@ require "./public/components/func_datethai.php";
 <p>&nbsp;</p>
 
 <p>&nbsp;</p>
-
-<p>&nbsp;</p>
-
-<p>&nbsp;</p>
-<div style="margin-left: 192px !important;
-    margin-top: 247px !important;
+<div style="margin-left: 195px !important;
+    margin-top: 253px;
     position: absolute !important;">
-<p style="margin-left: 40px !important;"><span style="font-size:8px"><span style="font-family:Trebuchet MS,Helvetica,sans-serif;"><?php echo $insert_datetime ?></span></span></p>
+<p style="margin-left: 40px !important;"><span style="font-size:10px"><span style="font-family:Trebuchet MS,Helvetica,sans-serif;"><?php echo $insert_datetime ?></span></span></p>
 </div>
-<div style="margin-left: 143px !important;
-    margin-top: 301px !important;
+<div style="    margin-left: 132px !important;
+    margin-top: 313px !important;
     position: absolute !important;">
-<p style="margin-left: 40px !important;"><span style="font-size:8px"><span style="font-family:Trebuchet MS,Helvetica,sans-serif;"><?php echo $fullname ?></span></span></p>
+<p style="margin-left: 40px !important;"><span style="font-size:10px"><span style="font-family:Trebuchet MS,Helvetica,sans-serif;"><?php echo $fullname; ?></span></span></p>
 </div>
 
-<div style="position: absolute !important;
-    margin-left: 22px !important;
-    margin-top: 316px !important;">
-<p style="margin-left: 40px !important;"><span style="font-size:8px"><span style="font-family:Trebuchet MS,Helvetica,sans-serif;"><?php echo $position_name ?></span></span></p>
+<div style="margin-left: 30px !important;
+    margin-top: 329px !important;
+    position: absolute !important;">
+<p style="margin-left: 40px !important;"><span style="font-size:10px"><span style="font-family:Trebuchet MS,Helvetica,sans-serif;"><?php echo $position_name ?></span></span></p>
 </div>
-<div style="position: absolute !important;
-    margin-left: 189px !important;
-    margin-top: 316px !important;">
-<p style="margin-left: 40px !important;"><span style="font-size:8px"><span style="font-family:Trebuchet MS,Helvetica,sans-serif;"><?php echo $workgroup ?></span></span></p>
+<div style="    margin-left: 205px !important;
+    margin-top: 329px !important;
+    position: absolute !important;">
+<p style="margin-left: 40px !important;"><span style="font-size:10px"><span style="font-family:Trebuchet MS,Helvetica,sans-serif;"><?php echo $workgroup ?></span></span></p>
 </div>
 <div style="line-height: 1.15;margin-left: -6px !important;
-    margin-top: 347px !important;
-    position: absolute !important;max-width: 333px;">
-<p style="margin-left: 40px !important;"><span style="font-size:8px"><span style="font-family:Trebuchet MS,Helvetica,sans-serif;"><?php
+    margin-top: 363px !important;
+    position: absolute !important;
+    max-width: 333px;">
+<p style="margin-left: 40px !important;"><span style="font-size:10px"><span style="font-family:Trebuchet MS,Helvetica,sans-serif;"><?php
                                                                                                                                     echo $note ?></span></span></p>
 </div>
-<div style="margin-left: 215px !important;
-    margin-top: 373px !important;
+<div style="margin-left: 236px !important;
+    margin-top: 392px !important;
     position: absolute !important;">
-<p style="margin-left: 40px !important;"><span style="font-size:8px"><span style="font-family:Trebuchet MS,Helvetica,sans-serif;"><?php echo $mobile_phone_number ?></span></span></p>
+<p style="margin-left: 40px !important;"><span style="font-size:10px"><span style="font-family:Trebuchet MS,Helvetica,sans-serif;"><?php echo $mobile_phone_number ?></span></span></p>
 </div>
-<div style="margin-left: 100px !important;
-    margin-top: 479px !important;
+<div style="margin-left: 117px !important;
+    margin-top: 503px !important;
     position: absolute !important;
     width: 200px;
     text-align: center;">
-<p style=""><span style="font-size:8px"><span style="font-family:Trebuchet MS,Helvetica,sans-serif;">( <?php echo $fullname ?> )</span></span></p>
+<p style=""><span style="font-size:10px"><span style="font-family:Trebuchet MS,Helvetica,sans-serif;">( <?php echo $fullname ?> )</span></span></p>
 </div>
-<div style="margin-left: 125px !important;
-    margin-top: 498px !important;
+<div style="margin-left: 140px !important;
+    margin-top: 526px !important;
     position: absolute !important;">
-<p style="margin-left: 40px !important;"><span style="font-size:8px"><span style="font-family:Trebuchet MS,Helvetica,sans-serif;"><?php echo $position_name ?></span></span></p>
+<p style="margin-left: 40px !important;"><span style="font-size:10px"><span style="font-family:Trebuchet MS,Helvetica,sans-serif;"><?php echo $position_name ?></span></span></p>
 </div>
 <p>&nbsp;</p>
 
@@ -115,7 +111,7 @@ require "./public/components/func_datethai.php";
 
 <p>&nbsp;</p>
 
-<p><img alt="" src="./img/miniform.PNG" style="margin-left: 20px;margin-top: 10px;height:380px; width:320px" /></p>
+<p><img alt="" src="./img/miniformcut.PNG" style="margin-left: 20px;margin-top: 11px;height:416px; width:350px;" /></p>
     </textarea>
     <script>
         CKEDITOR.replace('editor1');
@@ -155,7 +151,7 @@ require "./public/components/func_datethai.php";
             margin-left: 245px !important;
             padding: auto !important;
             background-color: #fff;
-            width: 810px !important;
+            width: 812px !important;
         }
     </style>
     <script>
