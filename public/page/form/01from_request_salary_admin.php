@@ -32,6 +32,26 @@ require "./public/components/func_datethai.php";
         $sql =  $obj->fetct_byadmin($buttonclick);
     }
 
+    function statusCheck($status)
+    {
+        if ($status == null || $status == '')
+            return 'รอดำเนินการ';
+        else if ($status == 1)
+            return 'อนุมัติ';
+        else
+            return 'ไม่อนุมัติ';
+    }
+    function statusCheckColor($status)
+    {
+        if ($status == null || $status == '')
+            return 'btn-warning';
+        else if ($status == 1)
+            return 'btn-success';
+        else
+            return 'btn-danger';
+    }
+
+
     ?>
 
     <div class="container-fulid mr-3 ml-3">
@@ -63,27 +83,7 @@ require "./public/components/func_datethai.php";
 
                             <tbody>
                                 <?php
-                                function statusCheck($status)
-                                {
-                                    if ($status == null || $status == '')
-                                        return 'รอดำเนินการ';
-                                    else if ($status == 1)
-                                        return 'อนุมัติ';
-                                    else
-                                        return 'ไม่อนุมัติ';
-                                }
-                                function statusCheckColor($status)
-                                {
-                                    if ($status == null || $status == '')
-                                        return 'btn-warning';
-                                    else if ($status == 1)
-                                        return 'btn-success';
-                                    else
-                                        return 'btn-danger';
-                                }
-
                                 while ($row = mysqli_fetch_array($sql)) {
-
                                 ?>
 
                                     <tr>
@@ -94,13 +94,10 @@ require "./public/components/func_datethai.php";
                                         <td class="text-left"><?php echo $row['note'] ?></td>
                                         <td class="text-left"><?php echo DateThai($row['timestamp']) . " " . TimeThai($row['timestamp']); ?></td>
                                         <td><button style="line-height: 100%;" class="btn <?php echo statusCheckColor($row['status']) ?> btn-block" onclick="approveUser(<?php echo $row['id'] ?>, <?php echo $_SESSION['user_id'] ?>)" <?php echo statusCheck($row['status']) === 'อนุมัติ' ? 'disabled' :""; ?>><?php echo statusCheck($row['status'])  ?></button></td>
-
                                         <td>
                                             <!-- <a> -->
                                                 <!-- href="./form_request_salary_admin_test" -->
-                                                <button style="line-height: 10%;" class="btn btn-info btn-block" onclick="printUser(
-                                                    <?php echo $row['id'] ?>
-                                                    )">
+                                                <button style="line-height: 10%;" class="btn btn-info btn-block" onclick="printUser( <?php echo $row['id'] ?>)"  <?php echo statusCheck($row['status']) === 'รอดำเนินการ' ? 'disabled' :""; ?>>
                                                     <i class="fa fa-print" aria-hidden="true"></i>
                                                 </button>
                                             <!-- </a> -->
