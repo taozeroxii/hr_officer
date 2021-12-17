@@ -88,6 +88,14 @@ require "./public/components/func_datethai.php";
 <p style="margin-left: 40px !important;"><span style="font-size:10px"><span style="font-family:Trebuchet MS,Helvetica,sans-serif;"><?php echo $mobile_phone_number ?></span></span></p>
 </div>
 <div style="margin-left: 117px !important;
+    margin-top: 485px !important;
+    position: absolute !important;
+    width: 200px;
+    text-align: center;">
+<p style=""><span style="font-size:12px"><span style="font-family:Trebuchet MS,Helvetica,sans-serif;"><?php $full = explode(" ", $fullname);
+                                                                                                        echo $full[2] . ' ' . $full[3]  ?></span></span></p>
+</div>
+<div style="margin-left: 117px !important;
     margin-top: 503px !important;
     position: absolute !important;
     width: 200px;
@@ -156,9 +164,15 @@ require "./public/components/func_datethai.php";
     </style>
     <script>
         window.onload = function deleteElement() {
+            console.log('152313asd');
             document = document.getElementById("cke_22");
             myobj.remove();
+            CKEDITOR.tools.callFunction(9, this);
+            console.log('152313asd');
         }
+        $(document).ready(function() {
+
+        });
     </script>
 </body>
 
