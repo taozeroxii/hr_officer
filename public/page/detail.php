@@ -130,11 +130,7 @@
             </div>
         </section>
     </div>
-<a href="https://play.google.com/store/apps/details?id=th.go.dms.teleconsult">asdasd</a>
-<script>
-var url = "https://itunes.apple.com/us/app/snapchat/id447188370?mt=8"
-window.open(url,'_blank');
-</script>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
