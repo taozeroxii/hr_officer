@@ -25,11 +25,11 @@
             <strong>ลา</strong>
         </button>
 
+        <?php if ($_SESSION['role'] === '1' || $_SESSION['role'] === '2' || $_SESSION['role'] === '3') { ?>
+            <hr class="text-light">
+            <h2 class="text-light">Admin</h2>
 
-        <hr class="text-light">
-        <h2 class="text-light">Admin</h2>
 
-        <?php if ($_SESSION['role'] == 1 || $_SESSION['role'] == 0) { ?>
             <button style="width: 150px; height:125px;" type="button" class="btn btn-warning" data-toggle="modal" data-target="#approveModal">
                 <i class="fa fa-archive fa-4x"></i><br>
                 <strong>อนุมัติหนังสือรับรอง</strong>
