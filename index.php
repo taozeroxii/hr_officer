@@ -88,6 +88,10 @@ if (isset($_SESSION['fullname']) && ($_SESSION['role'] == 1 ||  $_SESSION['role'
     $router->map("GET|post", "/delete/[a:page]/[i:id]", function ($page, $id) {
         require __DIR__ . "./public/page/delete.php";
     });
+
+
+
+
 }
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> End ส่วน admin (ข้อมูลพื้นฐาน)<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
@@ -104,6 +108,11 @@ if (isset($_SESSION['fullname']) && ($_SESSION['role'] == 1 ||  $_SESSION['role'
     $router->map("GET|POST", "/register", function () {
         require __DIR__ . "./public/page/register.php";
     });
+    $router->map("GET|POST", "/table-userrole", function () {
+        require __DIR__ . "./public/page/tableuserrole.php";
+    });
+
+    
 }
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> End ส่วน admin (ข้อมูลพื้นฐาน)<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 

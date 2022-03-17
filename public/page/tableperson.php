@@ -39,8 +39,8 @@
         </div>
 
         <hr>
-       <p class="text-light">   * การสร้างรหัสเข้าใช้งาน จะนำข้อมูลพื้นฐานมาทำเป็นรหัสเข้าใช้งานระบบ User : เลขบัตรประจำตัวประชาชน Password : 1234 *</p>
-     
+        <p class="text-light"> * การสร้างรหัสเข้าใช้งาน จะนำข้อมูลพื้นฐานมาทำเป็นรหัสเข้าใช้งานระบบ User : เลขบัตรประจำตัวประชาชน Password : 1234 *</p>
+
         <div class="row">
             <div class="col-12">
                 <div class="card">
@@ -72,7 +72,9 @@
                                         <td><?php echo $row['user_role_id'] ?></td>
                                         <td><a href="manageperson/<?php echo $row['id'] ?>" class="btn btn-primary d-grid gap-2"><i class="fas fa-pencil-alt f-16"> แก้ไข</i> </a></td>
                                         <!-- <td><a class="btn btn-danger d-grid gap-2 text-white" onclick="test(<?php echo $row['mission_id'] ?>)"><i class="fas fa-trash f-16"> ลบ</i></a></td> -->
-                                        <td><button class="btn btn-success d-grid gap-2 text-white" onclick="addUser(<?php echo $row['id'] ?>)" <?php if (isset($row['haveuser_yet'])) {echo 'disabled';} ?>><i class="fas fa-plus   f-16"> สร้างรหัสเข้าใช้งาน</i></button></td>
+                                        <td><button class="btn btn-success d-grid gap-2 text-white" onclick="addUser(<?php echo $row['id'] ?>)" <?php if (isset($row['haveuser_yet'])) {
+                                                                                                                                                    echo 'disabled';
+                                                                                                                                                } ?>><i class="fas fa-plus   f-16"> สร้างรหัสเข้าใช้งาน</i></button></td>
                                     </tr>
                                 <?php } ?>
                             </tbody>
@@ -101,16 +103,37 @@
 
             function addUser(value) {
                 Swal.fire({
-                    title: 'เพิ่มข้อมูล USER ระดับใช้งานทั่วไป ',
+                    title: 'เพิ่มข้อมูล USER  ',
                     text: " ยืนยันการเพิ่มข้อมูล  ?",
                     icon: 'info',
+                    input: 'select',
+                    inputPlaceholder: 'โปรดเลือกสิทธิการเข้าถึง',
+                    inputOptions: {
+                        role: {
+                            0: '0.ทั่วไป',
+                            1: '1.เข้าได้ทุกส่วน',
+                            2: '2.ข้อมูลพื้นฐาน,user',
+                            3: '3.ข้อมูลพื้นฐาน'
+                        }
+
+
+                    },
+                    inputValidator: (role) => {
+                        return new Promise((resolve) => {
+                            if (role != '') {
+                                resolve()
+                            } else {
+                                resolve('โปรดเลือกสิทธิ')
+                            }
+                        })
+                    },
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
                     confirmButtonText: 'Yes'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location.href = './delete/addUserperson/' + value; //ส่งค่า page และ id ไปเช็คเพื่อทำการเพิ่ม user ให้บุคลากร
+                        window.location.href = './delete/addUserperson/' + value+'?role='+result.value; //ส่งค่า page และ id ไปเช็คเพื่อทำการเพิ่ม user ให้บุคลากร
                     }
                 })
             }
