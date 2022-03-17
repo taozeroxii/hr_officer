@@ -50,8 +50,16 @@ require "./public/components/func_datethai.php";
         else
             return 'btn-danger';
     }
-
-
+    function generateRandomString($length = 100) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
+    }
+    $xxx =  generateRandomString();
     ?>
 
     <div class="container-fulid mr-3 ml-3">
@@ -95,20 +103,41 @@ require "./public/components/func_datethai.php";
                                         <td class="text-left"><?php echo $row['workgroup'] ?></td>
                                         <td class="text-left"><?php echo $row['note'] ?></td>
                                         <td class="text-left"><?php echo DateThai($row['timestamp']) . " " . TimeThai($row['timestamp']); ?></td>
-                                        <td><button style="line-height: 100%;" class="btn btn-danger<?php echo statusCheckColor($row['status']) ?> btn-block" onclick="approveUser(<?php echo $row['id'] ?>, <?php echo $_SESSION['user_id'] ?>)" <?php echo statusCheck($row['status']) === 'อนุมัติ' ? 'disabled' :""; ?>><?php echo statusCheck($row['status'])  ?></button></td>
-                                        <td> 
-                                             <a href="http://172.16.2.43/salary/api.hr_slip.php?cid=<?php echo $row['cid'];?>" target="_blank">
-                                            <button style="line-height: 10%;" class="btn btn-danger btn-block"<?php echo statusCheck($row['status']) === 'อนุมัติ' ? 'disabled' :""; ?>>
-                                                    <i class="fa fa-print" aria-hidden="true"></i>
-                                                </button>
-                                                </a>
-                                            </td>
                                         <td>
-                                         <!-- <a> -->
-                                                <!-- href="./form_request_salary_admin_test" -->
-                                                <button style="line-height: 10%;" class="btn btn-info btn-block" onclick="printUser( <?php echo $row['id'] ?>)"  <?php echo statusCheck($row['status']) === 'รอดำเนินการ' ? 'disabled' :""; ?>>
-                                                    <i class="fa fa-print" aria-hidden="true"></i>
+                                            <button style="line-height: 100%;" class="btn <?php echo statusCheckColor($row['status']) ?> btn-block" onclick="approveUser(<?php echo $row['id'] ?>, <?php echo $_SESSION['user_id'] ?>)" <?php echo statusCheck($row['status']) === 'อนุมัติ' ? 'disabled' : ""; ?>><?php echo statusCheck($row['status'])  ?></button>
+                                        </td>
+                                        <td>
+                                            <?php
+                                            $cslip = $row['status'];
+                                            if ($cslip == null || $cslip == '') {
+                                            ?>
+                                                <a href="http://172.16.2.43/salary/api.hr_slip.php?tokenkeycode=<?echo $xxx;?>&xsendcidcode=<?php echo $row['cid']; ?>" target="_blank">
+                                                    <button style="line-height: 10%;" class="btn btn-danger btn-block">
+                                                        <i class="fa fa-print" aria-hidden="true"></i>
+                                                    </button>
+                                                </a>
+                                            <?php
+                                            } elseif ($cslip == 1) {
+                                            ?>
+                                                <button style="line-height: 10%;" class="btn btn-dack btn-block" title="ดำเนินการแล้วไม่สามารถพิมพ์เอกสารสลิปได้">
+                                                <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                                                 </button>
+                                            <?php
+                                            } else {
+                                                ?>
+                                                <button style="line-height: 10%;" class="btn btn-dack btn-block">
+                                                <i class="fa fa-window-close-o" aria-hidden="true"></i>
+                                                </button>
+                                            <?php
+                                            }
+                                            ?>
+                                        </td>
+                                        <td>
+                                            <!-- <a> -->
+                                            <!-- href="./form_request_salary_admin_test" -->
+                                            <button style="line-height: 10%;" class="btn btn-info btn-block" onclick="printUser( <?php echo $row['id'] ?>)" <?php echo statusCheck($row['status']) === 'รอดำเนินการ' ? 'disabled' : ""; ?>>
+                                                <i class="fa fa-print" aria-hidden="true"></i>
+                                            </button>
                                             <!-- </a> -->
                                         </td>
                                     </tr>
@@ -166,7 +195,7 @@ require "./public/components/func_datethai.php";
 
         }
 
-           function post(path, params, method = 'post') {
+        function post(path, params, method = 'post') {
 
             // The rest of this code assumes you are not using a library.
             // It can be made less verbose if you use one.
