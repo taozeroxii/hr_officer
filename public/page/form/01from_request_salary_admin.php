@@ -78,12 +78,14 @@ require "./public/components/func_datethai.php";
                                 <th>ประสงค์ขอหนังสือรับรองเพื่อ</th>
                                 <th>วันเวลาอัพเดทข้อมูลล่าสุด</th>
                                 <th>สถานะ</th>
+                                <th>สลิปเงินเดือน</th>
                                 <th>พิมพ์</th>
                             </thead>
 
                             <tbody>
                                 <?php
                                 while ($row = mysqli_fetch_array($sql)) {
+
                                 ?>
 
                                     <tr>
@@ -93,9 +95,16 @@ require "./public/components/func_datethai.php";
                                         <td class="text-left"><?php echo $row['workgroup'] ?></td>
                                         <td class="text-left"><?php echo $row['note'] ?></td>
                                         <td class="text-left"><?php echo DateThai($row['timestamp']) . " " . TimeThai($row['timestamp']); ?></td>
-                                        <td><button style="line-height: 100%;" class="btn <?php echo statusCheckColor($row['status']) ?> btn-block" onclick="approveUser(<?php echo $row['id'] ?>, <?php echo $_SESSION['user_id'] ?>)" <?php echo statusCheck($row['status']) === 'อนุมัติ' ? 'disabled' :""; ?>><?php echo statusCheck($row['status'])  ?></button></td>
+                                        <td><button style="line-height: 100%;" class="btn btn-danger<?php echo statusCheckColor($row['status']) ?> btn-block" onclick="approveUser(<?php echo $row['id'] ?>, <?php echo $_SESSION['user_id'] ?>)" <?php echo statusCheck($row['status']) === 'อนุมัติ' ? 'disabled' :""; ?>><?php echo statusCheck($row['status'])  ?></button></td>
+                                        <td> 
+                                             <a href="http://172.16.2.43/salary/api.hr_slip.php?cid=<?php echo $row['cid'];?>" target="_blank">
+                                            <button style="line-height: 10%;" class="btn btn-danger btn-block"<?php echo statusCheck($row['status']) === 'อนุมัติ' ? 'disabled' :""; ?>>
+                                                    <i class="fa fa-print" aria-hidden="true"></i>
+                                                </button>
+                                                </a>
+                                            </td>
                                         <td>
-                                            <!-- <a> -->
+                                         <!-- <a> -->
                                                 <!-- href="./form_request_salary_admin_test" -->
                                                 <button style="line-height: 10%;" class="btn btn-info btn-block" onclick="printUser( <?php echo $row['id'] ?>)"  <?php echo statusCheck($row['status']) === 'รอดำเนินการ' ? 'disabled' :""; ?>>
                                                     <i class="fa fa-print" aria-hidden="true"></i>
@@ -157,7 +166,7 @@ require "./public/components/func_datethai.php";
 
         }
 
-        function post(path, params, method = 'post') {
+           function post(path, params, method = 'post') {
 
             // The rest of this code assumes you are not using a library.
             // It can be made less verbose if you use one.

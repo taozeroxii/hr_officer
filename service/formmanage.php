@@ -38,7 +38,7 @@ class manage_form extends Dbcon
         $status = mysqli_real_escape_string($this->mycon, $buttonclick);
         if ($status == null || $status == '') {
             $result = mysqli_query($this->mycon, "select hfl.*,pm.typeposition_id,hpt.person_name,pm.position_id,position_name,
-            pm.workgroup as workgroupid ,wg.workgroup,wg.mission_id,hcm.mission_name
+            pm.workgroup as workgroupid ,wg.workgroup,wg.mission_id,hcm.mission_name,pm.cid
             from hr_form_list hfl
             LEFT JOIN hr_cpa_person_main pm ON hfl.person_main_id  = pm.id
             LEFT JOIN hrd_cpa_position hrp on hrp.id = pm.position_id
@@ -49,7 +49,7 @@ class manage_form extends Dbcon
             ORDER BY timestamp DESC LIMIT 1000");
         } else if ($status === 'all') {
             $result = mysqli_query($this->mycon, "select hfl.*,pm.typeposition_id,hpt.person_name,pm.position_id,position_name,
-            pm.workgroup as workgroupid ,wg.workgroup,wg.mission_id,hcm.mission_name
+            pm.workgroup as workgroupid ,wg.workgroup,wg.mission_id,hcm.mission_name,pm.cid
             from hr_form_list hfl
             LEFT JOIN hr_cpa_person_main pm ON hfl.person_main_id  = pm.id
             LEFT JOIN hrd_cpa_position hrp on hrp.id = pm.position_id
@@ -59,7 +59,7 @@ class manage_form extends Dbcon
             ORDER BY timestamp DESC LIMIT 1000");
         } else {
             $result = mysqli_query($this->mycon, "select hfl.*,pm.typeposition_id,hpt.person_name,pm.position_id,position_name,
-            pm.workgroup as workgroupid ,wg.workgroup,wg.mission_id,hcm.mission_name
+            pm.workgroup as workgroupid ,wg.workgroup,wg.mission_id,hcm.mission_name,pm.cid
             from hr_form_list hfl
             LEFT JOIN hr_cpa_person_main pm ON hfl.person_main_id  = pm.id
             LEFT JOIN hrd_cpa_position hrp on hrp.id = pm.position_id
