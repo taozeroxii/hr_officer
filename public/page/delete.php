@@ -38,7 +38,8 @@ if($page === 'workgroup'){
 
 //เพิ่มผู้ใช้งานระบบ ผ่านหน้า รายการบุคลากร
 if($page === 'addUserperson'){
-    $role =  empty($_GET['role']) ?  '':($_GET['role']);
+    $role = '';
+    $role = ($_GET['role']);
     $adduser = $obj->add_user($id,$role);
      if( $adduser){
         echo "<script>alert('เพิ่มข้อมูลสำเร็จ');window.location.href = '../../tableperson';</script>";
