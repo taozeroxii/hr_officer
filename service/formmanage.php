@@ -3,11 +3,11 @@ include './config/dbcon.php';
 
 class manage_form extends Dbcon
 {
-    public function insert($formid, $user_id, $person_main_id, $formname, $fullname, $note)
+    public function insert($formid, $user_id, $person_main_id, $formname, $fullname, $mobilephone, $inphone, $cert_type_id, $note,$now_dep_id)
     {
         mysqli_real_escape_string($this->mycon, $note);
         $insertdate = date('Y-m-d H:i:s');
-        $sql = "INSERT INTO hr_form_list (form_id,user_id,person_main_id,form_name,fullname,note,insert_datetime) VALUE ('$formid','$user_id','$person_main_id','$formname','$fullname','$note','$insertdate')";
+        $sql = "INSERT INTO hr_form_list (form_id,user_id,person_main_id,form_name,fullname,mobilephone,inphone,note,cert_type_id,insert_datetime,now_dep_id) VALUE ('$formid','$user_id','$person_main_id','$formname',' $fullname','$mobilephone','$inphone','$note','$cert_type_id','$insertdate','$now_dep_id')";
         $result = mysqli_query($this->mycon, $sql);
         if ($result)  return $result;
         else return mysqli_error($this->mycon);
@@ -15,7 +15,7 @@ class manage_form extends Dbcon
 
     public function fetct_byuser($userid)
     {
-        $result = mysqli_query($this->mycon, "SELECT * FROM hr_form_list WHERE  user_id = '$userid' ORDER BY insert_datetime DESC LIMIT 10");
+        $result = mysqli_query($this->mycon, "SELECT hl.*,ht.cert_type_name  FROM hr_form_list hl LEFT JOIN hr_cert_type ht on hl.cert_type_id = ht.id where user_id = '$userid' ORDER BY insert_datetime DESC LIMIT 10");
         return $result;
     }
 
@@ -72,7 +72,7 @@ class manage_form extends Dbcon
 
         return $result;
     }
-    public function fetch_leave()// query แระเภทการลา
+    public function fetch_leave() // query ประเภทการลา
     {
         $result = mysqli_query($this->mycon, "select * from hr_cpa_leave where form_type = '1'");
         return $result;
@@ -80,6 +80,20 @@ class manage_form extends Dbcon
     public function approve($id, $statusapprove, $userupdate)
     {
         $result = mysqli_query($this->mycon, "UPDATE hr_form_list SET status = '$statusapprove' , user_appove_status = '$userupdate'  WHERE id = $id");
+        return $result;
+    }
+
+
+    // ปุ่มตัวเลือกประเภทใบรับรอง
+    public function fetch_cert_type()
+    {
+        $result = mysqli_query($this->mycon, "select * from hr_cert_type where status = '1'");
+        return $result;
+    }
+    //ปุ่มแผนก
+    public function fetch_dep()
+    {
+        $result = mysqli_query($this->mycon, "select * from hr_cpa_workgroup ");
         return $result;
     }
 }
