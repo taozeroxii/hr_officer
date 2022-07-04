@@ -24,9 +24,6 @@ $router->map("GET", "/calendar_leave", function () {
     require __DIR__ . "./public/page/calendar_leave.php";
 });
 
-$router->map("GET", "/detail", function () {
-    require __DIR__ . "./public/page/detail.php";
-});
 
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ส่วน admin (ข้อมูลพื้นฐาน)<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -125,6 +122,12 @@ if (isset($_SESSION['fullname']) && ($_SESSION['role'] == 1 ||  $_SESSION['role'
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  ส่วน User ทั่วไป หรือต้องมีการเข้าสู่ระบบ<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 if (isset($_SESSION['fullname']) && (isset($_SESSION['role']))) {
+
+    $router->map("GET", "/detail", function () {
+        require __DIR__ . "./public/page/detail.php";
+    });
+
+    
     $router->map("GET", "/form", function () {
         require __DIR__ . "./public/page/listform.php";
     });
@@ -147,6 +150,9 @@ if (isset($_SESSION['fullname']) && (isset($_SESSION['role']))) {
     $router->map("GET,POST", "/form_request_salary_admin_test", function () {
         require __DIR__ . "./public/page/form/01from_request_salary_admin_test.php";
     });
+
+
+
 }
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  ส่วน User ทั่วไป หรือต้องมีการเข้าสู่ระบบ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
