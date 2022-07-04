@@ -15,20 +15,21 @@ class manage_form extends Dbcon
 
     public function fetct_byuser($userid)
     {
-        $result = mysqli_query($this->mycon, "SELECT hl.*,ht.cert_type_name  FROM hr_form_list hl LEFT JOIN hr_cert_type ht on hl.cert_type_id = ht.id where user_id = '$userid' ORDER BY insert_datetime DESC LIMIT 10");
+        $result = mysqli_query($this->mycon, "SELECT hl.*,ht.cert_type_name,hrg.workgroup  FROM hr_form_list hl LEFT JOIN hr_cert_type ht on hl.cert_type_id = ht.id LEFT JOIN hr_cpa_workgroup hrg on hrg.id  =  now_dep_id where user_id = '$userid' ORDER BY insert_datetime DESC LIMIT 10");
         return $result;
     }
 
     public function fetctprint_byuser($userid)
     {
         $result = mysqli_query($this->mycon, "select hfl.*,pm.mobile_phone_number,pm.typeposition_id,hpt.person_name,pm.position_id,position_name,
-            pm.workgroup as workgroupid ,wg.workgroup,wg.mission_id,hcm.mission_name
-            from hr_form_list hfl
-            LEFT JOIN hr_cpa_person_main pm ON hfl.person_main_id  = pm.id
-            LEFT JOIN hrd_cpa_position hrp on hrp.id = pm.position_id
-            LEFT JOIN hr_cpa_person_type   hpt on hpt.id = pm.typeposition_id
-            LEFT JOIN hr_cpa_workgroup wg on wg.id = pm.workgroup
-            LEFT JOIN hr_cpa_mission hcm on hcm.mission_id = wg.mission_id
+        pm.workgroup as workgroupid ,wg.workgroup,wg_n.workgroup as now_dep,wg.mission_id,hcm.mission_name
+        from hr_form_list hfl
+        LEFT JOIN hr_cpa_person_main pm ON hfl.person_main_id  = pm.id
+        LEFT JOIN hrd_cpa_position hrp on hrp.id = pm.position_id
+        LEFT JOIN hr_cpa_person_type   hpt on hpt.id = pm.typeposition_id
+        LEFT JOIN hr_cpa_workgroup wg on wg.id = pm.workgroup
+        LEFT JOIN hr_cpa_workgroup wg_n on wg_n.id = hfl.now_dep_id
+        LEFT JOIN hr_cpa_mission hcm on hcm.mission_id = wg.mission_id
             where hfl.id = '$userid'
             ORDER BY timestamp DESC LIMIT 1");
         return $result;

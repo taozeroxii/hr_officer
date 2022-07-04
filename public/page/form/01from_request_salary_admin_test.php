@@ -28,8 +28,9 @@ require "./public/components/func_datethai.php";
         $insert_datetime = DateThai($row['insert_datetime']);
         $position_name = $row['position_name'];
         $mobile_phone_number = $row['mobile_phone_number'] == '' ? 'xxx-xxx-xxxx' : $row['mobile_phone_number'];
+        $inphone = $row['inphone'] == '' ? 'xxxx': $row['inphone'];
         $fullname = $row['fullname'];
-        $workgroup = $row['workgroup'];
+        $workgroup =  $row['now_dep'] == '' ?$row['workgroup']: $row['now_dep'] ; // หากใส่ฝ่ายหรือกลุ่มงานปัจจุบันมาจะใช้ตามใบคำขอหากไม่ใส่จะใช้ค่าตั้งต้นตามที่ตั้งไว้ตามตำแหน้ง
         $note = $row['note'];
     }
     ?>
@@ -79,13 +80,12 @@ require "./public/components/func_datethai.php";
     margin-top: 363px !important;
     position: absolute !important;
     max-width: 333px;">
-<p style="margin-left: 40px !important;"><span style="font-size:10px"><span style="font-family:Trebuchet MS,Helvetica,sans-serif;"><?php
-                                                                                                                                    echo $note ?></span></span></p>
+<p style="margin-left: 40px !important;"><span style="font-size:10px"><span style="font-family:Trebuchet MS,Helvetica,sans-serif;"><?php echo $note ?></span></span></p>
 </div>
 <div style="margin-left: 236px !important;
     margin-top: 392px !important;
     position: absolute !important;">
-<p style="margin-left: 40px !important;"><span style="font-size:10px"><span style="font-family:Trebuchet MS,Helvetica,sans-serif;"><?php echo $mobile_phone_number ?></span></span></p>
+<p style="margin-left: 40px !important;"><span style="font-size:10px"><span style="font-family:Trebuchet MS,Helvetica,sans-serif;"><?php echo $mobile_phone_number.' / '.$inphone; ?></span></span></p>
 </div>
 <div style="margin-left: 117px !important;
     margin-top: 485px !important;

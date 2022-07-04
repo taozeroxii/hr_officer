@@ -94,6 +94,7 @@ require "./public/components/func_datethai.php";
                     <thead class="text-center">
                         <th>วันเวลาที่ขอ</th>
                         <th>ประเภทใบรับรอง</th>
+                        <th>หน่วยงานปัจจุบัน</th>
                         <th>ประสงค์ขอหนังสือรับรองเพื่อ</th>
                         <th>สถานะ</th>
                     </thead>
@@ -115,8 +116,9 @@ require "./public/components/func_datethai.php";
                             <tr>
                                 <td><?php echo DateTimeThai($row['insert_datetime']); ?></td>
                                 <td><?php echo $row['cert_type_name']; ?></td>
+                                <td><?php echo $row['workgroup']; ?></td>
                                 <td><?php echo $row['note']; ?></td>
-                                <td><?php echo statusCheck($row['status']); ?></td>
+                                <td><?php echo statusCheck($row['status']); ?></td> 
                             </tr>
                         <?php } ?>
                     </tbody>
