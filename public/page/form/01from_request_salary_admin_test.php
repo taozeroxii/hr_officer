@@ -55,8 +55,13 @@ require "./public/components/func_datethai.php";
 <p>&nbsp;</p>
 
 <p>&nbsp;</p>
+<div style="margin-left: 10px !important;
+    margin-top: 255px;
+    position: absolute !important;">
+<p style="margin-left: 40px !important;"><span style="font-size:10px"><span style="font-family:Trebuchet MS,Helvetica,sans-serif;">ปจ0033.104/พิเศษ</span></span></p>
+</div>
 <div style="margin-left: 195px !important;
-    margin-top: 253px;
+    margin-top: 255px;
     position: absolute !important;">
 <p style="margin-left: 40px !important;"><span style="font-size:10px"><span style="font-family:Trebuchet MS,Helvetica,sans-serif;"><?php echo $insert_datetime ?></span></span></p>
 </div>

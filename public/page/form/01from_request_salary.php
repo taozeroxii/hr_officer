@@ -45,17 +45,6 @@ require "./public/components/func_datethai.php";
             <div class="card-body">
                 <h5>แบบฟอร์มขอหนังสือรับรอง</h5>
                 <form action="#" method="post">
-
-                    ประเภทใบรับรอง
-                    <select class="form-control" name="cert_type_id" id="cert_type_id" required>
-                        <option value="">โปรดเลือก .. </option>
-                        <?php
-                        $cert_type =  $obj->fetch_cert_type();
-                        while ($row = mysqli_fetch_array($cert_type)) { ?>
-                            <option value="<?php echo $row['id']; ?>"><?php echo $row['cert_type_name']; ?> </option>
-                        <?php } ?>
-                    </select>
-
                     หน่วยงานที่อยู่ ณ ปัจจุบัน
                     <select class="form-control "  name="depid" id="depid" required>
                         <option value="">โปรดเลือก .. </option>
@@ -66,15 +55,21 @@ require "./public/components/func_datethai.php";
                         <?php } ?>
                     </select>
 
-
-
                     <div class="row">
                         <div class="col-6"> เบอร์โทรมือถือ<input class="form-control" type="number" name="mobilephone" placeholder="เบอร์โทรมือถือ" value="" required></div>
                         <div class="col-6"> เบอร์โทรภายใน<input class="form-control" type="number" name="inphone" placeholder="เบอร์โทรภายใน" value="" required></div>
                     </div>
-
+                    ประเภทใบรับรอง
+                    <select class="form-control" name="cert_type_id" id="cert_type_id" required>
+                        <option value="">โปรดเลือก .. </option>
+                        <?php
+                        $cert_type =  $obj->fetch_cert_type();
+                        while ($row = mysqli_fetch_array($cert_type)) { ?>
+                            <option value="<?php echo $row['id']; ?>"><?php echo $row['cert_type_name']; ?> </option>
+                        <?php } ?>
+                    </select>
                     <div class="row mt-2">
-                        <div class="col-12">เหตุผล <input class="form-control" type="text" name="note" placeholder="ระบุเหตุผลที่ต้องการขอใบรับรอง" value="" required></div>
+                        <div class="col-12">เหตุผล อื่นๆ <input class="form-control" type="text" name="note" placeholder="ระบุเหตุผลที่ต้องการขอใบรับรอง" value="" required></div>
                     </div>
 
                     <button type="submit" name="submit" value="submit" class="btn btn-success btn-lg mt-3">บันทึก</button>
