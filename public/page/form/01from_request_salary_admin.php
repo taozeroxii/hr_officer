@@ -22,6 +22,9 @@ require "./public/components/func_datethai.php";
         } else if ($_POST['submit'] === 'acp') {
             $buttonclick = 1;
             $sql =  $obj->fetct_byadmin($buttonclick);
+        } else if ($_POST['submit'] === 'wacp') {
+            $buttonclick = 2;
+            $sql =  $obj->fetct_byadmin($buttonclick);
         } else if ($_POST['submit'] === 'nacp') {
             $buttonclick = 0;
             $sql =  $obj->fetct_byadmin($buttonclick);
@@ -38,19 +41,24 @@ require "./public/components/func_datethai.php";
             return 'รอดำเนินการ';
         else if ($status == 1)
             return 'อนุมัติ';
+        else if ($status == 2)
+            return 'รออนุมัติ';
         else
             return 'ไม่อนุมัติ';
     }
     function statusCheckColor($status)
     {
         if ($status == null || $status == '')
-            return 'btn-warning';
+            return 'btn-danger';
         else if ($status == 1)
             return 'btn-success';
+        else if ($status == 2)
+            return 'btn-warning';
         else
             return 'btn-danger';
     }
-    function generateRandomString($length = 100) {
+    function generateRandomString($length = 100)
+    {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
         $randomString = '';
@@ -67,6 +75,7 @@ require "./public/components/func_datethai.php";
         <h1 class="text-light">รายการขอหนังสือรับรอง limit 1000 รายการ</h1>
         <form action="./form_request_salary_admin#" method="post">
             <button type="submit" name="submit" value="wait" class="btn btn-lg btn-warning">รอดำเนินการ</button>
+            <button type="submit" name="submit" value="wacp" class="btn btn-lg btn-warning">รออนุมัติ</button>
             <button type="submit" name="submit" value="acp" class="btn btn-lg btn-success">อนุมัติ</button>
             <button type="submit" name="submit" value="all" class="btn btn-lg btn-secondary">ทั้งหมด</button>
         </form>
@@ -104,14 +113,14 @@ require "./public/components/func_datethai.php";
                                         <td class="text-left"><?php echo $row['note'] ?></td>
                                         <td class="text-left"><?php echo DateThai($row['timestamp']) . " " . TimeThai($row['timestamp']); ?></td>
                                         <td>
-                                            <button style="line-height: 100%;" class="btn <?php echo statusCheckColor($row['status']) ?> btn-block" onclick="approveUser(<?php echo $row['id'] ?>, <?php echo $_SESSION['user_id'] ?>)" <?php echo statusCheck($row['status']) === 'อนุมัติ' ? 'disabled' : ""; ?>><?php echo statusCheck($row['status'])  ?></button>
+                                            <button style="line-height: 100%;" class="btn <?php echo statusCheckColor($row['status']) ?> btn-block" onclick="approveUser(<?php echo $row['id'] ?>, <?php echo $_SESSION['user_id'] ?>,<?php echo $row['status']?>)" <?php echo statusCheck($row['status']) === 'อนุมัติ' ? 'disabled' : ""; ?>><?php echo statusCheck($row['status'])  ?></button>
                                         </td>
                                         <td>
                                             <?php
                                             $cslip = $row['status'];
                                             if ($cslip == null || $cslip == '') {
                                             ?>
-                                                <a href="http://172.16.2.43/salary/api.hr_slip.php?tokenkeycode=<?echo $xxx;?>&xsendcidcode=<?php echo $row['cid']; ?>" target="_blank">
+                                                <a href="http://172.16.2.43/salary/api.hr_slip.php?tokenkeycode=<? echo $xxx; ?>&xsendcidcode=<?php echo $row['cid']; ?>" target="_blank">
                                                     <button style="line-height: 10%;" class="btn btn-danger btn-block">
                                                         <i class="fa fa-print" aria-hidden="true"></i>
                                                     </button>
@@ -120,13 +129,13 @@ require "./public/components/func_datethai.php";
                                             } elseif ($cslip == 1) {
                                             ?>
                                                 <button style="line-height: 10%;" class="btn btn-dack btn-block" title="ดำเนินการแล้วไม่สามารถพิมพ์เอกสารสลิปได้">
-                                                <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                                                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                                                 </button>
                                             <?php
                                             } else {
-                                                ?>
+                                            ?>
                                                 <button style="line-height: 10%;" class="btn btn-dack btn-block">
-                                                <i class="fa fa-window-close-o" aria-hidden="true"></i>
+                                                    <i class="fa fa-window-close-o" aria-hidden="true"></i>
                                                 </button>
                                             <?php
                                             }
@@ -156,7 +165,7 @@ require "./public/components/func_datethai.php";
     </div>
 
     <script>
-        function approveUser(value, user_id) {
+        function approveUser(value, user_id,status) {
             Swal.fire({
                 title: 'อนุมัติหรือไม่',
                 showDenyButton: false,
@@ -167,10 +176,16 @@ require "./public/components/func_datethai.php";
             }).then((result) => {
                 /* Read more about isConfirmed, isDenied below */
                 if (result.isConfirmed) {
+                    console.log(status)
+                    if(status == 2){
+                        status = 1;
+                    }else if(status == '' ||status == null){
+                        status = 2;
+                    }
                     Swal.fire('อนุมัติ', '', 'success').then((result) => {
                         post('./post', {
                             id: value,
-                            status: 1,
+                            status: status,
                             userupdate: user_id
                         });
                     })

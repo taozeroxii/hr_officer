@@ -107,6 +107,8 @@ require "./public/components/func_datethai.php";
                                 return '<p class="text-info"><i class="fa fa-genderless" aria-hidden="true"></i>&nbsp;รอดำเนินการ</p>';
                             else if ($status == 1)
                                 return '<p class="text-success"><i class="fa fa-check" aria-hidden="true"></i>&nbsp;ผ่านการอนุมัติ</p>';
+                            else if ($status == 2)
+                                return '<p class="text-success"><i class="fa fa-check" aria-hidden="true"></i>&nbsp;รออนุมัติ</p>';
                             else
                                 return '<p class="text-danger"><i class="fa fa-times" aria-hidden="true"></i>&nbsp;ไม่ผ่านการอนุมัติ</p>';
                         }
